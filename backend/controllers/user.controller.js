@@ -34,7 +34,6 @@ export const register = async (req, res) => {
   }
 };
 
-
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
@@ -91,18 +90,6 @@ export const login = async (req, res) => {
   }
 };
 
-export const LogOut = async (req, res) => {
-  try {
-    return res
-      .status(200)
-      .cookie("token", "", { maxAge: 0 }) // clear cookie
-      .json({ message: "Logout Successfully" });
-    success: true;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const updateProfile = async (req, res) => {
   try {
     const { fullName, email, phoneNumber, bio, skills } = req.body;
@@ -155,6 +142,19 @@ export const updateProfile = async (req, res) => {
       .status(200)
       .json({ message: "Profile Updated Successfully", user, success: true });
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const LogOut = async (req, res) => {
+  try {
+    return res
+      .status(200)
+      .cookie("token", "", { maxAge: 0 }) // clear cookie
+      .json({ message: "Logout Successfully" });
+    success: true;
+  } catch (error) {
+    return res.status(500).json({ message: "Can't Logout" });
     console.log(error);
   }
 };
