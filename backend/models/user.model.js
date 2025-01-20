@@ -10,35 +10,43 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    phoneNumber :{
+    phoneNumber: {
         type: Number,
         required: true
-    }
-    ,
+    },
     password: {
         type: String,
         required: true
     },
-    role:{
+    role: {
         type: String,
-        enum:['student','recruiter'], // we have only two/more roles in our system so we use enum to restrict the value of role to only student or recruiter 
+        enum: ['student', 'recruiter'], // Restrict the role to 'student' or 'recruiter'
         required: true,
-        default:'student',
+        default: 'student',
     },
-    profile:{
+    profile: {
         bio: {
             type: String,
             default: 'Bio is empty',
-            skills :[{type: String}],
-            resume :{type: String}, // URL to resume File
-            resumeOrignialName :{type: String}, // Original Name of resume file
-            company :{type: moongoose.Schema.Types.ObjectId, 
-            ref: 'Company'}, // Company ID
-            profilePhoto :{type: String,
-                default:""
-            }, // URL to profile photo
         },
+        skills: [{
+            type: String
+        }],
+        resume: {
+            type: String // URL to resume file
+        },
+        resumeOriginalName: { // Original name of resume file
+            type: String
+        },
+        company: { 
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Company' // Reference to the Company model
+        },
+        profilePhoto: {
+            type: String,
+            default: "" // URL to profile photo
+        }
     }
-    }, {timestamps: true});
+}, { timestamps: true });
 
-     export const User = mongoose.model('User', userSchema);
+export const User = mongoose.model('User', userSchema);

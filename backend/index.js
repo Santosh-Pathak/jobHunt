@@ -7,7 +7,7 @@ import connectDB from './utils/db.js'; // to connect to the database
 import userRoute from './routes/user.route.js'; // to use the user routes in the project
 dotenv.config(); // to use the environment variables in the project
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 //middlewares
 app.use(express.json()); // jabham request bhejte hain toh data json me convert karne ke liye
@@ -24,7 +24,7 @@ app.use(cors(corsOptions));
 
 //API's 
 app.use('/api/v1/user', userRoute);
-//"https://localhost:3000/api/v1/user" => userRoute
+//"https://localhost:3000/api/v1/register" => register USer Route
 //"https://localhost:3000/api/v1/login" => userRoute
 //"https://localhost:3000/api/v1/profile/update" => userRoute
 
