@@ -5,6 +5,7 @@ import cors from 'cors'; // to allow the requests from the frontend to the backe
 import dotenv from 'dotenv'; // to use the environment variables in the project
 import connectDB from './utils/db.js'; // to connect to the database
 import userRoute from './routes/user.route.js'; // to use the user routes in the project
+import companyRoute from './routes/company.route.js'; // to use the company routes in the project
 dotenv.config(); // to use the environment variables in the project
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,6 +29,7 @@ app.use('/api/v1/user', userRoute);
 //"https://localhost:3000/api/v1/login" => userRoute
 //"https://localhost:3000/api/v1/profile/update" => userRoute
 
+app.use('/api/v1/company', companyRoute);
 
 
 
