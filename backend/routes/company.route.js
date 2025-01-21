@@ -10,8 +10,9 @@ import {
 const Router = express.Router();
 
 Router.route("/register").post(isAuthenticated, registerCompany);
-Router.route("/get").post(isAuthenticated, getCompanies);
-Router.route("/get/:id").post(isAuthenticated, getCompanyById);
-Router.route("/update/:id").get(isAuthenticated, updateCompany);
+Router.route("/get").get(isAuthenticated, getCompanies);
+Router.route("/get/:id").get(isAuthenticated, getCompanyById);
+Router.route("/update/:id").put(isAuthenticated, updateCompany);
 
 export default Router;
+// Compare this snippet from backend/controllers/company.controller.js:
