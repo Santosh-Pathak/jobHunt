@@ -9,7 +9,7 @@ export const registerCompany = async (req, res) => {
         .status(400)
         .json({ msg: "Company name is required.", success: false });
     }
-
+  
     let company = await Company.findOne({ name: companyName });
     if (company) {
       return res
