@@ -8,6 +8,7 @@ import userRoute from './routes/user.route.js'; // to use the user routes in the
 import companyRoute from './routes/company.route.js'; // to use the company routes in the project
 import jobRoute from './routes/job.route.js'; // to use the job routes in the project
 import applicationRoute from './routes/application.route.js'
+import chatboatRoutes from './routes/chatboatroutes.route.js'
 dotenv.config(); // to use the environment variables in the project
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -34,6 +35,7 @@ app.use('/api/v1/user', userRoute);
 app.use('/api/v1/company', companyRoute);
 app.use('/api/v1/job', jobRoute);
 app.use('/api/v1/application', applicationRoute);
+app.use("/api/v1/chatboat", chatboatRoutes);
 
 
 
