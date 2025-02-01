@@ -2,6 +2,8 @@ import bcrypt from "bcryptjs";
 import {User} from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import getDataUri from "../utils/datauri.js";
+import cloudinary from "../utils/cloudinary.js";
 dotenv.config();
 
 export const register = async (req, res) => {
@@ -101,6 +103,11 @@ export const updateProfile = async (req, res) => {
     // }
     //Cloudinary Upload ayega Idhar
 
+    let cloudResponse = null
+    if (file) {
+        const fileUri = getDataUri(file);
+        cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+    }
 
 
 
@@ -159,3 +166,46 @@ export const LogOut = async (req, res) => {
     console.log(error);
   }
 };
+
+
+export const savedJobs = async(req, res) => {
+  try {
+      const { jobId } = req.body;
+      const userId = req.id;
+
+      let user = await User.findById(userId)
+      if (!user) {
+          return res.status(404).json({
+              message: "User not found",
+              success: false
+          })
+      }
+
+      if (user.profile.savedJobs.includes(jobId)) {
+          return res.status(400).json({
+              message: "Job is already saved",
+              success: false
+          })
+      }
+
+      user.profile.savedJobs.push(jobId);
+      await user.save()
+
+      await user.populate('profile.savedJobs');
+      return res.status(200).json({
+          user,
+          message: "Job saved successfully",
+          success: true,
+          savedJobs: user.profile.savedJobs
+      });
+
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+          message: "An error occurred",
+          error: error.message,
+          success: false
+      });
+
+  }
+}

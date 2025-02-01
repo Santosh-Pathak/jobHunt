@@ -124,3 +124,32 @@ export const getAdminJobs = async (req, res) => {
 // Populate() method is used to fetch the details of the referenced document from the other collection.
 // The populate() method is used to replace the specified field in a document with the document from another collection.
 // It is used to reference documents in other collections.
+
+export const deleteJob = async (req, res) => {
+  const { jobId } = req.body;
+
+  if (!jobId) {
+    return res.status(400).json({ message: "Job ID is required" });
+  }
+
+  try {
+    // Find and delete the job by its ID
+    const deletingJob = await Job.findByIdAndDelete(jobId);
+
+    if (!deletingJob) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+    const remainingJobs = await Job.find();
+
+    return res.status(200).json({
+      message: "Job deleted successfully",
+      remainingJobs,
+    });
+  } catch (error) {
+    console.error("Error deleting job:", error);
+    return res.status(500).json({
+      message: "Error deleting the job",
+      error: error.message,
+    });
+  }
+};

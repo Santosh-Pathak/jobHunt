@@ -1,5 +1,7 @@
 import express from "express";
 import Company from "../models/company.model.js";
+import getDataUri from "../utils/datauri.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const registerCompany = async (req, res) => {
   try {
@@ -80,10 +82,18 @@ export const getCompanyById = async (req, res) => {
  export const updateCompany = async (req, res) => {
   try {
     const { name, description, website, location } = req.body;
-    //LOgo will be updated later on
-    const file = req.file;
-    //Cloudinary will be used for the same
     const updatedData = { name, description, website, location };
+    //LOgo will be updated later on
+    if (req.file) {
+
+      const file = req.file;
+      const fileUri = getDataUri(file);
+      const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+      const logo = cloudResponse.secure_url;
+
+      updatedData.logo = logo;
+  }
+    //Cloudinary will be used for the same
     const companyId = req.params.id;
     const updatedCompany = await Company.findByIdAndUpdate(
       companyId,
@@ -112,3 +122,23 @@ export const getCompanyById = async (req, res) => {
 };
 
 // import { createCompany, getCompanies, getCompany, updateCompany, deleteCompany } from '../controllers/company.controller.js';
+// delete a company by admin 
+
+export const deleteCompany = async(req, res) => {
+  const { companyId } = req.body;
+  const userId = req.id
+
+  if (!userId) {
+      return res.status(400).json({
+          message: "User is not authneticated.",
+          success: false
+      });
+  }
+  if (!companyId) {
+      return res.status(400).json({
+          message: "User is not authneticated.",
+          success: false
+      });
+  }
+
+}
