@@ -57,7 +57,7 @@ API_KEY=your_cloudinary_api_key
 API_SECRET=your_cloudinary_api_secret
 CLOUD_NAME=your_cloudinary_cloud_name
 GIMINIAI_API=your_gemini_api_key
-FRONTEND_URL=https://hire-hub-chandan.vercel.app
+
 ```
 
 ---
