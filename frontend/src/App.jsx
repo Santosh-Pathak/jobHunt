@@ -16,6 +16,14 @@ import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import './App.css'
 import UpdateJobs from './components/admin/UpdateJobs'
+import AdminDashboard from './components/admin/AdminDashboard'
+import SkipLinks from './components/shared/SkipLinks'
+import ScreenReaderAnnouncement from './components/shared/ScreenReaderAnnouncement'
+import AccessibilitySettings from './components/shared/AccessibilitySettings'
+import LinkedInImport from './components/LinkedInImport'
+import EnhancedJobSearch from './components/EnhancedJobSearch'
+import ApplicationDraft from './components/ApplicationDraft'
+import useKeyboardNavigation from './hooks/useKeyboardNavigation'
 
 const appRouter = createBrowserRouter([
   {
@@ -47,6 +55,10 @@ const appRouter = createBrowserRouter([
     element: <Profile />
   },
   {
+    path: "/admin/dashboard",
+    element: <ProtectedRoute><AdminDashboard /></ProtectedRoute>
+  },
+  {
     path: "/admin/companies",
     element: <ProtectedRoute><Companies /></ProtectedRoute>
   },
@@ -56,6 +68,10 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/admin/companies/:id",
+    element: <ProtectedRoute><CompanySetup /></ProtectedRoute>
+  },
+  {
+    path: "/admin/companies/:id/edit",
     element: <ProtectedRoute><CompanySetup /></ProtectedRoute>
   },
   {
@@ -73,13 +89,76 @@ const appRouter = createBrowserRouter([
   {
     path: "/admin/jobs/:id/update",
     element: <ProtectedRoute><UpdateJobs /></ProtectedRoute>
+  },
+  {
+    path: "/accessibility",
+    element: <AccessibilitySettings />
+  },
+  {
+    path: "/linkedin-import",
+    element: <LinkedInImport />
+  },
+  {
+    path: "/enhanced-search",
+    element: <EnhancedJobSearch />
+  },
+  {
+    path: "/application-draft",
+    element: <ApplicationDraft />
+  },
+  {
+    path: "*",
+    element: (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">Page Not Found</h2>
+          <p className="text-gray-600 mb-8">The page you're looking for doesn't exist.</p>
+          <a 
+            href="/" 
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Go Home
+          </a>
+        </div>
+      </div>
+    )
   }
 
 ])
 function App() {
+  // Global keyboard shortcuts
+  useKeyboardNavigation({
+    'ctrl+t': () => {
+      // Toggle theme - handled by ThemeContext
+      const event = new CustomEvent('toggleTheme');
+      window.dispatchEvent(event);
+    },
+    'ctrl+k': () => {
+      // Focus search
+      const searchInput = document.querySelector('input[type="search"], input[placeholder*="search" i]');
+      if (searchInput) {
+        searchInput.focus();
+      }
+    },
+    'escape': () => {
+      // Close any open modals or dialogs
+      const modals = document.querySelectorAll('[role="dialog"]');
+      modals.forEach(modal => {
+        if (modal.style.display !== 'none') {
+          const closeButton = modal.querySelector('button[aria-label*="close" i], button[aria-label*="cancel" i]');
+          if (closeButton) {
+            closeButton.click();
+          }
+        }
+      });
+    }
+  });
 
   return (
     <div className='app'>
+      <SkipLinks />
+      <ScreenReaderAnnouncement message="" />
       <RouterProvider router={ appRouter } />
     </div>
   )

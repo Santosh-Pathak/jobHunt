@@ -2,6 +2,7 @@ import React from 'react';
 import LatestJobCards from './LatestJobCards';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+import { sampleJobs } from '@/data/staticData';
 
 const LatestJobs = () => {
     const { allJobs } = useSelector((store) => store.job);
@@ -44,14 +45,28 @@ const LatestJobs = () => {
                 animate="visible"
             >
                 { jobsList.length === 0 ? (
-                    <motion.span
-                        className="text-center text-lg text-gray-500"
-                        initial={ { opacity: 0 } }
-                        animate={ { opacity: 1 } }
-                        transition={ { duration: 0.3 } }
-                    >
-                        No Jobs Available
-                    </motion.span>
+                    <>
+                        {sampleJobs.slice(0, 6).map((job) => (
+                            <motion.div
+                                key={job._id}
+                                variants={cardVariants}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <LatestJobCards job={job} />
+                            </motion.div>
+                        ))}
+                        <motion.div
+                            className="col-span-full text-center py-8"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                        >
+                            <p className="text-gray-400 text-sm">
+                                Showing sample jobs. Sign up to see real opportunities!
+                            </p>
+                        </motion.div>
+                    </>
                 ) : (
                     jobsList.slice(0, 6).map((job) => (
                         <motion.div

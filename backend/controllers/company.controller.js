@@ -34,11 +34,28 @@ export const registerCompany = async (req, res) => {
     console.log(error);
   }
 };
-// whe any Student will Be logged IN so he can see the List of Companies he has registered
-// Or when th recruiter will be logged in he can see the list of Companies ha has Created
+// Get all companies (public endpoint)
+export const getAllCompanies = async (req, res) => {
+  try {
+    const companies = await Company.find({});
+    return res.status(200).json({
+      companies,
+      success: true,
+      message: "Companies found.",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error fetching companies",
+      success: false,
+    });
+  }
+};
+
+// Get companies for logged-in user (their own companies)
 export const getCompanies = async (req, res) => {
   try {
-    const userId = req?._id; // logged in user id from token
+    const userId = req?._id || req?.id; // logged in user id from token
     const companies = await Company.find({ userId });
     if (!companies) {
       return res
@@ -50,10 +67,13 @@ export const getCompanies = async (req, res) => {
       companies,
       success: true,
       message: "Companies found.",
-      success: true,
     });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      message: "Error fetching companies",
+      success: false,
+    });
   }
 };
 
@@ -61,20 +81,28 @@ export const getCompanies = async (req, res) => {
 export const getCompanyById = async (req, res) => {
   try {
     const companyId = req.params.id;
-    const company = await Company.findById({ companyId });
+    console.log('Fetching company with ID:', companyId);
+    
+    const company = await Company.findById(companyId);
     if (!company) {
+      console.log('Company not found for ID:', companyId);
       return res
         .status(404)
         .json({ message: "Company not found.", success: false });
     }
+    
+    console.log('Company found:', company);
     return res.status(200).json({
       company,
       success: true,
       message: "Company found.",
-      success: true,
     });
   } catch (error) {
-    console.log(error);
+    console.log('Error fetching company:', error);
+    return res.status(500).json({
+      message: "Error fetching company",
+      success: false,
+    });
   }
 };
 

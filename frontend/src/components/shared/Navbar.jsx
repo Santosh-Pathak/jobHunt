@@ -5,9 +5,9 @@ import { Avatar, AvatarImage } from '../ui/avatar';
 import { Menu, LogOut, User2, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import apiClient from '@/utils/axiosConfig';
 import { USER_API_END_POINT } from '@/utils/constant';
-import { setUser } from '@/redux/authSlice';
+import { logout } from '@/redux/authSlice';
 import { toast } from 'sonner';
 
 const Navbar = () => {
@@ -23,15 +23,23 @@ const Navbar = () => {
 
     const logoutHandler = async () => {
         try {
-            const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
+            const res = await apiClient.get(`${USER_API_END_POINT}/logout`);
             if (res.data.success) {
-                dispatch({ type: 'LOGOUT' });
+                dispatch(logout());
                 navigate('/');
                 toast.success(res.data.message);
+            } else {
+                // Even if server response is not successful, clear local state
+                dispatch(logout());
+                navigate('/');
+                toast.success('Logged out successfully');
             }
         } catch (error) {
-
-            toast.error(error.response?.data?.message || 'An error occurred');
+            console.error('Logout error:', error);
+            // Even if logout request fails, clear local state
+            dispatch(logout());
+            navigate('/');
+            toast.success('Logged out successfully');
         }
     };
 
@@ -72,6 +80,7 @@ const Navbar = () => {
                                 <ul className="flex font-sans items-center space-x-6 text-gray-300">
                                     { user && user.role === 'recruiter' ? (
                                         <>
+                                            <Link to='/admin/dashboard'><li className='cursor-pointer hover:text-white font-bold'>Dashboard</li></Link>
                                             <Link to='/admin/companies'><li className='cursor-pointer hover:text-white font-bold'>Companies</li></Link>
                                             <Link to='/admin/jobs'><li className='cursor-pointer hover:text-white font-bold' >Jobs</li></Link>
                                         </>
@@ -160,15 +169,31 @@ const Navbar = () => {
             { menuOpen && (
                 <div className="absolute top-16 left-0 right-0 bg-gradient-to-r from-[#00040A] to-[#001636] p-4 md:hidden z-50">
                     <ul className="space-y-4 text-gray-300">
-                        <li className="cursor-pointer hover:text-white">
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li className="cursor-pointer hover:text-white">
-                            <Link to="/jobs">Jobs</Link>
-                        </li>
-                        <li className="cursor-pointer hover:text-white">
-                            <Link to="/browse">Browse</Link>
-                        </li>
+                        { user && user.role === 'recruiter' ? (
+                            <>
+                                <li className="cursor-pointer hover:text-white">
+                                    <Link to="/admin/dashboard">Dashboard</Link>
+                                </li>
+                                <li className="cursor-pointer hover:text-white">
+                                    <Link to="/admin/companies">Companies</Link>
+                                </li>
+                                <li className="cursor-pointer hover:text-white">
+                                    <Link to="/admin/jobs">Jobs</Link>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li className="cursor-pointer hover:text-white">
+                                    <Link to="/">Home</Link>
+                                </li>
+                                <li className="cursor-pointer hover:text-white">
+                                    <Link to="/jobs">Jobs</Link>
+                                </li>
+                                <li className="cursor-pointer hover:text-white">
+                                    <Link to="/browse">Browse</Link>
+                                </li>
+                            </>
+                        ) }
                         { !user && (
                             <div className="flex flex-col gap-2">
                                 <Link to="/login">

@@ -1,11 +1,10 @@
 import  { useEffect, useState } from 'react'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Delete, Edit2, Eye, MoreHorizontal } from 'lucide-react'
+import { Delete, Edit2, Eye, Users } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import axios from 'axios'
+import apiClient from '@/utils/axiosConfig'
 import { JOB_API_END_POINT } from '@/utils/constant'
 import { toast } from 'sonner'
 import { setAllJobs } from '@/redux/jobSlice'
@@ -23,8 +22,7 @@ const AdminJobsTable = () => {
                 toast.error('Job ID is missing');
                 return;
             }
-            axios.defaults.withCredentials = true;
-            const response = await axios.post(`${JOB_API_END_POINT}/delete`, { jobId });
+            const response = await apiClient.post(`${JOB_API_END_POINT}/delete`, { jobId });
 
             // Update Redux state
             dispatch(setAllJobs(response.data.remainingJobs));
@@ -79,36 +77,37 @@ const AdminJobsTable = () => {
                             <TableCell className="py-4 px-6 whitespace-nowrap">{ job?.company?.name }</TableCell>
                             <TableCell className="py-4 px-6 whitespace-nowrap">{ job?.title }</TableCell>
                             <TableCell className="py-4 px-6 whitespace-nowrap">{ job?.createdAt.split("T")[0] }</TableCell>
-                            <TableCell className="py-4 px-6 text-right cursor-pointer">
-                                <Popover>
-                                    <PopoverTrigger>
-                                        <MoreHorizontal className="text-blue-600 hover:text-blue-500" />
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-32 bg-white shadow-md rounded-md">
-                                        <div
-                                            onClick={ () => navigate(`/admin/jobs/${job._id}/update`) }
-                                            className="flex items-center gap-2 cursor-pointer text-blue-600 hover:text-blue-500 p-2"
-                                        >
-                                            <Edit2 className="w-4" />
-                                            <span>Edit</span>
-                                        </div>
-                                        <div
-                                            onClick={ () => navigate(`/admin/jobs/${job._id}/applicants`) }
-                                            className="flex items-center gap-2 cursor-pointer text-blue-600 hover:text-blue-500 p-2"
-                                        >
-                                            <Eye className="w-4" />
-                                            <span>Applicants</span>
-                                        </div>
-
-                                        <div
-                                            onClick={ () => handleDeleteJob(job?._id) }
-                                            className="flex items-center gap-2 cursor-pointer text-blue-600 hover:text-blue-500 p-2"
-                                        >
-                                            <Delete className="w-4" />
-                                            <span>Delete</span>
-                                        </div>
-                                    </PopoverContent>s
-                                </Popover>
+                            <TableCell className="py-4 px-6 text-right">
+                                <div className="flex items-center justify-end gap-2">
+                                    <button
+                                        onClick={ () => navigate(`/description/${job._id}`) }
+                                        className="p-2 text-blue-600 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all duration-200"
+                                        title="View Details"
+                                    >
+                                        <Eye className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={ () => navigate(`/admin/jobs/${job._id}/update`) }
+                                        className="p-2 text-blue-600 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all duration-200"
+                                        title="Edit Job"
+                                    >
+                                        <Edit2 className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={ () => navigate(`/admin/jobs/${job._id}/applicants`) }
+                                        className="p-2 text-blue-600 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all duration-200"
+                                        title="View Applicants"
+                                    >
+                                        <Users className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={ () => handleDeleteJob(job?._id) }
+                                        className="p-2 text-red-600 hover:text-red-500 hover:bg-red-50 rounded-md transition-all duration-200"
+                                        title="Delete Job"
+                                    >
+                                        <Delete className="w-4 h-4" />
+                                    </button>
+                                </div>
                             </TableCell>
                         </motion.tr>
                     )) }

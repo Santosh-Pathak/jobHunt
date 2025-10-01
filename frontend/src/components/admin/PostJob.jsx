@@ -5,7 +5,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { useSelector } from 'react-redux';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import axios from 'axios';
+import apiClient from '@/utils/axiosConfig';
 import { JOB_API_END_POINT } from '@/utils/constant';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
@@ -43,16 +43,44 @@ const PostJob = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        
+        // Validate required fields
+        if (!input.title || !input.description || !input.requirements || !input.salary || 
+            !input.location || !input.jobType || !input.experience || !input.position || !input.companyId) {
+            toast.error('Please fill in all required fields');
+            return;
+        }
+        
+        // Validate salary is a positive number
+        if (isNaN(input.salary) || Number(input.salary) <= 0) {
+            toast.error('Please enter a valid salary amount');
+            return;
+        }
+        
+        // Validate position is a positive number
+        if (isNaN(input.position) || Number(input.position) <= 0) {
+            toast.error('Please enter a valid number of positions');
+            return;
+        }
+        
         try {
             setLoading(true);
-            const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true,
-            });
+            console.log('Submitting job data:', input); // Debug log
+            const res = await apiClient.post(`${JOB_API_END_POINT}/post`, input);
             if (res.data.success) {
                 toast.success(res.data.message);
+                // Reset form
+                setInput({
+                    title: '',
+                    description: '',
+                    requirements: '',
+                    salary: '',
+                    location: '',
+                    jobType: '',
+                    experience: '',
+                    position: 0,
+                    companyId: '',
+                });
                 navigate('/admin/jobs');
             }
         } catch (error) {
@@ -148,25 +176,47 @@ const PostJob = () => {
                             <Label>
                                 Job Type <span className="text-red-500">*</span>
                             </Label>
-                            <Input
-                                type="text"
-                                name="jobType"
-                                value={ input.jobType }
-                                onChange={ changeEventHandler }
-                                className="my-1 border-blue-300 focus:ring-blue-500 focus:border-blue-500"
-                            />
+                            <Select 
+                                value={input.jobType} 
+                                onValueChange={(value) => setInput({ ...input, jobType: value })}
+                            >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Job Type" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="Full-time">Full-time</SelectItem>
+                                        <SelectItem value="Part-time">Part-time</SelectItem>
+                                        <SelectItem value="Internship">Internship</SelectItem>
+                                        <SelectItem value="Contract">Contract</SelectItem>
+                                        <SelectItem value="Freelance">Freelance</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <div>
                             <Label>
-                                Experience Level <span className="text-red-500">*</span>
+                                Experience Level (Years) <span className="text-red-500">*</span>
                             </Label>
-                            <Input
-                                type="text"
-                                name="experience"
-                                value={ input.experience }
-                                onChange={ changeEventHandler }
-                                className="my-1 border-blue-300 focus:ring-blue-500 focus:border-blue-500"
-                            />
+                            <Select 
+                                value={input.experience} 
+                                onValueChange={(value) => setInput({ ...input, experience: value })}
+                            >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Experience Level" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="0">0-1 Years (Entry Level)</SelectItem>
+                                        <SelectItem value="1">1-2 Years</SelectItem>
+                                        <SelectItem value="2">2-3 Years</SelectItem>
+                                        <SelectItem value="3">3-5 Years</SelectItem>
+                                        <SelectItem value="5">5-7 Years</SelectItem>
+                                        <SelectItem value="7">7-10 Years</SelectItem>
+                                        <SelectItem value="10">10+ Years (Senior Level)</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <div>
                             <Label>
@@ -177,6 +227,9 @@ const PostJob = () => {
                                 name="position"
                                 value={ input.position }
                                 onChange={ changeEventHandler }
+                                min="1"
+                                max="100"
+                                placeholder="Enter number of positions"
                                 className="my-1 border-blue-300 focus:ring-blue-500 focus:border-blue-500"
                             />
                         </div>

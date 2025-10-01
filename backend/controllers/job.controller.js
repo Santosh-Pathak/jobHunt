@@ -1,7 +1,9 @@
-import Job from "../models/job.model.js";
+import { Job } from "../models/job.model.js";
 
 export const postJob = async (req, res) => {
   try {
+    console.log('Received job data:', req.body); // Debug log
+    
     const {
       title,
       description,
@@ -10,13 +12,15 @@ export const postJob = async (req, res) => {
       location,
       jobType,
       experience,
-      postion,
+      position, // Fixed: changed from 'postion' to 'position'
       companyId,
     } = req.body;
 
-    const userId = req.id;
+    const userId = req.id || req._id;
     if (!userId)
-      return res.status(401).json({ message: "Unauthenticated USer" });
+      return res.status(401).json({ message: "Unauthenticated User", success: false });
+    
+    // Validate required fields
     if (
       !title ||
       !description ||
@@ -25,31 +29,83 @@ export const postJob = async (req, res) => {
       !location ||
       !jobType ||
       !experience ||
-      !postion ||
+      !position ||
       !companyId
     )
       return res.status(400).json({
         message: "All fields are required (Some Fields of Job are Missing)",
+        success: false
       });
+
+    // Validate jobType enum
+    const validJobTypes = ["Full-time", "Part-time", "Internship", "Contract", "Freelance"];
+    if (!validJobTypes.includes(jobType)) {
+      return res.status(400).json({
+        message: `Invalid job type. Must be one of: ${validJobTypes.join(', ')}`,
+        success: false
+      });
+    }
+
+    // Validate experience is numeric
+    if (isNaN(experience) || Number(experience) < 0) {
+      return res.status(400).json({
+        message: "Experience must be a valid number",
+        success: false
+      });
+    }
+
+    // Validate position is numeric and positive
+    if (isNaN(position) || Number(position) <= 0) {
+      return res.status(400).json({
+        message: "Position must be a valid positive number",
+        success: false
+      });
+    }
+
+    // Validate salary is numeric and positive
+    if (isNaN(salary) || Number(salary) <= 0) {
+      return res.status(400).json({
+        message: "Salary must be a valid positive number",
+        success: false
+      });
+    }
 
     const newJob = await Job.create({
       title,
       description,
-      requirements: requirements.split(","),
-      salary: Number(salary),
-      location,
+      requirement: requirements.split(","), // Fixed: changed from 'requirements' to 'requirement' to match model
+      salary: {
+        min: Number(salary),
+        max: Number(salary) * 1.2, // Set max as 20% higher than min
+        currency: 'USD',
+        negotiable: false
+      },
+      location: {
+        city: location.split(',')[0]?.trim() || location,
+        country: 'India', // Default country
+        remote: false,
+        hybrid: false
+      },
       jobType,
-      experienceLevel: experience,
-      postion,
+      experienceLevel: Number(experience) || 0,
+      position: Number(position) || 1,
       company: companyId,
       createdBy: userId,
+      category: 'Technology', // Default category
+      industry: 'Technology', // Default industry
+      status: 'active'
     });
 
     return res
       .status(201)
       .json({ newJob, message: "New Job Created Successfully", success: true });
   } catch (error) {
-    console.log(error);
+    console.log("Error creating job:", error);
+    return res.status(500).json({
+      message: "Error creating job",
+      success: false,
+      error: error.message
+    });
   }
 };
 
@@ -105,9 +161,15 @@ export const getJobById = async (req, res) => {
 // THIS WILL BE FOR COMPANY SIDE (ADMIN WILL HOST THE JOB)(ADMIN NE ABHI TAK KITNE JO HOST KIYE HAI)
 export const getAdminJobs = async (req, res) => {
   try {
-    const adminId = req.id;
-    const jobs = await Job.findById({ createdBy: adminId });
-    if (!jobs) {
+    const adminId = req.id || req._id;
+    if (!adminId) {
+      return res.status(401).json({ message: "Unauthenticated User", success: false });
+    }
+    
+    const jobs = await Job.find({ createdBy: adminId }).populate({
+      path: "company",
+    });
+    if (!jobs || jobs.length === 0) {
       return res.status(404).json({ message: "No Jobs Found", success: false });
     }
     return res
@@ -115,6 +177,7 @@ export const getAdminJobs = async (req, res) => {
       .json({ jobs, message: "Jobs Fetched Successfully", success: true });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: "Error fetching jobs", success: false });
   }
 };
 

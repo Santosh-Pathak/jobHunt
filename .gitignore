@@ -1,10 +1,13 @@
 # Create .gitignore in root folder
 node_modules/
 .env
+.env.example
 .DS_Store
 /frontend/node_modules/
 /backend/node_modules/
 /frontend/.env
 /backend/.env
+/frontend/.env.example
+/backend/.env.example
 /frontend/.gitignore
 /backend/.gitignore

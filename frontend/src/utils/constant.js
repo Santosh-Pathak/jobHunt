@@ -1,5 +1,21 @@
+const BASE_URL = 'http://localhost:5000/api/v1';
+
 export const USER_API_END_POINT = `${BASE_URL}/user`;
 export const JOB_API_END_POINT = `${BASE_URL}/job`;
 export const APPLICATION_API_END_POINT = `${BASE_URL}/application`;
 export const COMPANY_API_END_POINT = `${BASE_URL}/company`;
 export const CHATBOT_API_END_POINT = `${BASE_URL}/chatboat/ask`;
+export const ADMIN_API_END_POINT = `${BASE_URL}/admin`;
+export const NOTIFICATION_API_END_POINT = `${BASE_URL}/notifications`;
+export const ANALYTICS_API_END_POINT = `${BASE_URL}/analytics`;
+export const MESSAGE_API_END_POINT = `${BASE_URL}/messages`;
+export const RESUME_API_END_POINT = `${BASE_URL}/resume`;
+export const INTERVIEW_API_END_POINT = `${BASE_URL}/interviews`;
+export const SOCIAL_API_END_POINT = `${BASE_URL}/social`;
+export const JOB_ALERT_API_END_POINT = `${BASE_URL}/job-alerts`;
+export const BULK_OPERATIONS_API_END_POINT = `${BASE_URL}/bulk-operations`;
+export const ATS_API_END_POINT = `${BASE_URL}/ats`;
+export const CONTENT_MODERATION_API_END_POINT = `${BASE_URL}/admin/moderation`;
+export const SYSTEM_MONITORING_API_END_POINT = `${BASE_URL}/admin/system`;
+export const LINKEDIN_IMPORT_API_END_POINT = `${BASE_URL}/linkedin`;
+export const APPLICATION_DRAFT_API_END_POINT = `${BASE_URL}/application-drafts`;

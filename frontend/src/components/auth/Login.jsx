@@ -5,7 +5,7 @@ import { Input } from '../ui/input';
 import { RadioGroup } from '../ui/radio-group';
 import { Button } from '../ui/button';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import apiClient from '@/utils/axiosConfig';
 import { USER_API_END_POINT } from '@/utils/constant';
 import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,23 +29,35 @@ const Login = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        
+        // Validate required fields
+        if (!input.email || !input.password || !input.role) {
+            toast.error('Please fill in all fields');
+            return;
+        }
+        
         try {
             dispatch(setLoading(true));
-            axios.defaults.withCredentials = true
-            const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true,
-            });
+            console.log('Login attempt:', { email: input.email, role: input.role });
+            
+            const res = await apiClient.post(`${USER_API_END_POINT}/login`, input);
+            console.log('Login response:', res.data);
+            
             if (res.data.success) {
                 dispatch(setUser(res.data.user));
-                navigate('/');
+                
+                // Navigate based on role
+                if (res.data.user.role === 'recruiter') {
+                    navigate('/admin/companies');
+                } else {
+                    navigate('/');
+                }
+                
                 toast.success(res.data.message);
             }
         } catch (error) {
-
-            toast.error(error.response.data.message);
+            console.error('Login error:', error);
+            toast.error(error.response?.data?.message || 'Login failed');
         } finally {
             dispatch(setLoading(false));
         }
@@ -147,7 +159,7 @@ const Login = () => {
                                         onChange={ changeEventHandler }
                                     />
                                     <Label htmlFor="student" className="text-gray-200 cursor-pointer">
-                                        JobSeeker
+                                        Job Seeker (Student)
                                     </Label>
                                 </div>
                                 <div className="flex items-center space-x-2">
@@ -165,6 +177,9 @@ const Login = () => {
                                     </Label>
                                 </div>
                             </RadioGroup>
+                            {!input.role && (
+                                <p className="text-red-400 text-sm mt-1">Please select your role</p>
+                            )}
                         </motion.div>
 
                         { loading ? (

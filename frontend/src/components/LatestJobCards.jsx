@@ -9,9 +9,16 @@ import { Link } from 'react-router-dom';
 const LatestJobCards = ({ job }) => {
     const navigate = useNavigate();
 
+    const handleCardClick = (e) => {
+        // Only navigate if the click is not on a button
+        if (!e.target.closest('button')) {
+            navigate(`/description/${job._id}`);
+        }
+    };
+
     return (
         <motion.div
-            onClick={ () => navigate(`/description/${job._id}`) }
+            onClick={handleCardClick}
             className="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer"
             initial={ { opacity: 0, y: 30 } } // Initial state for motion
             animate={ { opacity: 1, y: 0 } } // Animate to final state
@@ -45,19 +52,27 @@ const LatestJobCards = ({ job }) => {
                         <Badge variant="secondary" className="mr-2">
                             { job?.jobType || 'Job Type' }
                         </Badge>
-                        <span className="text-sm">{ job?.location || 'Location' }</span>
+                        <span className="text-sm">{ job?.location?.city || job?.location || 'Location' }</span>
                     </div>
-                    <p className="text-gray-300 font-medium">{ job?.salary ? `${job.salary} LPA` : 'Not disclosed' }</p>
+                    <p className="text-gray-300 font-medium">
+                        { job?.salary?.min ? `${job.salary.min} - ${job.salary.max} LPA` : job?.salary ? `${job.salary} LPA` : 'Not disclosed' }
+                    </p>
 
                     {/* Footer with Date and Details Button */ }
                     <div className="mt-4 flex items-center justify-between">
                         <span className="text-sm text-gray-400">{ job?.position } Positions</span>
-                        <Link to={ `/description/${job._id}` }>
-                            <Button variant="ghost" size="sm" className='text-blue-500'>
-                                Details
-                                <ArrowUpRight className="ml-2 h-4 w-4" />
-                            </Button>
-                        </Link>
+                        <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className='text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-white transition-colors duration-200'
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(`/description/${job._id}`);
+                            }}
+                        >
+                            View Details
+                            <ArrowUpRight className="ml-2 h-4 w-4" />
+                        </Button>
                     </div>
                 </div>
             </div>

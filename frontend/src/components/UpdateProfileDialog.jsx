@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import apiClient from "@/utils/axiosConfig";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { setUser } from "@/redux/authSlice";
 import { toast } from "sonner";
@@ -33,9 +33,21 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
     const fileChangeHandler = (e) => {
         const file = e.target.files?.[0];
-        if (file && !file.type.startsWith("image/")) {
-            setFileError("Only images are allowed (.jpeg, .png, .webp)");
-        } else {
+        if (file) {
+            // Check file type - allow PDFs and images
+            const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp'];
+            if (!allowedTypes.includes(file.type)) {
+                setFileError("Only PDF files and images are allowed (.pdf, .jpeg, .png, .webp)");
+                return;
+            }
+            
+            // Check file size - max 5MB
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            if (file.size > maxSize) {
+                setFileError("File size must be less than 5MB");
+                return;
+            }
+            
             setFileError("");
         }
         setInput({ ...input, file });
@@ -54,12 +66,10 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         }
         try {
             setLoading(true);
-            axios.defaults.withCredentials = true;
-            const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
+            const res = await apiClient.post(`${USER_API_END_POINT}/profile/update`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
-                withCredentials: true,
             });
             if (res.data.success) {
                 dispatch(setUser(res.data.user));
@@ -147,13 +157,15 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
                         {/* File input for resume */ }
                         <div className="flex flex-col gap-1">
-                            <Label htmlFor="file">Resume</Label>
+                            <Label htmlFor="file">Resume (PDF or Image) - Optional</Label>
                             <Input
                                 id="file"
                                 name="file"
                                 type="file"
+                                accept=".pdf,.jpeg,.jpg,.png,.webp"
                                 onChange={ fileChangeHandler }
                             />
+                            <p className="text-xs text-gray-500">Max file size: 5MB • Resume is optional for job applications</p>
                         </div>
 
                         {/* Display error message if file is not an image */ }

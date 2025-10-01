@@ -10,7 +10,7 @@ import { setsavedJobs } from '@/redux/authSlice';
 import { toast } from 'sonner';
 import { USER_API_END_POINT } from '@/utils/constant';
 import { Card } from '@/components/ui/card';
-import axios from 'axios';
+import apiClient from '@/utils/axiosConfig';
 
 const Job = ({ job }) => {
     const { savedJobs } = useSelector(store => store.auth);
@@ -25,17 +25,13 @@ const Job = ({ job }) => {
     };
 
     const handleSaveForLater = async (jobId) => {
-
         try {
-            const response = await axios.post(`${USER_API_END_POINT}/savedjob`, { jobId }, {
-                withCredentials: true
-            });
+            const response = await apiClient.post(`${USER_API_END_POINT}/savedjob`, { jobId });
             if (response) {
                 dispatch(setsavedJobs(response.data.savedJobs));
                 toast.success(response.data.message);
             }
         } catch (error) {
-
             toast.error(error.response?.data?.message || 'Error saving job');
         }
     };
@@ -72,9 +68,11 @@ const Job = ({ job }) => {
                 <div className="mt-4">
                     <div className="flex items-center text-gray-400 mb-2">
                         <Badge variant="secondary" className="mr-2">{ job?.position } Positions</Badge>
-                        <span className="text-sm">{ job?.location }</span>
+                        <span className="text-sm">{ job?.location?.city || job?.location }</span>
                     </div>
-                    <p className="text-gray-300 font-medium"> ₹ { job?.salary } LPA</p>
+                    <p className="text-gray-300 font-medium"> 
+                        ₹ { job?.salary?.min ? `${job.salary.min} - ${job.salary.max}` : job?.salary } LPA
+                    </p>
 
                     <div className="mt-4 flex items-center justify-between">
                         {
@@ -93,11 +91,11 @@ const Job = ({ job }) => {
                         </span>
 
                         <Button
-                            className="text-blue-400 text-xs sm:text-sm py-1 sm:py-2 px-3 sm:px-4"
-                            variant="ghost" size="sm"
+                            className="text-blue-400 border-blue-400 hover:bg-blue-400 hover:text-white transition-colors duration-200 text-xs sm:text-sm py-1 sm:py-2 px-3 sm:px-4"
+                            variant="outline" size="sm"
                             onClick={ () => navigate(`/description/${job?._id}`) }
                         >
-                            Details
+                            View Details
                             <ArrowUpRight className="ml-2 h-4 w-4" />
                         </Button>
                     </div>

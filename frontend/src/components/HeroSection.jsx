@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { Search, ArrowRight } from 'lucide-react';
+import { Search, ArrowRight, Users, Building2, Briefcase, TrendingUp } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { setSearchedQuery } from '@/redux/jobSlice';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Input } from './ui/input';
 import { toast } from 'sonner';
+import { statistics } from '@/data/staticData';
 
 const HeroSection = () => {
     const [query, setQuery] = useState('');
@@ -35,7 +36,7 @@ const HeroSection = () => {
                 transition={ { duration: 0.7 } }
                 viewport={ { once: true } }
             >
-                Find Your Dream Job With HireHub
+                Find Your Dream Job With JobHunt
                 {/* <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text user-select">
 
                 </span> */}
@@ -92,6 +93,71 @@ const HeroSection = () => {
                     <Search className="h-5 w-5 mr-2" />
                     Search
                 </Button>
+            </motion.div>
+
+            {/* Statistics Section */}
+            <motion.div
+                className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+            >
+                <motion.div
+                    className="text-center"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
+                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <Briefcase className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">
+                        {statistics.totalJobs.toLocaleString()}+
+                    </h3>
+                    <p className="text-gray-400">Active Jobs</p>
+                </motion.div>
+
+                <motion.div
+                    className="text-center"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
+                    <div className="bg-gradient-to-r from-green-500 to-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <Building2 className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">
+                        {statistics.totalCompanies.toLocaleString()}+
+                    </h3>
+                    <p className="text-gray-400">Companies</p>
+                </motion.div>
+
+                <motion.div
+                    className="text-center"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
+                    <div className="bg-gradient-to-r from-purple-500 to-pink-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <Users className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">
+                        {statistics.totalUsers.toLocaleString()}+
+                    </h3>
+                    <p className="text-gray-400">Job Seekers</p>
+                </motion.div>
+
+                <motion.div
+                    className="text-center"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
+                    <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <TrendingUp className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">
+                        {statistics.successRate}%
+                    </h3>
+                    <p className="text-gray-400">Success Rate</p>
+                </motion.div>
             </motion.div>
         </div>
     );

@@ -34,8 +34,10 @@ const isAuthenticated = async (req, res, next) => {
   try {
     // Retrieve the token from cookies
     const token = req.cookies?.token;
+    console.log("Auth middleware - Token exists:", !!token);
 
     if (!token) {
+      console.log("Auth middleware - No token found");
       return res.status(401).json({
         message: "User not authenticated. Token is missing.",
         success: false,
@@ -43,7 +45,10 @@ const isAuthenticated = async (req, res, next) => {
     }
 
     // Verify the token
-    const decode = jwt.verify(token, process.env.SECRET_KEY);
+    const secretKey = process.env.SECRET_KEY || 'fallback_secret_key_for_development';
+    console.log("Auth middleware - Secret key exists:", !!process.env.SECRET_KEY);
+    const decode = jwt.verify(token, secretKey);
+    console.log("Auth middleware - Token verified successfully");
 
     if (!decode) {
       return res.status(401).json({
@@ -54,6 +59,9 @@ const isAuthenticated = async (req, res, next) => {
 
     // Attach user ID to the request object
     req.id = decode.userId;
+    req._id = decode.userId; // Also attach as _id for compatibility
+    req.userId = decode.userId; // Also attach as userId
+    console.log("Auth middleware - User ID attached:", decode.userId);
     next();
   } catch (error) {
     console.log("Error in authentication middleware:", error);

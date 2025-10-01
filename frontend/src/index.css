@@ -74,3 +74,150 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Accessibility Styles */
+@layer utilities {
+  /* Skip Links */
+  .skip-links {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transform: translateY(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Focus Indicators */
+  .focus-indicators *:focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* High Contrast Mode */
+  .high-contrast {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 100%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 50%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+  }
+
+  /* Reduced Motion */
+  .reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Large Click Targets */
+  .large-click-targets button,
+  .large-click-targets a,
+  .large-click-targets input[type="button"],
+  .large-click-targets input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+  }
+
+  /* Simplified Interface */
+  .simplified-interface {
+    --border-radius: 0;
+  }
+
+  .simplified-interface * {
+    border-radius: 0 !important;
+  }
+
+  /* Color Blind Support */
+  .color-blind-support {
+    filter: contrast(1.2) saturate(1.5);
+  }
+
+  /* Focus Trap */
+  .focus-trap {
+    position: relative;
+  }
+
+  /* Keyboard Navigation */
+  .keyboard-navigation button:focus,
+  .keyboard-navigation a:focus,
+  .keyboard-navigation input:focus,
+  .keyboard-navigation select:focus,
+  .keyboard-navigation textarea:focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Custom Font Sizes */
+  :root {
+    --font-size: 16px;
+    --line-height: 1.5;
+    --letter-spacing: 0px;
+  }
+
+  body {
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+  }
+
+  /* Responsive Typography */
+  @media (max-width: 640px) {
+    body {
+      font-size: calc(var(--font-size) * 0.9);
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .skip-links,
+    .sr-only {
+      display: none;
+    }
+    
+    body {
+      background: white !important;
+      color: black !important;
+    }
+  }
+}

@@ -38,10 +38,10 @@ const SavedJobsTable = () => {
                                     { job?.title }
                                 </TableCell>
                                 <TableCell className="border-b border-gray-700 px-4 py-3">
-                                    { job?.location }
+                                    { job?.location?.city || job?.location || 'Not specified' }
                                 </TableCell>
                                 <TableCell className="border-b border-gray-700 px-4 py-3">
-                                    { job?.salary }
+                                    { job?.salary?.min ? `${job.salary.min} - ${job.salary.max} LPA` : job?.salary ? `${job.salary} LPA` : 'Not disclosed' }
                                 </TableCell>
                                 <TableCell className="border-b border-gray-700 px-4 py-3">
                                     { job?.position }

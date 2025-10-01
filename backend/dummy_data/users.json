@@ -1,0 +1,870 @@
+[
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439011"},
+    "fullName": "John Smith",
+    "email": "john.smith@email.com",
+    "phoneNumber": 1234567890,
+    "password": "$2b$10$example_hashed_password_1",
+    "role": "student",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-15T10:30:00.000Z"},
+    "profile": {
+      "bio": "Passionate software developer with 3 years of experience in full-stack development. Love working with React, Node.js, and cloud technologies.",
+      "skills": ["JavaScript", "React", "Node.js", "MongoDB", "AWS", "Python", "Git"],
+      "resume": "https://example.com/resumes/john_smith_resume.pdf",
+      "resumeOriginalName": "John_Smith_Resume_2024.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "University of California, Berkeley",
+          "degree": "Bachelor of Science",
+          "fieldOfStudy": "Computer Science",
+          "startDate": {"$date": "2018-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2022-05-15T00:00:00.000Z"},
+          "gpa": "3.8",
+          "description": "Graduated Magna Cum Laude with focus on software engineering and algorithms"
+        }
+      ],
+      "experience": [
+        {
+          "company": "TechCorp Solutions",
+          "position": "Junior Software Developer",
+          "startDate": {"$date": "2022-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2023-12-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Developed and maintained web applications using React and Node.js. Collaborated with cross-functional teams to deliver high-quality software solutions.",
+          "location": "San Francisco, CA"
+        },
+        {
+          "company": "StartupXYZ",
+          "position": "Software Engineer",
+          "startDate": {"$date": "2024-01-01T00:00:00.000Z"},
+          "endDate": null,
+          "current": true,
+          "description": "Leading development of microservices architecture and implementing CI/CD pipelines.",
+          "location": "Remote"
+        }
+      ],
+      "portfolio": [
+        {
+          "title": "E-commerce Platform",
+          "description": "Full-stack e-commerce application with payment integration",
+          "url": "https://github.com/johnsmith/ecommerce-platform",
+          "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300",
+          "technologies": ["React", "Node.js", "MongoDB", "Stripe API"]
+        }
+      ],
+      "certifications": [
+        {
+          "name": "AWS Certified Developer",
+          "issuer": "Amazon Web Services",
+          "issueDate": {"$date": "2023-08-15T00:00:00.000Z"},
+          "expiryDate": {"$date": "2026-08-15T00:00:00.000Z"},
+          "credentialId": "AWS-DEV-123456",
+          "credentialUrl": "https://aws.amazon.com/verification/123456"
+        }
+      ],
+      "languages": [
+        {
+          "language": "English",
+          "proficiency": "Native"
+        },
+        {
+          "language": "Spanish",
+          "proficiency": "Intermediate"
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/johnsmith",
+        "github": "https://github.com/johnsmith",
+        "twitter": "https://twitter.com/johnsmith",
+        "website": "https://johnsmith.dev"
+      },
+      "preferences": {
+        "jobTypes": ["Full-time", "Contract"],
+        "locations": ["San Francisco", "Remote", "New York"],
+        "salaryRange": {
+          "min": 80000,
+          "max": 120000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": false
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 45,
+      "jobApplications": 12,
+      "profileCompleteness": 95
+    },
+    "createdAt": {"$date": "2023-12-01T08:00:00.000Z"},
+    "updatedAt": {"$date": "2024-01-15T10:30:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439012"},
+    "fullName": "Sarah Johnson",
+    "email": "sarah.johnson@email.com",
+    "phoneNumber": 1234567891,
+    "password": "$2b$10$example_hashed_password_2",
+    "role": "recruiter",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-14T14:20:00.000Z"},
+    "profile": {
+      "bio": "Senior Technical Recruiter with 8 years of experience in tech talent acquisition. Specialized in software engineering roles and startup environments.",
+      "skills": ["Technical Recruitment", "Talent Acquisition", "Interviewing", "ATS Management", "Candidate Sourcing", "Employer Branding"],
+      "resume": "https://example.com/resumes/sarah_johnson_resume.pdf",
+      "resumeOriginalName": "Sarah_Johnson_Recruiter_Resume.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "Stanford University",
+          "degree": "Master of Business Administration",
+          "fieldOfStudy": "Human Resources",
+          "startDate": {"$date": "2014-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2016-05-15T00:00:00.000Z"},
+          "gpa": "3.9",
+          "description": "Specialized in organizational behavior and talent management"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Google",
+          "position": "Technical Recruiter",
+          "startDate": {"$date": "2016-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2020-03-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Recruited senior software engineers and product managers for Google's core products.",
+          "location": "Mountain View, CA"
+        },
+        {
+          "company": "Meta",
+          "position": "Senior Technical Recruiter",
+          "startDate": {"$date": "2020-04-01T00:00:00.000Z"},
+          "endDate": {"$date": "2023-12-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Led recruitment for AI/ML engineering teams and built diverse talent pipelines.",
+          "location": "Menlo Park, CA"
+        },
+        {
+          "company": "TechStart Inc",
+          "position": "Head of Talent Acquisition",
+          "startDate": {"$date": "2024-01-01T00:00:00.000Z"},
+          "endDate": null,
+          "current": true,
+          "description": "Building the entire engineering team for a fast-growing fintech startup.",
+          "location": "San Francisco, CA"
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/sarahjohnson",
+        "github": "",
+        "twitter": "https://twitter.com/sarahj_recruiter",
+        "website": ""
+      },
+      "preferences": {
+        "jobTypes": ["Full-time"],
+        "locations": ["San Francisco", "Remote"],
+        "salaryRange": {
+          "min": 120000,
+          "max": 180000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": true
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 78,
+      "jobApplications": 0,
+      "profileCompleteness": 88
+    },
+    "createdAt": {"$date": "2023-11-15T09:30:00.000Z"},
+    "updatedAt": {"$date": "2024-01-14T14:20:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439013"},
+    "fullName": "Michael Chen",
+    "email": "michael.chen@email.com",
+    "phoneNumber": 1234567892,
+    "password": "$2b$10$example_hashed_password_3",
+    "role": "student",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-13T16:45:00.000Z"},
+    "profile": {
+      "bio": "Recent computer science graduate passionate about machine learning and data science. Looking for opportunities to apply AI solutions to real-world problems.",
+      "skills": ["Python", "Machine Learning", "TensorFlow", "Pandas", "SQL", "R", "Statistics", "Deep Learning"],
+      "resume": "https://example.com/resumes/michael_chen_resume.pdf",
+      "resumeOriginalName": "Michael_Chen_ML_Resume.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "Massachusetts Institute of Technology",
+          "degree": "Master of Science",
+          "fieldOfStudy": "Computer Science",
+          "startDate": {"$date": "2022-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2024-05-15T00:00:00.000Z"},
+          "gpa": "3.9",
+          "description": "Focus on artificial intelligence and machine learning with thesis on neural network optimization"
+        }
+      ],
+      "experience": [
+        {
+          "company": "MIT AI Lab",
+          "position": "Research Assistant",
+          "startDate": {"$date": "2023-01-01T00:00:00.000Z"},
+          "endDate": {"$date": "2024-05-15T00:00:00.000Z"},
+          "current": true,
+          "description": "Conducted research on deep learning optimization algorithms and published 2 papers in top-tier conferences.",
+          "location": "Cambridge, MA"
+        }
+      ],
+      "portfolio": [
+        {
+          "title": "Image Classification Model",
+          "description": "CNN model achieving 95% accuracy on CIFAR-10 dataset",
+          "url": "https://github.com/michaelchen/image-classification",
+          "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300",
+          "technologies": ["Python", "TensorFlow", "Keras", "OpenCV"]
+        }
+      ],
+      "certifications": [
+        {
+          "name": "Google Cloud Professional ML Engineer",
+          "issuer": "Google Cloud",
+          "issueDate": {"$date": "2023-12-01T00:00:00.000Z"},
+          "expiryDate": {"$date": "2025-12-01T00:00:00.000Z"},
+          "credentialId": "GCP-ML-789012",
+          "credentialUrl": "https://cloud.google.com/certification/789012"
+        }
+      ],
+      "languages": [
+        {
+          "language": "English",
+          "proficiency": "Native"
+        },
+        {
+          "language": "Mandarin",
+          "proficiency": "Native"
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/michaelchen",
+        "github": "https://github.com/michaelchen",
+        "twitter": "",
+        "website": "https://michaelchen.ai"
+      },
+      "preferences": {
+        "jobTypes": ["Full-time", "Internship"],
+        "locations": ["San Francisco", "New York", "Boston", "Remote"],
+        "salaryRange": {
+          "min": 90000,
+          "max": 130000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": false
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 32,
+      "jobApplications": 8,
+      "profileCompleteness": 92
+    },
+    "createdAt": {"$date": "2023-10-20T11:15:00.000Z"},
+    "updatedAt": {"$date": "2024-01-13T16:45:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439014"},
+    "fullName": "Emily Rodriguez",
+    "email": "emily.rodriguez@email.com",
+    "phoneNumber": 1234567893,
+    "password": "$2b$10$example_hashed_password_4",
+    "role": "student",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-12T09:20:00.000Z"},
+    "profile": {
+      "bio": "Frontend developer with expertise in React and Vue.js. Passionate about creating beautiful, accessible user interfaces and improving user experience.",
+      "skills": ["React", "Vue.js", "JavaScript", "TypeScript", "CSS", "SASS", "Figma", "UI/UX Design", "Accessibility"],
+      "resume": "https://example.com/resumes/emily_rodriguez_resume.pdf",
+      "resumeOriginalName": "Emily_Rodriguez_Frontend_Resume.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "University of Washington",
+          "degree": "Bachelor of Science",
+          "fieldOfStudy": "Human-Computer Interaction",
+          "startDate": {"$date": "2019-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2023-06-15T00:00:00.000Z"},
+          "gpa": "3.7",
+          "description": "Specialized in user experience design and frontend development"
+        }
+      ],
+      "experience": [
+        {
+          "company": "DesignStudio Pro",
+          "position": "Frontend Developer Intern",
+          "startDate": {"$date": "2022-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2022-08-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Developed responsive web applications and collaborated with design team on UI/UX improvements.",
+          "location": "Seattle, WA"
+        },
+        {
+          "company": "StartupCo",
+          "position": "Junior Frontend Developer",
+          "startDate": {"$date": "2023-07-01T00:00:00.000Z"},
+          "endDate": {"$date": "2024-01-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Built customer-facing web applications using React and TypeScript.",
+          "location": "Seattle, WA"
+        }
+      ],
+      "portfolio": [
+        {
+          "title": "E-commerce Dashboard",
+          "description": "Modern admin dashboard with real-time analytics",
+          "url": "https://github.com/emilyrodriguez/dashboard",
+          "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300",
+          "technologies": ["React", "TypeScript", "Chart.js", "Material-UI"]
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/emilyrodriguez",
+        "github": "https://github.com/emilyrodriguez",
+        "twitter": "https://twitter.com/emily_dev",
+        "website": "https://emilyrodriguez.dev"
+      },
+      "preferences": {
+        "jobTypes": ["Full-time", "Contract"],
+        "locations": ["Seattle", "San Francisco", "Remote"],
+        "salaryRange": {
+          "min": 70000,
+          "max": 100000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": false
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 28,
+      "jobApplications": 15,
+      "profileCompleteness": 85
+    },
+    "createdAt": {"$date": "2023-09-10T13:45:00.000Z"},
+    "updatedAt": {"$date": "2024-01-12T09:20:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439015"},
+    "fullName": "David Kim",
+    "email": "david.kim@email.com",
+    "phoneNumber": 1234567894,
+    "password": "$2b$10$example_hashed_password_5",
+    "role": "recruiter",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-11T11:30:00.000Z"},
+    "profile": {
+      "bio": "Senior Talent Acquisition Specialist with expertise in fintech and blockchain recruitment. Passionate about connecting top talent with innovative companies.",
+      "skills": ["Fintech Recruitment", "Blockchain Talent", "Executive Search", "Technical Assessment", "Candidate Experience", "Diversity Hiring"],
+      "resume": "https://example.com/resumes/david_kim_resume.pdf",
+      "resumeOriginalName": "David_Kim_Fintech_Recruiter.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "University of Pennsylvania",
+          "degree": "Bachelor of Arts",
+          "fieldOfStudy": "Psychology",
+          "startDate": {"$date": "2010-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2014-05-15T00:00:00.000Z"},
+          "gpa": "3.6",
+          "description": "Focus on organizational psychology and human behavior"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Goldman Sachs",
+          "position": "Campus Recruiter",
+          "startDate": {"$date": "2014-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2017-12-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Recruited top graduates for investment banking and technology roles.",
+          "location": "New York, NY"
+        },
+        {
+          "company": "Coinbase",
+          "position": "Senior Technical Recruiter",
+          "startDate": {"$date": "2018-01-01T00:00:00.000Z"},
+          "endDate": {"$date": "2022-06-30T00:00:00.000Z"},
+          "current": false,
+          "description": "Built engineering teams for cryptocurrency exchange platform.",
+          "location": "San Francisco, CA"
+        },
+        {
+          "company": "Blockchain Ventures",
+          "position": "Head of Talent",
+          "startDate": {"$date": "2022-07-01T00:00:00.000Z"},
+          "endDate": null,
+          "current": true,
+          "description": "Leading talent acquisition for blockchain and DeFi startups in portfolio.",
+          "location": "Remote"
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/davidkim",
+        "github": "",
+        "twitter": "https://twitter.com/davidkim_recruiter",
+        "website": ""
+      },
+      "preferences": {
+        "jobTypes": ["Full-time"],
+        "locations": ["San Francisco", "New York", "Remote"],
+        "salaryRange": {
+          "min": 140000,
+          "max": 200000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": true
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 65,
+      "jobApplications": 0,
+      "profileCompleteness": 90
+    },
+    "createdAt": {"$date": "2023-08-25T15:20:00.000Z"},
+    "updatedAt": {"$date": "2024-01-11T11:30:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439016"},
+    "fullName": "Lisa Wang",
+    "email": "lisa.wang@email.com",
+    "phoneNumber": 1234567895,
+    "password": "$2b$10$example_hashed_password_6",
+    "role": "student",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-10T14:15:00.000Z"},
+    "profile": {
+      "bio": "Backend developer specializing in microservices architecture and cloud infrastructure. Experienced with DevOps practices and containerization technologies.",
+      "skills": ["Java", "Spring Boot", "Docker", "Kubernetes", "AWS", "PostgreSQL", "Redis", "Microservices", "DevOps"],
+      "resume": "https://example.com/resumes/lisa_wang_resume.pdf",
+      "resumeOriginalName": "Lisa_Wang_Backend_Resume.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "Carnegie Mellon University",
+          "degree": "Master of Science",
+          "fieldOfStudy": "Software Engineering",
+          "startDate": {"$date": "2021-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2023-05-15T00:00:00.000Z"},
+          "gpa": "3.8",
+          "description": "Specialized in distributed systems and software architecture"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Amazon Web Services",
+          "position": "Software Development Engineer Intern",
+          "startDate": {"$date": "2022-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2022-08-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Developed microservices for AWS Lambda platform and improved system performance.",
+          "location": "Seattle, WA"
+        },
+        {
+          "company": "Netflix",
+          "position": "Backend Engineer",
+          "startDate": {"$date": "2023-06-01T00:00:00.000Z"},
+          "endDate": null,
+          "current": true,
+          "description": "Building scalable backend services for content recommendation system.",
+          "location": "Los Gatos, CA"
+        }
+      ],
+      "portfolio": [
+        {
+          "title": "Distributed Task Scheduler",
+          "description": "High-performance task scheduling system with fault tolerance",
+          "url": "https://github.com/lisawang/task-scheduler",
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300",
+          "technologies": ["Java", "Spring Boot", "Redis", "Docker", "Kubernetes"]
+        }
+      ],
+      "certifications": [
+        {
+          "name": "AWS Certified Solutions Architect",
+          "issuer": "Amazon Web Services",
+          "issueDate": {"$date": "2023-03-15T00:00:00.000Z"},
+          "expiryDate": {"$date": "2026-03-15T00:00:00.000Z"},
+          "credentialId": "AWS-SA-345678",
+          "credentialUrl": "https://aws.amazon.com/verification/345678"
+        }
+      ],
+      "languages": [
+        {
+          "language": "English",
+          "proficiency": "Native"
+        },
+        {
+          "language": "Mandarin",
+          "proficiency": "Native"
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/lisawang",
+        "github": "https://github.com/lisawang",
+        "twitter": "",
+        "website": "https://lisawang.tech"
+      },
+      "preferences": {
+        "jobTypes": ["Full-time"],
+        "locations": ["San Francisco", "Seattle", "Remote"],
+        "salaryRange": {
+          "min": 110000,
+          "max": 150000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": false
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 41,
+      "jobApplications": 6,
+      "profileCompleteness": 96
+    },
+    "createdAt": {"$date": "2023-07-15T10:30:00.000Z"},
+    "updatedAt": {"$date": "2024-01-10T14:15:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439017"},
+    "fullName": "Alex Thompson",
+    "email": "alex.thompson@email.com",
+    "phoneNumber": 1234567896,
+    "password": "$2b$10$example_hashed_password_7",
+    "role": "student",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-09T16:30:00.000Z"},
+    "profile": {
+      "bio": "Mobile app developer with expertise in React Native and Flutter. Passionate about creating cross-platform mobile experiences that delight users.",
+      "skills": ["React Native", "Flutter", "iOS", "Android", "JavaScript", "Dart", "Firebase", "Mobile UI/UX"],
+      "resume": "https://example.com/resumes/alex_thompson_resume.pdf",
+      "resumeOriginalName": "Alex_Thompson_Mobile_Resume.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "University of Texas at Austin",
+          "degree": "Bachelor of Science",
+          "fieldOfStudy": "Computer Science",
+          "startDate": {"$date": "2018-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2022-05-15T00:00:00.000Z"},
+          "gpa": "3.6",
+          "description": "Focus on mobile development and user interface design"
+        }
+      ],
+      "experience": [
+        {
+          "company": "MobileFirst Inc",
+          "position": "Mobile Developer Intern",
+          "startDate": {"$date": "2021-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2021-08-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Developed cross-platform mobile applications using React Native.",
+          "location": "Austin, TX"
+        },
+        {
+          "company": "AppStudio",
+          "position": "Junior Mobile Developer",
+          "startDate": {"$date": "2022-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2023-12-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Built and maintained mobile applications for iOS and Android platforms.",
+          "location": "Austin, TX"
+        }
+      ],
+      "portfolio": [
+        {
+          "title": "Fitness Tracker App",
+          "description": "Cross-platform fitness tracking app with social features",
+          "url": "https://github.com/alexthompson/fitness-tracker",
+          "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300",
+          "technologies": ["React Native", "Firebase", "Redux", "Native Modules"]
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/alexthompson",
+        "github": "https://github.com/alexthompson",
+        "twitter": "https://twitter.com/alex_mobile_dev",
+        "website": ""
+      },
+      "preferences": {
+        "jobTypes": ["Full-time", "Contract"],
+        "locations": ["Austin", "San Francisco", "Remote"],
+        "salaryRange": {
+          "min": 75000,
+          "max": 110000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": false
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 35,
+      "jobApplications": 11,
+      "profileCompleteness": 82
+    },
+    "createdAt": {"$date": "2023-06-20T12:45:00.000Z"},
+    "updatedAt": {"$date": "2024-01-09T16:30:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439018"},
+    "fullName": "Maria Garcia",
+    "email": "maria.garcia@email.com",
+    "phoneNumber": 1234567897,
+    "password": "$2b$10$example_hashed_password_8",
+    "role": "recruiter",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-08T13:20:00.000Z"},
+    "profile": {
+      "bio": "Diversity and Inclusion focused recruiter with 6 years of experience in healthcare and biotech recruitment. Committed to building inclusive teams.",
+      "skills": ["Healthcare Recruitment", "Biotech Talent", "Diversity Hiring", "Inclusive Practices", "Clinical Research", "Regulatory Affairs"],
+      "resume": "https://example.com/resumes/maria_garcia_resume.pdf",
+      "resumeOriginalName": "Maria_Garcia_Healthcare_Recruiter.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "University of California, Los Angeles",
+          "degree": "Master of Science",
+          "fieldOfStudy": "Public Health",
+          "startDate": {"$date": "2016-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2018-05-15T00:00:00.000Z"},
+          "gpa": "3.7",
+          "description": "Specialized in health policy and workforce development"
+        }
+      ],
+      "experience": [
+        {
+          "company": "Johnson & Johnson",
+          "position": "Healthcare Recruiter",
+          "startDate": {"$date": "2018-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2021-03-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Recruited clinical research professionals and regulatory affairs specialists.",
+          "location": "New Brunswick, NJ"
+        },
+        {
+          "company": "Moderna",
+          "position": "Senior Talent Acquisition Specialist",
+          "startDate": {"$date": "2021-04-01T00:00:00.000Z"},
+          "endDate": null,
+          "current": true,
+          "description": "Leading recruitment for mRNA technology and vaccine development teams.",
+          "location": "Cambridge, MA"
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/mariagarcia",
+        "github": "",
+        "twitter": "https://twitter.com/maria_healthcare",
+        "website": ""
+      },
+      "preferences": {
+        "jobTypes": ["Full-time"],
+        "locations": ["Boston", "San Francisco", "Remote"],
+        "salaryRange": {
+          "min": 100000,
+          "max": 150000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": true
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 52,
+      "jobApplications": 0,
+      "profileCompleteness": 87
+    },
+    "createdAt": {"$date": "2023-05-10T14:30:00.000Z"},
+    "updatedAt": {"$date": "2024-01-08T13:20:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439019"},
+    "fullName": "James Wilson",
+    "email": "james.wilson@email.com",
+    "phoneNumber": 1234567898,
+    "password": "$2b$10$example_hashed_password_9",
+    "role": "student",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-07T10:45:00.000Z"},
+    "profile": {
+      "bio": "Cybersecurity specialist with expertise in penetration testing and security architecture. Passionate about protecting organizations from cyber threats.",
+      "skills": ["Cybersecurity", "Penetration Testing", "Security Architecture", "Python", "Linux", "Network Security", "Incident Response", "Compliance"],
+      "resume": "https://example.com/resumes/james_wilson_resume.pdf",
+      "resumeOriginalName": "James_Wilson_Cybersecurity_Resume.pdf",
+      "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      "education": [
+        {
+          "institution": "Georgia Institute of Technology",
+          "degree": "Bachelor of Science",
+          "fieldOfStudy": "Cybersecurity",
+          "startDate": {"$date": "2019-09-01T00:00:00.000Z"},
+          "endDate": {"$date": "2023-05-15T00:00:00.000Z"},
+          "gpa": "3.8",
+          "description": "Specialized in information security and digital forensics"
+        }
+      ],
+      "experience": [
+        {
+          "company": "SecureTech Solutions",
+          "position": "Security Analyst Intern",
+          "startDate": {"$date": "2022-06-01T00:00:00.000Z"},
+          "endDate": {"$date": "2022-08-31T00:00:00.000Z"},
+          "current": false,
+          "description": "Conducted vulnerability assessments and security audits for client organizations.",
+          "location": "Atlanta, GA"
+        },
+        {
+          "company": "CyberDefense Corp",
+          "position": "Junior Security Engineer",
+          "startDate": {"$date": "2023-06-01T00:00:00.000Z"},
+          "endDate": null,
+          "current": true,
+          "description": "Implementing security controls and monitoring systems for enterprise clients.",
+          "location": "Atlanta, GA"
+        }
+      ],
+      "portfolio": [
+        {
+          "title": "Security Assessment Tool",
+          "description": "Automated vulnerability scanning and reporting system",
+          "url": "https://github.com/jameswilson/security-scanner",
+          "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300",
+          "technologies": ["Python", "Nmap", "SQLite", "Flask", "Docker"]
+        }
+      ],
+      "certifications": [
+        {
+          "name": "Certified Ethical Hacker (CEH)",
+          "issuer": "EC-Council",
+          "issueDate": {"$date": "2023-04-15T00:00:00.000Z"},
+          "expiryDate": {"$date": "2026-04-15T00:00:00.000Z"},
+          "credentialId": "CEH-456789",
+          "credentialUrl": "https://cert.eccouncil.org/456789"
+        }
+      ],
+      "languages": [
+        {
+          "language": "English",
+          "proficiency": "Native"
+        }
+      ],
+      "socialLinks": {
+        "linkedin": "https://linkedin.com/in/jameswilson",
+        "github": "https://github.com/jameswilson",
+        "twitter": "",
+        "website": "https://jameswilson.security"
+      },
+      "preferences": {
+        "jobTypes": ["Full-time", "Contract"],
+        "locations": ["Atlanta", "Washington DC", "Remote"],
+        "salaryRange": {
+          "min": 80000,
+          "max": 120000,
+          "currency": "USD"
+        },
+        "remoteWork": true,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": false
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 38,
+      "jobApplications": 9,
+      "profileCompleteness": 89
+    },
+    "createdAt": {"$date": "2023-04-15T16:20:00.000Z"},
+    "updatedAt": {"$date": "2024-01-07T10:45:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "507f1f77bcf86cd799439020"},
+    "fullName": "Admin User",
+    "email": "admin@jobhunt.com",
+    "phoneNumber": 1234567899,
+    "password": "$2b$10$example_hashed_password_admin",
+    "role": "admin",
+    "isVerified": true,
+    "lastLogin": {"$date": "2024-01-15T08:00:00.000Z"},
+    "profile": {
+      "bio": "System administrator responsible for platform management and user support.",
+      "skills": ["System Administration", "Database Management", "User Support", "Platform Management"],
+      "resume": "",
+      "resumeOriginalName": "",
+      "profilePhoto": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      "socialLinks": {
+        "linkedin": "",
+        "github": "",
+        "twitter": "",
+        "website": ""
+      },
+      "preferences": {
+        "jobTypes": [],
+        "locations": [],
+        "salaryRange": {
+          "min": 0,
+          "max": 0,
+          "currency": "USD"
+        },
+        "remoteWork": false,
+        "notifications": {
+          "email": true,
+          "push": true,
+          "sms": false
+        }
+      }
+    },
+    "analytics": {
+      "profileViews": 0,
+      "jobApplications": 0,
+      "profileCompleteness": 50
+    },
+    "createdAt": {"$date": "2023-01-01T00:00:00.000Z"},
+    "updatedAt": {"$date": "2024-01-15T08:00:00.000Z"}
+  }
+]

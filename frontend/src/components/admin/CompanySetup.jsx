@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
-import axios from 'axios';
+import apiClient from '@/utils/axiosConfig';
 import { COMPANY_API_END_POINT } from '@/utils/constant';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -15,7 +15,7 @@ import Footer from '../shared/Footer';
 
 const CompanySetup = () => {
     const params = useParams();
-    useGetCompanyById(params.id);
+    const { isLoading } = useGetCompanyById(params.id);
     const [input, setInput] = useState({
         name: "",
         description: "",
@@ -48,11 +48,10 @@ const CompanySetup = () => {
         }
         try {
             setLoading(true);
-            const res = await axios.put(`${COMPANY_API_END_POINT}/update/${params.id}`, formData, {
+            const res = await apiClient.put(`${COMPANY_API_END_POINT}/update/${params.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-                withCredentials: true,
             });
             if (res.data.success) {
                 toast.success(res.data.message);
@@ -67,14 +66,35 @@ const CompanySetup = () => {
     };
 
     useEffect(() => {
-        setInput({
-            name: singleCompany.name || "",
-            description: singleCompany.description || "",
-            website: singleCompany.website || "",
-            location: singleCompany.location || "",
-            file: singleCompany.file || null,
-        });
+        if (singleCompany) {
+            setInput({
+                name: singleCompany.name || "",
+                description: singleCompany.description || "",
+                website: singleCompany.website || "",
+                location: singleCompany.location || "",
+                file: singleCompany.file || null,
+            });
+        }
     }, [singleCompany]);
+
+    // Show loading state while company data is being fetched
+    if (isLoading || !singleCompany) {
+        return (
+            <motion.div
+                className="bg-white min-h-screen flex items-center justify-center"
+                initial={ { opacity: 0 } }
+                animate={ { opacity: 1 } }
+                transition={ { duration: 0.5 } }
+            >
+                <div className="text-center">
+                    <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
+                    <p className="text-gray-600">Loading company data...</p>
+                    <p className="text-sm text-gray-500 mt-2">Company ID: {params.id}</p>
+                    {isLoading && <p className="text-xs text-gray-400 mt-1">Fetching data...</p>}
+                </div>
+            </motion.div>
+        );
+    }
 
     return (
         <motion.div

@@ -17,8 +17,13 @@ const authSlice = createSlice({
         },
         setsavedJobs: (state, action) => {
             state.savedJobs = action.payload;
+        },
+        logout: (state) => {
+            state.user = null;
+            state.savedJobs = null;
+            state.loading = false;
         }
     }
 });
-export const { setLoading, setUser, setsavedJobs } = authSlice.actions;
+export const { setLoading, setUser, setsavedJobs, logout } = authSlice.actions;
 export default authSlice.reducer;

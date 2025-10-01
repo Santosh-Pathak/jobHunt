@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { Avatar, AvatarImage } from '../ui/avatar';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { Edit2, MoreHorizontal } from 'lucide-react';
+import { Edit2, Eye, Trash2 } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import apiClient from '@/utils/axiosConfig';
+import { COMPANY_API_END_POINT } from '@/utils/constant';
+import { toast } from 'sonner';
 
 const CompaniesTable = () => {
     const { companies, searchCompanyByText } = useSelector((store) => store.company);
@@ -19,6 +21,25 @@ const CompaniesTable = () => {
         });
         setFilterCompany(filteredCompany);
     }, [companies, searchCompanyByText]);
+
+    const handleDeleteCompany = async (companyId) => {
+        try {
+            if (!companyId) {
+                toast.error('Company ID is missing');
+                return;
+            }
+            
+            const response = await apiClient.delete(`/api/v1/admin/companies/${companyId}`);
+            
+            // Update local state
+            setFilterCompany(prev => prev.filter(company => company._id !== companyId));
+            
+            toast.success(response.data.message || 'Company deleted successfully');
+        } catch (error) {
+            console.error('Error deleting company:', error);
+            toast.error(error.response?.data?.message || 'Error deleting the company');
+        }
+    };
 
     return (
         <div className="bg-white rounded-lg shadow-md p-5 transition-all duration-300">
@@ -51,20 +72,29 @@ const CompaniesTable = () => {
                                 <TableCell>{ company.name }</TableCell>
                                 <TableCell>{ company.createdAt.split("T")[0] }</TableCell>
                                 <TableCell className="text-right">
-                                    <Popover>
-                                        <PopoverTrigger>
-                                            <MoreHorizontal className="cursor-pointer" />
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-32">
-                                            <div
-                                                onClick={ () => navigate(`/admin/companies/${company._id}`) }
-                                                className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer transition-all duration-300"
-                                            >
-                                                <Edit2 className="w-4" />
-                                                <span>Edit</span>
-                                            </div>
-                                        </PopoverContent>
-                                    </Popover>
+                                    <div className="flex items-center justify-end gap-2">
+                                        <button
+                                            onClick={ () => navigate(`/admin/companies/${company._id}`) }
+                                            className="p-2 text-blue-600 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all duration-200"
+                                            title="View Details"
+                                        >
+                                            <Eye className="w-4 h-4" />
+                                        </button>
+                                        <button
+                                            onClick={ () => navigate(`/admin/companies/${company._id}/edit`) }
+                                            className="p-2 text-blue-600 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all duration-200"
+                                            title="Edit Company"
+                                        >
+                                            <Edit2 className="w-4 h-4" />
+                                        </button>
+                                        <button
+                                            onClick={ () => handleDeleteCompany(company._id) }
+                                            className="p-2 text-red-600 hover:text-red-500 hover:bg-red-50 rounded-md transition-all duration-200"
+                                            title="Delete Company"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    </div>
                                 </TableCell>
                             </motion.tr>
                         ))

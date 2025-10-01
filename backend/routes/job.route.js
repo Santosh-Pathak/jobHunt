@@ -1,5 +1,6 @@
 import express from "express";
 import isAuthenticated from "../middlewares/isAuthenticated.js";
+import isAuthorized from "../middlewares/isAuthorized.js";
 import {
   postJob,
   getAllJobs,
@@ -9,10 +10,13 @@ import {
 
 const Router = express.Router();
 
-Router.route("/post").post(isAuthenticated, postJob);
-Router.route("/get").get(isAuthenticated, getAllJobs);
-Router.route("/getadminjobs").get(isAuthenticated, getAdminJobs);
-Router.route("/get/:id").get(isAuthenticated, getJobById);
+// Public routes
+Router.route("/get").get(getAllJobs); // Get all jobs (public)
+Router.route("/get/:id").get(getJobById); // Get job by ID (public)
+
+// Protected routes - require authentication and recruiter role
+Router.route("/post").post(isAuthenticated, isAuthorized(['recruiter', 'admin']), postJob); // Post job (requires recruiter role)
+Router.route("/getadminjobs").get(isAuthenticated, isAuthorized(['recruiter', 'admin']), getAdminJobs); // Get admin jobs (requires recruiter role)
 
 export default Router;
 

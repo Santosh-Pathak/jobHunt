@@ -1,7 +1,7 @@
 import { setSingleJob } from '@/redux/jobSlice';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import apiClient from '@/utils/axiosConfig';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import Navbar from './shared/Navbar';
@@ -23,7 +23,7 @@ const JobDescription = () => {
     useEffect(() => {
         const fetchSingleJob = async () => {
             try {
-                const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, { withCredentials: true });
+                const res = await apiClient.get(`${JOB_API_END_POINT}/get/${jobId}`);
                 if (res.data.success) {
                     dispatch(setSingleJob(res.data.job));
                     setIsApplied(
@@ -39,7 +39,7 @@ const JobDescription = () => {
 
     const applyJobHandler = async () => {
         try {
-            const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, { withCredentials: true });
+            const res = await apiClient.post(`${APPLICATION_API_END_POINT}/apply/${jobId}`);
 
             if (res.data.success) {
                 setIsApplied(true);
@@ -58,10 +58,9 @@ const JobDescription = () => {
 
     const handleSaveForLater = async () => {
         try {
-            const res = await axios.post(
+            const res = await apiClient.post(
                 `${USER_API_END_POINT}/savedjob`,
-                { jobId },
-                { withCredentials: true }
+                { jobId }
             );
             if (res.data.success) {
                 dispatch(setsavedJobs(res.data.savedJobs));
@@ -82,7 +81,7 @@ const JobDescription = () => {
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6">
                             <div className="mb-4 sm:mb-0">
                                 <h1 className="text-xl sm:text-2xl font-bold text-white">{ singleJob?.title || 'Job Title' }</h1>
-                                <p className="text-sm sm:text-base text-gray-400">{ singleJob?.location || 'Location not specified' }</p>
+                                <p className="text-sm sm:text-base text-gray-400">{ singleJob?.location?.city || singleJob?.location || 'Location not specified' }</p>
                             </div>
                             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
                                 { savedJobs?.some((savedJob) => savedJob._id === singleJob?._id) ? (
@@ -112,7 +111,7 @@ const JobDescription = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 mt-6">
                             <div className="flex items-center text-xs sm:text-base text-gray-300">
                                 <MapPin className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                                { singleJob?.location || 'Location not specified' }
+                                { singleJob?.location?.city || singleJob?.location || 'Location not specified' }
                             </div>
                             <div className="flex items-center text-xs sm:text-base text-gray-300">
                                 <Building className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
@@ -124,9 +123,9 @@ const JobDescription = () => {
                             </div>
                             <div className="flex items-center text-xs sm:text-base text-gray-300">
                                 <IndianRupeeIcon className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                                { singleJob?.salary?.length === 0
-                                    ? 'Not Disclosed'
-                                    : `${singleJob?.salary} LPA` }
+                                { singleJob?.salary?.min 
+                                    ? `${singleJob.salary.min} - ${singleJob.salary.max} LPA`
+                                    : 'Not Disclosed' }
                             </div>
                         </div>
 
@@ -137,7 +136,17 @@ const JobDescription = () => {
 
                         <div className="mt-6 sm:mt-8">
                             <h2 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-4">Requirements</h2>
-                            <p className="text-xs sm:text-base text-gray-300">{ singleJob?.requirements || 'Description not available' }</p>
+                            <div className="text-xs sm:text-base text-gray-300">
+                                {singleJob?.requirement && Array.isArray(singleJob.requirement) ? (
+                                    <ul className="list-disc list-inside space-y-1">
+                                        {singleJob.requirement.map((req, index) => (
+                                            <li key={index}>{req}</li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p>Requirements not specified</p>
+                                )}
+                            </div>
                         </div>
 
                         {/* Experience */ }

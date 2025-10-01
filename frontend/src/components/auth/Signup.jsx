@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 
 const Signup = () => {
     const [input, setInput] = useState({
-        fullname: '',
+        fullName: '',
         email: '',
         phoneNumber: '',
         password: '',
@@ -46,7 +46,7 @@ const Signup = () => {
                 formData.append('file', profilePicture);
             }
 
-            const res = await axios.post(`${USER_API_END_POINT}/signup`, formData, {
+            const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -99,15 +99,15 @@ const Signup = () => {
                     <form onSubmit={ submitHandler }>
                         {/* Full Name */ }
                         <motion.div className="mb-4" initial={ { x: -50, opacity: 0 } } animate={ { x: 0, opacity: 1 } } transition={ { delay: 0.4 } }>
-                            <Label htmlFor="fullname" className="block text-lg">
+                            <Label htmlFor="fullName" className="block text-lg">
                                 Full Name <span className="text-red-400">*</span>
                             </Label>
                             <Input
-                                id="fullname"
+                                id="fullName"
                                 placeholder="John Doe"
                                 type="text"
-                                name="fullname"
-                                value={ input.fullname }
+                                name="fullName"
+                                value={ input.fullName }
                                 onChange={ changeEventHandler }
                                 className="text-white bg-gray-800 border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
                             />
