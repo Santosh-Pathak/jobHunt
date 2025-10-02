@@ -8,8 +8,8 @@ const store = new Map();
 const customStore = {
     incr: (key, cb) => {
         const now = Date.now();
-        const windowMs = 15 * 60 * 1000; // 15 minutes
-        const limit = 100; // requests per window
+        const windowMs = parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000; // 15 minutes
+        const limit = parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100; // requests per window
         
         if (!store.has(key)) {
             store.set(key, { count: 1, resetTime: now + windowMs });

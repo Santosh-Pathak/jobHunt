@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const SkipLinks = () => {
     const skipLinks = [
@@ -12,14 +11,14 @@ const SkipLinks = () => {
     return (
         <div className="skip-links">
             {skipLinks.map((link, index) => (
-                <Link
+                <a
                     key={index}
-                    to={link.to}
+                    href={link.to}
                     className="skip-link"
                     tabIndex={1}
                 >
                     {link.label}
-                </Link>
+                </a>
             ))}
         </div>
     );

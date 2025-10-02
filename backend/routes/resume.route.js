@@ -9,7 +9,7 @@ import {
     parseResumeFile
 } from '../controllers/resume.controller.js';
 import isAuthenticated from '../middlewares/isAuthenticated.js';
-import upload from '../middlewares/multer.js';
+import { singleUpload } from '../middlewares/multer.js';
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ router.delete('/delete', deleteResume);
 router.get('/templates', getResumeTemplates);
 
 // File upload routes
-router.post('/upload', upload.single('resume'), uploadResumeFile);
+router.post('/upload', singleUpload, uploadResumeFile);
 router.post('/parse', parseResumeFile);
 
 export default router;

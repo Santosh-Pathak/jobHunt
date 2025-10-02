@@ -41,12 +41,12 @@ export const corsOptions = {
         if (!origin) return callback(null, true);
         
         const allowedOrigins = [
-            'http://localhost:3000',
-            'http://localhost:5173',
-            'https://jobhunt.com',
-            'https://www.jobhunt.com',
-            'https://app.jobhunt.com'
-        ];
+            process.env.FRONTEND_URL || 'http://localhost:5173',
+            process.env.FRONTEND_URL_ALT || 'http://localhost:3000',
+            process.env.PRODUCTION_URL || 'https://jobhunt.com',
+            process.env.PRODUCTION_URL_WWW || 'https://www.jobhunt.com',
+            process.env.APP_URL || 'https://app.jobhunt.com'
+        ].filter(Boolean); // Remove any undefined values
         
         if (allowedOrigins.includes(origin)) {
             callback(null, true);
@@ -183,8 +183,9 @@ export const fileUploadSecurity = (req, res, next) => {
     
     for (const file of files) {
         // Check file size
-        if (file.size > 10 * 1024 * 1024) { // 10MB
-            return next(new ValidationError('File size exceeds 10MB limit'));
+        const maxFileSize = parseInt(process.env.MAX_FILE_SIZE) || 10 * 1024 * 1024; // 10MB
+        if (file.size > maxFileSize) {
+            return next(new ValidationError(`File size exceeds ${maxFileSize / (1024 * 1024)}MB limit`));
         }
         
         // Check file type
@@ -227,7 +228,7 @@ export const fileUploadSecurity = (req, res, next) => {
 };
 
 // Request size limiter
-export const requestSizeLimiter = (maxSize = '10mb') => {
+export const requestSizeLimiter = (maxSize = process.env.MAX_REQUEST_SIZE || '10mb') => {
     return (req, res, next) => {
         const contentLength = parseInt(req.get('content-length') || '0');
         const maxSizeBytes = parseSize(maxSize);
@@ -333,12 +334,12 @@ export const userAgentValidation = (req, res, next) => {
 export const refererValidation = (req, res, next) => {
     const referer = req.get('Referer') || req.get('Referrer') || '';
     const allowedReferers = [
-        'http://localhost:3000',
-        'http://localhost:5173',
-        'https://jobhunt.com',
-        'https://www.jobhunt.com',
-        'https://app.jobhunt.com'
-    ];
+        process.env.FRONTEND_URL || 'http://localhost:5173',
+        process.env.FRONTEND_URL_ALT || 'http://localhost:3000',
+        process.env.PRODUCTION_URL || 'https://jobhunt.com',
+        process.env.PRODUCTION_URL_WWW || 'https://www.jobhunt.com',
+        process.env.APP_URL || 'https://app.jobhunt.com'
+    ].filter(Boolean); // Remove any undefined values
     
     // Allow requests with no referer (direct access, mobile apps, etc.)
     if (!referer) return next();

@@ -2,7 +2,7 @@ import { User } from '../models/user.model.js';
 import { Job } from '../models/job.model.js';
 import { Application } from '../models/application.model.js';
 import cloudinary from '../utils/cloudinary.js';
-import { getDataUri } from '../utils/datauri.js';
+import getDataUri from '../utils/datauri.js';
 import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import path from 'path';

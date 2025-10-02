@@ -16,7 +16,12 @@ dotenv.config(); // Fallback to default location
 const connectDB = async () => {
   try {
     // Use the provided MongoDB connection string directly
-    const mongoURI = process.env.MONGO_URI || "mongodb+srv://jobHunt:ql6h6WMQsNZCONUl@cluster0.bachoqr.mongodb.net/jobHunt?retryWrites=true&w=majority&appName=Cluster0";
+    const mongoURI = process.env.MONGO_URI;
+    
+    if (!mongoURI) {
+        console.error('MONGO_URI environment variable is required');
+        process.exit(1);
+    }
     
     console.log("Attempting to connect to MongoDB...");
     const conn = await mongoose.connect(mongoURI);

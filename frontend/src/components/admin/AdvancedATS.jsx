@@ -8,6 +8,8 @@ import { Textarea } from '../ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import Navbar from '../shared/Navbar';
+import { useTheme } from '../../contexts/ThemeContext';
 import { 
     Users, 
     Search, 
@@ -50,348 +52,6 @@ import {
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import apiClient from '@/utils/axiosConfig';
-
-const AdvancedATS = () => {
-    const { user } = useSelector(store => store.auth);
-    const [applications, setApplications] = useState([]);
-    const [jobs, setJobs] = useState([]);
-    const [selectedApplication, setSelectedApplication] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [filters, setFilters] = useState({
-        jobId: '',
-        status: '',
-        dateRange: '',
-        searchTerm: '',
-        scoreRange: '',
-        experience: '',
-        education: ''
-    });
-    const [analytics, setAnalytics] = useState({
-        totalApplications: 0,
-        statusDistribution: {},
-        topSources: [],
-        conversionRates: {},
-        timeToHire: 0,
-        candidateQuality: {}
-    });
-
-    useEffect(() => {
-        fetchData();
-        fetchAnalytics();
-    }, [filters]);
-
-    const fetchData = async () => {
-        try {
-            const [applicationsRes, jobsRes] = await Promise.all([
-                apiClient.get('/api/v1/application/ats', { params: filters }),
-                apiClient.get('/api/v1/job/getadminjobs')
-            ]);
-
-            setApplications(applicationsRes.data.applications || []);
-            setJobs(jobsRes.data.jobs || []);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            toast.error('Failed to fetch data');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const fetchAnalytics = async () => {
-        try {
-            const res = await apiClient.get('/api/v1/application/analytics');
-            setAnalytics(res.data.analytics);
-        } catch (error) {
-            console.error('Error fetching analytics:', error);
-        }
-    };
-
-    const updateApplicationStatus = async (applicationId, status, notes) => {
-        try {
-            const res = await apiClient.put(`/api/v1/application/${applicationId}/status`, {
-                status,
-                notes
-            });
-
-            if (res.data.success) {
-                toast.success('Application status updated');
-                fetchData();
-            }
-        } catch (error) {
-            toast.error('Failed to update application status');
-        }
-    };
-
-    const addApplicationNote = async (applicationId, note) => {
-        try {
-            const res = await apiClient.post(`/api/v1/application/${applicationId}/notes`, {
-                note
-            });
-
-            if (res.data.success) {
-                toast.success('Note added');
-                fetchData();
-            }
-        } catch (error) {
-            toast.error('Failed to add note');
-        }
-    };
-
-    const rateCandidate = async (applicationId, rating, feedback) => {
-        try {
-            const res = await apiClient.post(`/api/v1/application/${applicationId}/rating`, {
-                rating,
-                feedback
-            });
-
-            if (res.data.success) {
-                toast.success('Candidate rated');
-                fetchData();
-            }
-        } catch (error) {
-            toast.error('Failed to rate candidate');
-        }
-    };
-
-    const getStatusColor = (status) => {
-        switch (status) {
-            case 'applied': return 'bg-blue-100 text-blue-800';
-            case 'reviewed': return 'bg-yellow-100 text-yellow-800';
-            case 'shortlisted': return 'bg-green-100 text-green-800';
-            case 'interview': return 'bg-purple-100 text-purple-800';
-            case 'hired': return 'bg-green-100 text-green-800';
-            case 'rejected': return 'bg-red-100 text-red-800';
-            default: return 'bg-gray-100 text-gray-800';
-        }
-    };
-
-    const getScoreColor = (score) => {
-        if (score >= 80) return 'text-green-600';
-        if (score >= 60) return 'text-yellow-600';
-        return 'text-red-600';
-    };
-
-    return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                        Advanced ATS
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        Comprehensive applicant tracking and management system
-                    </p>
-                </div>
-
-                {/* Analytics Dashboard */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center">
-                                <div className="p-2 bg-blue-100 rounded-lg">
-                                    <Users className="w-6 h-6 text-blue-600" />
-                                </div>
-                                <div className="ml-4">
-                                    <p className="text-sm font-medium text-gray-600">Total Applications</p>
-                                    <p className="text-2xl font-bold text-gray-900">{analytics.totalApplications}</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center">
-                                <div className="p-2 bg-green-100 rounded-lg">
-                                    <TrendingUp className="w-6 h-6 text-green-600" />
-                                </div>
-                                <div className="ml-4">
-                                    <p className="text-sm font-medium text-gray-600">Conversion Rate</p>
-                                    <p className="text-2xl font-bold text-gray-900">{analytics.conversionRates.overall || 0}%</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center">
-                                <div className="p-2 bg-purple-100 rounded-lg">
-                                    <Clock className="w-6 h-6 text-purple-600" />
-                                </div>
-                                <div className="ml-4">
-                                    <p className="text-sm font-medium text-gray-600">Avg. Time to Hire</p>
-                                    <p className="text-2xl font-bold text-gray-900">{analytics.timeToHire} days</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center">
-                                <div className="p-2 bg-yellow-100 rounded-lg">
-                                    <Star className="w-6 h-6 text-yellow-600" />
-                                </div>
-                                <div className="ml-4">
-                                    <p className="text-sm font-medium text-gray-600">Avg. Candidate Score</p>
-                                    <p className="text-2xl font-bold text-gray-900">{analytics.candidateQuality.averageScore || 0}</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-
-                {/* Main Content */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Applications List */}
-                    <div className="lg:col-span-2">
-                        <Card>
-                            <CardHeader>
-                                <div className="flex justify-between items-center">
-                                    <CardTitle className="flex items-center">
-                                        <Users className="w-5 h-5 mr-2" />
-                                        Applications ({applications.length})
-                                    </CardTitle>
-                                    <div className="flex space-x-2">
-                                        <Button variant="outline" size="sm">
-                                            <Download className="w-4 h-4 mr-1" />
-                                            Export
-                                        </Button>
-                                        <Button variant="outline" size="sm">
-                                            <Upload className="w-4 h-4 mr-1" />
-                                            Import
-                                        </Button>
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                {/* Filters */}
-                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                                    <div>
-                                        <Label htmlFor="jobFilter">Job</Label>
-                                        <Select value={filters.jobId} onValueChange={(value) => setFilters(prev => ({ ...prev, jobId: value }))}>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="All jobs" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="">All jobs</SelectItem>
-                                                {jobs.map(job => (
-                                                    <SelectItem key={job._id} value={job._id}>
-                                                        {job.title}
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="statusFilter">Status</Label>
-                                        <Select value={filters.status} onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="All statuses" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="">All statuses</SelectItem>
-                                                <SelectItem value="applied">Applied</SelectItem>
-                                                <SelectItem value="reviewed">Reviewed</SelectItem>
-                                                <SelectItem value="shortlisted">Shortlisted</SelectItem>
-                                                <SelectItem value="interview">Interview</SelectItem>
-                                                <SelectItem value="hired">Hired</SelectItem>
-                                                <SelectItem value="rejected">Rejected</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="scoreFilter">Score Range</Label>
-                                        <Select value={filters.scoreRange} onValueChange={(value) => setFilters(prev => ({ ...prev, scoreRange: value }))}>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="All scores" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="">All scores</SelectItem>
-                                                <SelectItem value="80-100">80-100 (Excellent)</SelectItem>
-                                                <SelectItem value="60-79">60-79 (Good)</SelectItem>
-                                                <SelectItem value="40-59">40-59 (Fair)</SelectItem>
-                                                <SelectItem value="0-39">0-39 (Poor)</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="searchFilter">Search</Label>
-                                        <Input
-                                            id="searchFilter"
-                                            placeholder="Search candidates..."
-                                            value={filters.searchTerm}
-                                            onChange={(e) => setFilters(prev => ({ ...prev, searchTerm: e.target.value }))}
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Applications List */}
-                                {loading ? (
-                                    <div className="text-center py-8">
-                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                                        <p className="mt-2 text-gray-600">Loading applications...</p>
-                                    </div>
-                                ) : applications.length === 0 ? (
-                                    <div className="text-center py-8">
-                                        <Users className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                            No applications found
-                                        </h3>
-                                        <p className="text-gray-600 dark:text-gray-400">
-                                            Try adjusting your filters or check back later
-                                        </p>
-                                    </div>
-                                ) : (
-                                    <div className="space-y-4">
-                                        {applications.map((application) => (
-                                            <ApplicationCard
-                                                key={application._id}
-                                                application={application}
-                                                isSelected={selectedApplication?._id === application._id}
-                                                onSelect={setSelectedApplication}
-                                                getStatusColor={getStatusColor}
-                                                getScoreColor={getScoreColor}
-                                            />
-                                        ))}
-                                    </div>
-                                )}
-                            </CardContent>
-                        </Card>
-                    </div>
-
-                    {/* Application Details */}
-                    <div className="lg:col-span-1">
-                        {selectedApplication ? (
-                            <ApplicationDetails
-                                application={selectedApplication}
-                                onUpdateStatus={updateApplicationStatus}
-                                onAddNote={addApplicationNote}
-                                onRateCandidate={rateCandidate}
-                                getStatusColor={getStatusColor}
-                                getScoreColor={getScoreColor}
-                            />
-                        ) : (
-                            <Card>
-                                <CardContent className="p-6 text-center">
-                                    <Users className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                        Select an Application
-                                    </h3>
-                                    <p className="text-gray-600 dark:text-gray-400">
-                                        Click on an application to view details and manage the candidate
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
 
 // Application Card Component
 const ApplicationCard = ({ application, isSelected, onSelect, getStatusColor, getScoreColor }) => {
@@ -649,6 +309,373 @@ const ApplicationDetails = ({ application, onUpdateStatus, onAddNote, onRateCand
                 </Tabs>
             </CardContent>
         </Card>
+    );
+};
+
+const AdvancedATS = () => {
+    const { theme } = useTheme();
+    const { user } = useSelector(store => store.auth);
+    const [applications, setApplications] = useState([]);
+    const [jobs, setJobs] = useState([]);
+    const [selectedApplication, setSelectedApplication] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [filters, setFilters] = useState({
+        jobId: 'all',
+        status: 'all',
+        dateRange: '',
+        searchTerm: '',
+        scoreRange: 'all',
+        experience: '',
+        education: ''
+    });
+    const [analytics, setAnalytics] = useState({
+        totalApplications: 0,
+        statusDistribution: {},
+        topSources: [],
+        conversionRates: {},
+        timeToHire: 0,
+        candidateQuality: {}
+    });
+
+    useEffect(() => {
+        fetchData();
+        fetchAnalytics();
+    }, [filters]);
+
+    const fetchData = async () => {
+        try {
+            // Convert 'all' to empty string for API compatibility
+            const apiFilters = { ...filters };
+            if (apiFilters.jobId === 'all') {
+                apiFilters.jobId = '';
+            }
+            if (apiFilters.status === 'all') {
+                apiFilters.status = '';
+            }
+            if (apiFilters.scoreRange === 'all') {
+                apiFilters.scoreRange = '';
+            }
+            
+            const [applicationsRes, jobsRes] = await Promise.all([
+                apiClient.get('/api/v1/application/ats', { params: apiFilters }),
+                apiClient.get('/api/v1/job/getadminjobs')
+            ]);
+
+            setApplications(applicationsRes.data.applications || []);
+            setJobs(jobsRes.data.jobs || []);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            toast.error('Failed to fetch data');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchAnalytics = async () => {
+        try {
+            const res = await apiClient.get('/api/v1/application/analytics');
+            setAnalytics(res.data.analytics);
+        } catch (error) {
+            console.error('Error fetching analytics:', error);
+        }
+    };
+
+    const updateApplicationStatus = async (applicationId, status, notes) => {
+        try {
+            const res = await apiClient.put(`/api/v1/application/${applicationId}/status`, {
+                status,
+                notes
+            });
+
+            if (res.data.success) {
+                toast.success('Application status updated');
+                fetchData();
+            }
+        } catch (error) {
+            toast.error('Failed to update application status');
+        }
+    };
+
+    const addApplicationNote = async (applicationId, note) => {
+        try {
+            const res = await apiClient.post(`/api/v1/application/${applicationId}/notes`, {
+                note
+            });
+
+            if (res.data.success) {
+                toast.success('Note added');
+                fetchData();
+            }
+        } catch (error) {
+            toast.error('Failed to add note');
+        }
+    };
+
+    const rateCandidate = async (applicationId, rating, feedback) => {
+        try {
+            const res = await apiClient.post(`/api/v1/application/${applicationId}/rating`, {
+                rating,
+                feedback
+            });
+
+            if (res.data.success) {
+                toast.success('Candidate rated');
+                fetchData();
+            }
+        } catch (error) {
+            toast.error('Failed to rate candidate');
+        }
+    };
+
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'applied': return 'bg-blue-100 text-blue-800';
+            case 'reviewed': return 'bg-yellow-100 text-yellow-800';
+            case 'shortlisted': return 'bg-green-100 text-green-800';
+            case 'interview': return 'bg-purple-100 text-purple-800';
+            case 'hired': return 'bg-green-100 text-green-800';
+            case 'rejected': return 'bg-red-100 text-red-800';
+            default: return 'bg-gray-100 text-gray-800';
+        }
+    };
+
+    const getScoreColor = (score) => {
+        if (score >= 80) return 'text-green-600';
+        if (score >= 60) return 'text-yellow-600';
+        return 'text-red-600';
+    };
+
+    return (
+        <div className={`min-h-screen transition-all duration-300 ${
+            theme === 'dark' 
+                ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
+                : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+        }`}>
+            <Navbar />
+            
+            <div className="pt-16 p-6">
+                <div className="max-w-7xl mx-auto">
+                    {/* Header */}
+                    <div className="mb-8">
+                        <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}>
+                            Advanced ATS
+                        </h1>
+                        <p className={`transition-colors duration-300 ${
+                            theme === 'dark' ? 'text-slate-300' : 'text-gray-600'
+                        }`}>
+                            Comprehensive applicant tracking and management system
+                        </p>
+                    </div>
+
+                {/* Analytics Dashboard */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <Card>
+                        <CardContent className="p-6">
+                            <div className="flex items-center">
+                                <div className="p-2 bg-blue-100 rounded-lg">
+                                    <Users className="w-6 h-6 text-blue-600" />
+                                </div>
+                                <div className="ml-4">
+                                    <p className="text-sm font-medium text-gray-600">Total Applications</p>
+                                    <p className="text-2xl font-bold text-gray-900">{analytics.totalApplications}</p>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardContent className="p-6">
+                            <div className="flex items-center">
+                                <div className="p-2 bg-green-100 rounded-lg">
+                                    <TrendingUp className="w-6 h-6 text-green-600" />
+                                </div>
+                                <div className="ml-4">
+                                    <p className="text-sm font-medium text-gray-600">Conversion Rate</p>
+                                    <p className="text-2xl font-bold text-gray-900">{analytics.conversionRates.overall || 0}%</p>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardContent className="p-6">
+                            <div className="flex items-center">
+                                <div className="p-2 bg-purple-100 rounded-lg">
+                                    <Clock className="w-6 h-6 text-purple-600" />
+                                </div>
+                                <div className="ml-4">
+                                    <p className="text-sm font-medium text-gray-600">Avg. Time to Hire</p>
+                                    <p className="text-2xl font-bold text-gray-900">{analytics.timeToHire} days</p>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardContent className="p-6">
+                            <div className="flex items-center">
+                                <div className="p-2 bg-yellow-100 rounded-lg">
+                                    <Star className="w-6 h-6 text-yellow-600" />
+                                </div>
+                                <div className="ml-4">
+                                    <p className="text-sm font-medium text-gray-600">Avg. Candidate Score</p>
+                                    <p className="text-2xl font-bold text-gray-900">{analytics.candidateQuality.averageScore || 0}</p>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Main Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Applications List */}
+                    <div className="lg:col-span-2">
+                        <Card>
+                            <CardHeader>
+                                <div className="flex justify-between items-center">
+                                    <CardTitle className="flex items-center">
+                                        <Users className="w-5 h-5 mr-2" />
+                                        Applications ({applications.length})
+                                    </CardTitle>
+                                    <div className="flex space-x-2">
+                                        <Button variant="outline" size="sm">
+                                            <Download className="w-4 h-4 mr-1" />
+                                            Export
+                                        </Button>
+                                        <Button variant="outline" size="sm">
+                                            <Upload className="w-4 h-4 mr-1" />
+                                            Import
+                                        </Button>
+                                    </div>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                {/* Filters */}
+                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                                    <div>
+                                        <Label htmlFor="jobFilter">Job</Label>
+                                        <Select value={filters.jobId} onValueChange={(value) => setFilters(prev => ({ ...prev, jobId: value }))}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="All jobs" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="all">All jobs</SelectItem>
+                                                {jobs.map(job => (
+                                                    <SelectItem key={job._id} value={job._id}>
+                                                        {job.title}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="statusFilter">Status</Label>
+                                        <Select value={filters.status} onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="All statuses" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="all">All statuses</SelectItem>
+                                                <SelectItem value="applied">Applied</SelectItem>
+                                                <SelectItem value="reviewed">Reviewed</SelectItem>
+                                                <SelectItem value="shortlisted">Shortlisted</SelectItem>
+                                                <SelectItem value="interview">Interview</SelectItem>
+                                                <SelectItem value="hired">Hired</SelectItem>
+                                                <SelectItem value="rejected">Rejected</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="scoreFilter">Score Range</Label>
+                                        <Select value={filters.scoreRange} onValueChange={(value) => setFilters(prev => ({ ...prev, scoreRange: value }))}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="All scores" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="all">All scores</SelectItem>
+                                                <SelectItem value="80-100">80-100 (Excellent)</SelectItem>
+                                                <SelectItem value="60-79">60-79 (Good)</SelectItem>
+                                                <SelectItem value="40-59">40-59 (Fair)</SelectItem>
+                                                <SelectItem value="0-39">0-39 (Poor)</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div>
+                                        <Label htmlFor="searchFilter">Search</Label>
+                                        <Input
+                                            id="searchFilter"
+                                            placeholder="Search candidates..."
+                                            value={filters.searchTerm}
+                                            onChange={(e) => setFilters(prev => ({ ...prev, searchTerm: e.target.value }))}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Applications List */}
+                                {loading ? (
+                                    <div className="text-center py-8">
+                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                                        <p className="mt-2 text-gray-600">Loading applications...</p>
+                                    </div>
+                                ) : applications.length === 0 ? (
+                                    <div className="text-center py-8">
+                                        <Users className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                            No applications found
+                                        </h3>
+                                        <p className="text-gray-600 dark:text-gray-400">
+                                            Try adjusting your filters or check back later
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="space-y-4">
+                                        {applications.map((application) => (
+                                            <ApplicationCard
+                                                key={application._id}
+                                                application={application}
+                                                isSelected={selectedApplication?._id === application._id}
+                                                onSelect={setSelectedApplication}
+                                                getStatusColor={getStatusColor}
+                                                getScoreColor={getScoreColor}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Application Details */}
+                    <div className="lg:col-span-1">
+                        {selectedApplication ? (
+                            <ApplicationDetails
+                                application={selectedApplication}
+                                onUpdateStatus={updateApplicationStatus}
+                                onAddNote={addApplicationNote}
+                                onRateCandidate={rateCandidate}
+                                getStatusColor={getStatusColor}
+                                getScoreColor={getScoreColor}
+                            />
+                        ) : (
+                            <Card>
+                                <CardContent className="p-6 text-center">
+                                    <Users className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                        Select an Application
+                                    </h3>
+                                    <p className="text-gray-600 dark:text-gray-400">
+                                        Click on an application to view details and manage the candidate
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        )}
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
     );
 };
 

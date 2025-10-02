@@ -18,7 +18,12 @@ export const ThemeProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
+        // Apply theme to document element for CSS variables
+        document.documentElement.setAttribute('data-theme', theme);
         document.documentElement.classList.toggle('dark', theme === 'dark');
+        
+        // Also apply to body for global styles
+        document.body.setAttribute('data-theme', theme);
     }, [theme]);
 
     const toggleTheme = () => {

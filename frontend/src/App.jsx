@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Navbar from './components/shared/Navbar'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Home from './components/Home'
@@ -23,7 +22,18 @@ import AccessibilitySettings from './components/shared/AccessibilitySettings'
 import LinkedInImport from './components/LinkedInImport'
 import EnhancedJobSearch from './components/EnhancedJobSearch'
 import ApplicationDraft from './components/ApplicationDraft'
+import ResumeBuilder from './components/ResumeBuilder'
+import InterviewScheduler from './components/InterviewScheduler'
+import JobAlerts from './components/JobAlerts'
+import SocialFeatures from './components/SocialFeatures'
+import ChatSystem from './components/ChatSystem'
+import JobSeekerDashboard from './components/JobSeekerDashboard'
+import AdvancedATS from './components/admin/AdvancedATS'
+import BulkOperations from './components/admin/BulkOperations'
+import ContentModeration from './components/admin/ContentModeration'
+import SystemMonitoring from './components/admin/SystemMonitoring'
 import useKeyboardNavigation from './hooks/useKeyboardNavigation'
+import { ThemeProvider } from './contexts/ThemeContext'
 
 const appRouter = createBrowserRouter([
   {
@@ -107,6 +117,46 @@ const appRouter = createBrowserRouter([
     element: <ApplicationDraft />
   },
   {
+    path: "/resume-builder",
+    element: <ResumeBuilder />
+  },
+  {
+    path: "/interview-scheduler",
+    element: <InterviewScheduler />
+  },
+  {
+    path: "/job-alerts",
+    element: <JobAlerts />
+  },
+  {
+    path: "/social-features",
+    element: <SocialFeatures />
+  },
+  {
+    path: "/chat-system",
+    element: <ChatSystem />
+  },
+  {
+    path: "/dashboard",
+    element: <JobSeekerDashboard />
+  },
+  {
+    path: "/admin/advanced-ats",
+    element: <ProtectedRoute><AdvancedATS /></ProtectedRoute>
+  },
+  {
+    path: "/admin/bulk-operations",
+    element: <ProtectedRoute><BulkOperations /></ProtectedRoute>
+  },
+  {
+    path: "/admin/content-moderation",
+    element: <ProtectedRoute><ContentModeration /></ProtectedRoute>
+  },
+  {
+    path: "/admin/system-monitoring",
+    element: <ProtectedRoute><SystemMonitoring /></ProtectedRoute>
+  },
+  {
     path: "*",
     element: (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -156,11 +206,13 @@ function App() {
   });
 
   return (
-    <div className='app'>
-      <SkipLinks />
-      <ScreenReaderAnnouncement message="" />
-      <RouterProvider router={ appRouter } />
-    </div>
+    <ThemeProvider>
+      <div className='app'>
+        <SkipLinks />
+        <ScreenReaderAnnouncement message="" />
+        <RouterProvider router={ appRouter } />
+      </div>
+    </ThemeProvider>
   )
 }
 

@@ -2,7 +2,7 @@ import { ModerationQueue } from '../models/moderationQueue.model.js';
 import { Report } from '../models/report.model.js';
 import { User } from '../models/user.model.js';
 import { Job } from '../models/job.model.js';
-import { Company } from '../models/company.model.js';
+import Company from '../models/company.model.js';
 import { Review } from '../models/review.model.js';
 import { Notification } from '../models/notification.model.js';
 

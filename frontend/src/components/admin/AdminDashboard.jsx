@@ -28,9 +28,12 @@ import { toast } from 'sonner';
 import apiClient from '@/utils/axiosConfig';
 import { ADMIN_API_END_POINT } from '@/utils/constant';
 import { useSelector } from 'react-redux';
+import Navbar from '../shared/Navbar';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const AdminDashboard = () => {
     const { user } = useSelector(store => store.auth);
+    const { theme } = useTheme();
     const isAdmin = user?.role === 'admin';
     const isRecruiter = user?.role === 'recruiter';
     
@@ -160,19 +163,35 @@ const AdminDashboard = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <div className="bg-white shadow-sm border-b">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h1 className="text-3xl font-bold text-gray-900">
-                                {isAdmin ? 'Admin Dashboard' : 'Recruiter Dashboard'}
-                            </h1>
-                            <p className="text-gray-600 mt-1">
-                                {isAdmin ? 'Manage your platform efficiently' : 'Manage your jobs and companies'}
-                            </p>
-                        </div>
+        <div className={`min-h-screen transition-all duration-300 ${
+            theme === 'dark' 
+                ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
+                : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+        }`}>
+            <Navbar />
+            
+            {/* Main content with proper top padding */}
+            <div className="pt-16">
+                {/* Header */}
+                <div className={`shadow-sm border-b transition-all duration-300 ${
+                    theme === 'dark' 
+                        ? 'bg-slate-800/50 border-slate-700' 
+                        : 'bg-white/50 border-slate-200'
+                }`}>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <h1 className={`text-3xl font-bold transition-colors duration-300 ${
+                                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                                }`}>
+                                    {isAdmin ? 'Admin Dashboard' : 'Recruiter Dashboard'}
+                                </h1>
+                                <p className={`mt-1 transition-colors duration-300 ${
+                                    theme === 'dark' ? 'text-slate-300' : 'text-gray-600'
+                                }`}>
+                                    {isAdmin ? 'Manage your platform efficiently' : 'Manage your jobs and companies'}
+                                </p>
+                            </div>
                         <div className="flex items-center space-x-4">
                             <Button variant="outline" className="flex items-center space-x-2">
                                 <Download className="h-4 w-4" />
@@ -520,6 +539,7 @@ const AdminDashboard = () => {
                         </div>
                     </TabsContent>
                 </Tabs>
+                </div>
             </div>
         </div>
     );

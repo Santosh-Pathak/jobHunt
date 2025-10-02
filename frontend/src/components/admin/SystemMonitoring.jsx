@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
+import { Label } from '../ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import Navbar from '../shared/Navbar';
+import { useTheme } from '../../contexts/ThemeContext';
 import { 
     Server, 
     Database, 
@@ -76,140 +79,14 @@ import {
     ChevronDown, 
     ChevronUp, 
     MoreHorizontal, 
-    Target, 
-    Award, 
-    Bookmark, 
-    MessageCircle, 
-    Send, 
-    Reply, 
-    Forward, 
-    Copy, 
-    ExternalLink, 
-    Filter, 
-    Search, 
-    SortAsc, 
-    SortDesc, 
-    ArrowUp, 
-    ArrowDown, 
-    ArrowLeft, 
-    ArrowRight, 
-    Home, 
-    Menu, 
-    Grid, 
-    List, 
-    Maximize, 
-    Minimize, 
-    RotateCcw, 
-    RotateCw, 
-    ZoomIn, 
-    ZoomOut, 
-    Move, 
-    Move3D, 
-    Layers, 
-    Layers3, 
-    Box, 
-    Package, 
-    Truck, 
-    Car, 
-    Bike, 
-    Plane, 
-    Train, 
-    Ship, 
-    Anchor, 
-    Compass, 
-    Map, 
-    Globe, 
-    Earth, 
-    Mountain, 
-    Tree, 
-    Flower, 
-    Leaf, 
-    Bug, 
-    Fish, 
-    Bird, 
-    Cat, 
-    Dog, 
-    Rabbit, 
-    Mouse, 
-    Squirrel, 
-    Fox, 
-    Bear, 
-    Lion, 
-    Tiger, 
-    Elephant, 
-    Giraffe, 
-    Zebra, 
-    Horse, 
-    Cow, 
-    Pig, 
-    Sheep, 
-    Goat, 
-    Chicken, 
-    Duck, 
-    Turkey, 
-    Penguin, 
-    Owl, 
-    Eagle, 
-    Hawk, 
-    Falcon, 
-    Parrot, 
-    Toucan, 
-    Flamingo, 
-    Peacock, 
-    Swan, 
-    Goose, 
-    Robin, 
-    Cardinal, 
-    Bluebird, 
-    Hummingbird, 
-    Woodpecker, 
-    Crow, 
-    Raven, 
-    Magpie, 
-    Jay, 
-    Wren, 
-    Sparrow, 
-    Finch, 
-    Canary, 
-    Goldfinch, 
-    Chickadee, 
-    Nuthatch, 
-    Titmouse, 
-    Warbler, 
-    Thrush, 
-    Mockingbird, 
-    Catbird, 
-    Thrasher, 
-    Oriole, 
-    Tanager, 
-    Grosbeak, 
-    Bunting, 
-    Junco, 
-    Towhee, 
-    Sparrow, 
-    Finch, 
-    Canary, 
-    Goldfinch, 
-    Chickadee, 
-    Nuthatch, 
-    Titmouse, 
-    Warbler, 
-    Thrush, 
-    Mockingbird, 
-    Catbird, 
-    Thrasher, 
-    Oriole, 
-    Tanager, 
-    Grosbeak, 
-    Bunting, 
-    Junco, 
-    Towhee
+    Target
 } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import apiClient from '@/utils/axiosConfig';
 
 const SystemMonitoring = () => {
+    const { theme } = useTheme();
     const { user } = useSelector(store => store.auth);
     const [systemHealth, setSystemHealth] = useState({
         status: 'healthy',
@@ -317,19 +194,30 @@ const SystemMonitoring = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="mb-8">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                                System Monitoring
-                            </h1>
-                            <p className="text-gray-600 dark:text-gray-400">
-                                Real-time system health monitoring and performance metrics
-                            </p>
-                        </div>
+        <div className={`min-h-screen transition-all duration-300 ${
+            theme === 'dark' 
+                ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
+                : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+        }`}>
+            <Navbar />
+            
+            <div className="pt-16 p-6">
+                <div className="max-w-7xl mx-auto">
+                    {/* Header */}
+                    <div className="mb-8">
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
+                                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                                }`}>
+                                    System Monitoring
+                                </h1>
+                                <p className={`transition-colors duration-300 ${
+                                    theme === 'dark' ? 'text-slate-300' : 'text-gray-600'
+                                }`}>
+                                    Real-time system health monitoring and performance metrics
+                                </p>
+                            </div>
                         <div className="flex space-x-2">
                             <Button
                                 variant="outline"
@@ -772,6 +660,7 @@ const SystemMonitoring = () => {
                 </Tabs>
             </div>
         </div>
+    </div>
     );
 };
 

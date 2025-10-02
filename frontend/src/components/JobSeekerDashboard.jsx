@@ -19,12 +19,12 @@ import {
     MapPin,
     Clock
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { Progress } from '../ui/progress';
-import { useTheme } from '../../contexts/ThemeContext';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { Progress } from './ui/progress';
+import { useTheme } from '../contexts/ThemeContext';
 import { useSelector } from 'react-redux';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {

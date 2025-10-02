@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import Navbar from '../shared/Navbar';
+import { useTheme } from '../../contexts/ThemeContext';
 import { 
     Shield, 
     Flag, 
@@ -89,24 +91,10 @@ import {
     Sun,
     Moon,
     Cloud,
-    CloudRain,
-    CloudSnow,
     Wind,
     Thermometer,
-    Droplets,
-    Gauge,
+    Droplet,
     Timer,
-    Stopwatch,
-    Clock3,
-    Clock4,
-    Clock5,
-    Clock6,
-    Clock7,
-    Clock8,
-    Clock9,
-    Clock10,
-    Clock11,
-    Clock12,
     Calendar as CalendarIcon,
     CalendarDays,
     CalendarCheck,
@@ -114,48 +102,14 @@ import {
     CalendarPlus,
     CalendarMinus,
     CalendarRange,
-    CalendarSearch,
-    CalendarHeart,
-    CalendarStar,
-    CalendarUser,
-    CalendarSettings,
-    CalendarEdit,
-    CalendarTrash,
-    CalendarDownload,
-    CalendarUpload,
-    CalendarShare,
-    CalendarLock,
-    CalendarUnlock,
-    CalendarKey,
-    CalendarDatabase,
-    CalendarServer,
-    CalendarCpu,
-    CalendarHardDrive,
-    CalendarWifi,
-    CalendarWifiOff,
-    CalendarSignal,
-    CalendarSignalZero,
-    CalendarBattery,
-    CalendarBatteryLow,
-    CalendarZap,
-    CalendarZapOff,
-    CalendarSun,
-    CalendarMoon,
-    CalendarCloud,
-    CalendarCloudRain,
-    CalendarCloudSnow,
-    CalendarWind,
-    CalendarThermometer,
-    CalendarDroplets,
-    CalendarGauge,
-    CalendarTimer,
-    CalendarStopwatch
+    CalendarSearch
 } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import apiClient from '@/utils/axiosConfig';
 
 const ContentModeration = () => {
+    const { theme } = useTheme();
     const { user } = useSelector(store => store.auth);
     const [moderationQueue, setModerationQueue] = useState([]);
     const [reportedContent, setReportedContent] = useState([]);
@@ -163,10 +117,10 @@ const ContentModeration = () => {
     const [loading, setLoading] = useState(true);
     const [selectedItems, setSelectedItems] = useState([]);
     const [filters, setFilters] = useState({
-        type: '',
-        status: '',
-        severity: '',
-        dateRange: '',
+        type: 'all',
+        status: 'all',
+        severity: 'all',
+        dateRange: 'all',
         searchTerm: ''
     });
     const [moderationStats, setModerationStats] = useState({
@@ -185,10 +139,25 @@ const ContentModeration = () => {
 
     const fetchModerationData = async () => {
         try {
+            // Convert 'all' to empty string for API compatibility
+            const apiFilters = { ...filters };
+            if (apiFilters.type === 'all') {
+                apiFilters.type = '';
+            }
+            if (apiFilters.status === 'all') {
+                apiFilters.status = '';
+            }
+            if (apiFilters.severity === 'all') {
+                apiFilters.severity = '';
+            }
+            if (apiFilters.dateRange === 'all') {
+                apiFilters.dateRange = '';
+            }
+            
             const [queueRes, reportsRes, usersRes] = await Promise.all([
-                apiClient.get('/api/v1/admin/moderation/queue', { params: filters }),
-                apiClient.get('/api/v1/admin/moderation/reports', { params: filters }),
-                apiClient.get('/api/v1/admin/moderation/flagged-users', { params: filters })
+                apiClient.get('/api/v1/admin/moderation/queue', { params: apiFilters }),
+                apiClient.get('/api/v1/admin/moderation/reports', { params: apiFilters }),
+                apiClient.get('/api/v1/admin/moderation/flagged-users', { params: apiFilters })
             ]);
 
             setModerationQueue(queueRes.data.queue || []);
@@ -294,17 +263,28 @@ const ContentModeration = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                        Content Moderation
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        Review and moderate platform content, reports, and user behavior
-                    </p>
-                </div>
+        <div className={`min-h-screen transition-all duration-300 ${
+            theme === 'dark' 
+                ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
+                : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+        }`}>
+            <Navbar />
+            
+            <div className="pt-16 p-6">
+                <div className="max-w-7xl mx-auto">
+                    {/* Header */}
+                    <div className="mb-8">
+                        <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}>
+                            Content Moderation
+                        </h1>
+                        <p className={`transition-colors duration-300 ${
+                            theme === 'dark' ? 'text-slate-300' : 'text-gray-600'
+                        }`}>
+                            Review and moderate platform content, reports, and user behavior
+                        </p>
+                    </div>
 
                 {/* Stats Dashboard */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
@@ -440,7 +420,7 @@ const ContentModeration = () => {
                                                 <SelectValue placeholder="All types" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="">All types</SelectItem>
+                                                <SelectItem value="all">All types</SelectItem>
                                                 <SelectItem value="job">Job Postings</SelectItem>
                                                 <SelectItem value="company">Company Profiles</SelectItem>
                                                 <SelectItem value="review">Reviews</SelectItem>
@@ -455,7 +435,7 @@ const ContentModeration = () => {
                                                 <SelectValue placeholder="All severities" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="">All severities</SelectItem>
+                                                <SelectItem value="all">All severities</SelectItem>
                                                 <SelectItem value="high">High</SelectItem>
                                                 <SelectItem value="medium">Medium</SelectItem>
                                                 <SelectItem value="low">Low</SelectItem>
@@ -469,7 +449,7 @@ const ContentModeration = () => {
                                                 <SelectValue placeholder="All statuses" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="">All statuses</SelectItem>
+                                                <SelectItem value="all">All statuses</SelectItem>
                                                 <SelectItem value="pending">Pending</SelectItem>
                                                 <SelectItem value="approved">Approved</SelectItem>
                                                 <SelectItem value="rejected">Rejected</SelectItem>
@@ -483,7 +463,7 @@ const ContentModeration = () => {
                                                 <SelectValue placeholder="All dates" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="">All dates</SelectItem>
+                                                <SelectItem value="all">All dates</SelectItem>
                                                 <SelectItem value="today">Today</SelectItem>
                                                 <SelectItem value="week">This week</SelectItem>
                                                 <SelectItem value="month">This month</SelectItem>
@@ -709,6 +689,7 @@ const ContentModeration = () => {
                 </Tabs>
             </div>
         </div>
+    </div>
     );
 };
 

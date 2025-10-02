@@ -10,7 +10,15 @@ export const chatboat = async(req, res) => {
     conversationHistory.push({ role: "user", content: userMessage });
 
     try {
-        const genAI = new GoogleGenerativeAI('AIzaSyDMk6YKk2nzM90gfg6QCqwTQHnicgv9TDk');
+        const geminiApiKey = process.env.GEMINI_API_KEY;
+        
+        if (!geminiApiKey) {
+            return res.status(500).json({
+                error: 'Gemini API key is not configured'
+            });
+        }
+
+        const genAI = new GoogleGenerativeAI(geminiApiKey);
         const model = genAI.getGenerativeModel({
             model: "gemini-pro",
         });

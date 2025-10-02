@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Badge } from '../ui/badge';
 import { Checkbox } from '../ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import Navbar from '../shared/Navbar';
+import { useTheme } from '../../contexts/ThemeContext';
 import { 
     Users, 
     Mail, 
@@ -38,7 +40,241 @@ import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import apiClient from '@/utils/axiosConfig';
 
+// Application Card Component
+const ApplicationCard = ({ application, isSelected, onSelect, getStatusColor }) => {
+    const formatDate = (date) => {
+        return new Date(date).toLocaleDateString();
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+        >
+            <Card className={`hover:shadow-lg transition-shadow ${isSelected ? 'ring-2 ring-blue-500' : ''}`}>
+                <CardContent className="p-4">
+                    <div className="flex items-center space-x-4">
+                        <Checkbox
+                            checked={isSelected}
+                            onCheckedChange={() => onSelect(application._id)}
+                        />
+                        <div className="flex-1">
+                            <div className="flex justify-between items-start">
+                                <div>
+                                    <h3 className="font-semibold">{application.user.fullName}</h3>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                        {application.job.title} • {application.job.company.name}
+                                    </p>
+                                    <p className="text-xs text-gray-500">
+                                        Applied on {formatDate(application.appliedAt)}
+                                    </p>
+                                </div>
+                                <Badge className={getStatusColor(application.status)}>
+                                    {application.status}
+                                </Badge>
+                            </div>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+        </motion.div>
+    );
+};
+
+// Job Card Component
+const JobCard = ({ job, isSelected, onSelect }) => {
+    const formatDate = (date) => {
+        return new Date(date).toLocaleDateString();
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+        >
+            <Card className={`hover:shadow-lg transition-shadow ${isSelected ? 'ring-2 ring-green-500' : ''}`}>
+                <CardContent className="p-4">
+                    <div className="flex items-center space-x-4">
+                        <Checkbox
+                            checked={isSelected}
+                            onCheckedChange={() => onSelect(job._id)}
+                        />
+                        <div className="flex-1">
+                            <div className="flex justify-between items-start">
+                                <div>
+                                    <h3 className="font-semibold">{job.title}</h3>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                        {job.company.name} • {job.location}
+                                    </p>
+                                    <p className="text-xs text-gray-500">
+                                        Posted on {formatDate(job.createdAt)}
+                                    </p>
+                                </div>
+                                <Badge variant={job.status === 'active' ? 'default' : 'secondary'}>
+                                    {job.status}
+                                </Badge>
+                            </div>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+        </motion.div>
+    );
+};
+
+// Bulk Status Form Component
+const BulkStatusForm = ({ onSubmit, onCancel, loading }) => {
+    const [formData, setFormData] = useState({
+        status: '',
+        message: ''
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(formData.status, formData.message);
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+                <Label htmlFor="status">New Status</Label>
+                <Select value={formData.status} onValueChange={(value) => setFormData(prev => ({ ...prev, status: value }))}>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="reviewed">Reviewed</SelectItem>
+                        <SelectItem value="shortlisted">Shortlisted</SelectItem>
+                        <SelectItem value="interview">Interview</SelectItem>
+                        <SelectItem value="hired">Hired</SelectItem>
+                        <SelectItem value="rejected">Rejected</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+            <div>
+                <Label htmlFor="message">Message (Optional)</Label>
+                <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    placeholder="Add a message for the candidates..."
+                    rows={3}
+                />
+            </div>
+            <div className="flex justify-end space-x-2">
+                <Button type="button" variant="outline" onClick={onCancel}>
+                    Cancel
+                </Button>
+                <Button type="submit" disabled={loading || !formData.status}>
+                    {loading ? 'Updating...' : 'Update Status'}
+                </Button>
+            </div>
+        </form>
+    );
+};
+
+// Bulk Email Form Component
+const BulkEmailForm = ({ onSubmit, onCancel, loading }) => {
+    const [formData, setFormData] = useState({
+        subject: '',
+        message: '',
+        template: ''
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(formData);
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+                <Label htmlFor="subject">Subject</Label>
+                <Input
+                    id="subject"
+                    value={formData.subject}
+                    onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
+                    placeholder="Email subject"
+                    required
+                />
+            </div>
+            <div>
+                <Label htmlFor="template">Template</Label>
+                <Select value={formData.template} onValueChange={(value) => setFormData(prev => ({ ...prev, template: value }))}>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Select template" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="none">No template</SelectItem>
+                        <SelectItem value="interview_invite">Interview Invite</SelectItem>
+                        <SelectItem value="rejection">Rejection Notice</SelectItem>
+                        <SelectItem value="next_steps">Next Steps</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+            <div>
+                <Label htmlFor="message">Message</Label>
+                <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    placeholder="Email message..."
+                    rows={6}
+                    required
+                />
+            </div>
+            <div className="flex justify-end space-x-2">
+                <Button type="button" variant="outline" onClick={onCancel}>
+                    Cancel
+                </Button>
+                <Button type="submit" disabled={loading}>
+                    {loading ? 'Sending...' : 'Send Email'}
+                </Button>
+            </div>
+        </form>
+    );
+};
+
+// Export Form Component
+const ExportForm = ({ onSubmit, onCancel }) => {
+    const [format, setFormat] = useState('csv');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(format);
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+                <Label htmlFor="format">Export Format</Label>
+                <Select value={format} onValueChange={setFormat}>
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="csv">CSV</SelectItem>
+                        <SelectItem value="xlsx">Excel (XLSX)</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+            <div className="flex justify-end space-x-2">
+                <Button type="button" variant="outline" onClick={onCancel}>
+                    Cancel
+                </Button>
+                <Button type="submit">
+                    <Download className="w-4 h-4 mr-2" />
+                    Export
+                </Button>
+            </div>
+        </form>
+    );
+};
+
 const BulkOperations = () => {
+    const { theme } = useTheme();
     const { user } = useSelector(store => store.auth);
     const [applications, setApplications] = useState([]);
     const [jobs, setJobs] = useState([]);
@@ -50,9 +286,9 @@ const BulkOperations = () => {
     const [showBulkStatusDialog, setShowBulkStatusDialog] = useState(false);
     const [showExportDialog, setShowExportDialog] = useState(false);
     const [filters, setFilters] = useState({
-        jobId: '',
-        status: '',
-        dateRange: '',
+        jobId: 'all',
+        status: 'all',
+        dateRange: 'all',
         searchTerm: ''
     });
 
@@ -62,8 +298,20 @@ const BulkOperations = () => {
 
     const fetchData = async () => {
         try {
+            // Convert 'all' to empty string for API compatibility
+            const apiFilters = { ...filters };
+            if (apiFilters.jobId === 'all') {
+                apiFilters.jobId = '';
+            }
+            if (apiFilters.status === 'all') {
+                apiFilters.status = '';
+            }
+            if (apiFilters.dateRange === 'all') {
+                apiFilters.dateRange = '';
+            }
+            
             const [applicationsRes, jobsRes] = await Promise.all([
-                apiClient.get('/api/v1/application/bulk', { params: filters }),
+                apiClient.get('/api/v1/application/bulk', { params: apiFilters }),
                 apiClient.get('/api/v1/job/getadminjobs')
             ]);
 
@@ -256,17 +504,28 @@ const BulkOperations = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                        Bulk Operations
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        Manage multiple applications and jobs efficiently
-                    </p>
-                </div>
+        <div className={`min-h-screen transition-all duration-300 ${
+            theme === 'dark' 
+                ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
+                : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+        }`}>
+            <Navbar />
+            
+            <div className="pt-16 p-6">
+                <div className="max-w-7xl mx-auto">
+                    {/* Header */}
+                    <div className="mb-8">
+                        <h1 className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}>
+                            Bulk Operations
+                        </h1>
+                        <p className={`transition-colors duration-300 ${
+                            theme === 'dark' ? 'text-slate-300' : 'text-gray-600'
+                        }`}>
+                            Manage multiple applications and jobs efficiently
+                        </p>
+                    </div>
 
                 {/* Filters */}
                 <Card className="mb-6">
@@ -285,7 +544,7 @@ const BulkOperations = () => {
                                         <SelectValue placeholder="All jobs" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="">All jobs</SelectItem>
+                                        <SelectItem value="all">All jobs</SelectItem>
                                         {jobs.map(job => (
                                             <SelectItem key={job._id} value={job._id}>
                                                 {job.title}
@@ -301,7 +560,7 @@ const BulkOperations = () => {
                                         <SelectValue placeholder="All statuses" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="">All statuses</SelectItem>
+                                        <SelectItem value="all">All statuses</SelectItem>
                                         <SelectItem value="applied">Applied</SelectItem>
                                         <SelectItem value="reviewed">Reviewed</SelectItem>
                                         <SelectItem value="shortlisted">Shortlisted</SelectItem>
@@ -318,7 +577,7 @@ const BulkOperations = () => {
                                         <SelectValue placeholder="All dates" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="">All dates</SelectItem>
+                                        <SelectItem value="all">All dates</SelectItem>
                                         <SelectItem value="today">Today</SelectItem>
                                         <SelectItem value="week">This week</SelectItem>
                                         <SelectItem value="month">This month</SelectItem>
@@ -541,241 +800,9 @@ const BulkOperations = () => {
                         </div>
                     </CardContent>
                 </Card>
+                </div>
             </div>
         </div>
-    );
-};
-
-// Application Card Component
-const ApplicationCard = ({ application, isSelected, onSelect, getStatusColor }) => {
-    const formatDate = (date) => {
-        return new Date(date).toLocaleDateString();
-    };
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-        >
-            <Card className={`hover:shadow-lg transition-shadow ${isSelected ? 'ring-2 ring-blue-500' : ''}`}>
-                <CardContent className="p-4">
-                    <div className="flex items-center space-x-4">
-                        <Checkbox
-                            checked={isSelected}
-                            onCheckedChange={() => onSelect(application._id)}
-                        />
-                        <div className="flex-1">
-                            <div className="flex justify-between items-start">
-                                <div>
-                                    <h3 className="font-semibold">{application.user.fullName}</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                                        {application.job.title} • {application.job.company.name}
-                                    </p>
-                                    <p className="text-xs text-gray-500">
-                                        Applied on {formatDate(application.appliedAt)}
-                                    </p>
-                                </div>
-                                <Badge className={getStatusColor(application.status)}>
-                                    {application.status}
-                                </Badge>
-                            </div>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-        </motion.div>
-    );
-};
-
-// Job Card Component
-const JobCard = ({ job, isSelected, onSelect }) => {
-    const formatDate = (date) => {
-        return new Date(date).toLocaleDateString();
-    };
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-        >
-            <Card className={`hover:shadow-lg transition-shadow ${isSelected ? 'ring-2 ring-green-500' : ''}`}>
-                <CardContent className="p-4">
-                    <div className="flex items-center space-x-4">
-                        <Checkbox
-                            checked={isSelected}
-                            onCheckedChange={() => onSelect(job._id)}
-                        />
-                        <div className="flex-1">
-                            <div className="flex justify-between items-start">
-                                <div>
-                                    <h3 className="font-semibold">{job.title}</h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                                        {job.company.name} • {job.location}
-                                    </p>
-                                    <p className="text-xs text-gray-500">
-                                        Posted on {formatDate(job.createdAt)}
-                                    </p>
-                                </div>
-                                <Badge variant={job.status === 'active' ? 'default' : 'secondary'}>
-                                    {job.status}
-                                </Badge>
-                            </div>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-        </motion.div>
-    );
-};
-
-// Bulk Status Form Component
-const BulkStatusForm = ({ onSubmit, onCancel, loading }) => {
-    const [formData, setFormData] = useState({
-        status: '',
-        message: ''
-    });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(formData.status, formData.message);
-    };
-
-    return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-                <Label htmlFor="status">New Status</Label>
-                <Select value={formData.status} onValueChange={(value) => setFormData(prev => ({ ...prev, status: value }))}>
-                    <SelectTrigger>
-                        <SelectValue placeholder="Select status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="reviewed">Reviewed</SelectItem>
-                        <SelectItem value="shortlisted">Shortlisted</SelectItem>
-                        <SelectItem value="interview">Interview</SelectItem>
-                        <SelectItem value="hired">Hired</SelectItem>
-                        <SelectItem value="rejected">Rejected</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
-            <div>
-                <Label htmlFor="message">Message (Optional)</Label>
-                <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                    placeholder="Add a message for the candidates..."
-                    rows={3}
-                />
-            </div>
-            <div className="flex justify-end space-x-2">
-                <Button type="button" variant="outline" onClick={onCancel}>
-                    Cancel
-                </Button>
-                <Button type="submit" disabled={loading || !formData.status}>
-                    {loading ? 'Updating...' : 'Update Status'}
-                </Button>
-            </div>
-        </form>
-    );
-};
-
-// Bulk Email Form Component
-const BulkEmailForm = ({ onSubmit, onCancel, loading }) => {
-    const [formData, setFormData] = useState({
-        subject: '',
-        message: '',
-        template: ''
-    });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(formData);
-    };
-
-    return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-                <Label htmlFor="subject">Subject</Label>
-                <Input
-                    id="subject"
-                    value={formData.subject}
-                    onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
-                    placeholder="Email subject"
-                    required
-                />
-            </div>
-            <div>
-                <Label htmlFor="template">Template</Label>
-                <Select value={formData.template} onValueChange={(value) => setFormData(prev => ({ ...prev, template: value }))}>
-                    <SelectTrigger>
-                        <SelectValue placeholder="Select template" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="">No template</SelectItem>
-                        <SelectItem value="interview_invite">Interview Invite</SelectItem>
-                        <SelectItem value="rejection">Rejection Notice</SelectItem>
-                        <SelectItem value="next_steps">Next Steps</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
-            <div>
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                    placeholder="Email message..."
-                    rows={6}
-                    required
-                />
-            </div>
-            <div className="flex justify-end space-x-2">
-                <Button type="button" variant="outline" onClick={onCancel}>
-                    Cancel
-                </Button>
-                <Button type="submit" disabled={loading}>
-                    {loading ? 'Sending...' : 'Send Email'}
-                </Button>
-            </div>
-        </form>
-    );
-};
-
-// Export Form Component
-const ExportForm = ({ onSubmit, onCancel }) => {
-    const [format, setFormat] = useState('csv');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(format);
-    };
-
-    return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-                <Label htmlFor="format">Export Format</Label>
-                <Select value={format} onValueChange={setFormat}>
-                    <SelectTrigger>
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="csv">CSV</SelectItem>
-                        <SelectItem value="xlsx">Excel (XLSX)</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
-            <div className="flex justify-end space-x-2">
-                <Button type="button" variant="outline" onClick={onCancel}>
-                    Cancel
-                </Button>
-                <Button type="submit">
-                    <Download className="w-4 h-4 mr-2" />
-                    Export
-                </Button>
-            </div>
-        </form>
     );
 };
 

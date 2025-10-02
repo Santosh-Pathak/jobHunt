@@ -1,5 +1,5 @@
 import { Review } from '../models/review.model.js';
-import { Company } from '../models/company.model.js';
+import Company from '../models/company.model.js';
 import { Job } from '../models/job.model.js';
 import { User } from '../models/user.model.js';
 import { SharedJob } from '../models/sharedJob.model.js';

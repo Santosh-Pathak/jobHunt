@@ -12,11 +12,13 @@ import useGetAllJobs from '@/hooks/useGetAllJobs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ChatBoat from './ChatBoat';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Home = () => {
   useGetAllJobs();
   const { user } = useSelector(store => store.auth);
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (user?.role === 'recruiter') {
@@ -26,16 +28,20 @@ const Home = () => {
 
   return (
     <motion.div
-      className="bg-white"
-      initial={ { opacity: 0 } }
-      animate={ { opacity: 1 } }
-      transition={ { duration: 0.5 } }
+      className={`min-h-screen transition-all duration-500 ${
+        theme === 'dark' 
+          ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
+          : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+      }`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
     >
-      {/* Fixed navbar */ }
+      {/* Static navbar */}
       <Navbar />
 
-      {/* Main content with padding to avoid overlap */ }
-      <div className="pt-16  bg-gradient-to-br from-[#00040A] to-[#001636]">
+      {/* Main content */}
+      <div className="relative">
         <HeroSection />
         <CategoryCarousel />
         <LatestJobs />

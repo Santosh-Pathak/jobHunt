@@ -8,11 +8,13 @@ import { motion } from 'framer-motion';
 import { Input } from './ui/input';
 import { toast } from 'sonner';
 import { statistics } from '@/data/staticData';
+import { useTheme } from '../contexts/ThemeContext';
 
 const HeroSection = () => {
     const [query, setQuery] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { theme } = useTheme();
 
     const searchJobHandler = (e) => {
         e.preventDefault();
@@ -25,25 +27,32 @@ const HeroSection = () => {
         navigate('/signup')
     }
     return (
-        <div className="relative overflow-hidden pt-16 bg-gradient-to-br from-[#00040A] to-[#001636] min-h-screen text-white px-6 py-16">
+        <div className={`relative overflow-hidden pt-20 pb-16 min-h-screen px-6 ${
+            theme === 'dark' 
+                ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
+                : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+        }`}>
             {/* Gradient Background */ }
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4xIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDAwMDAwIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMCAwaDIwMHYyMDBIMHoiIGZpbGw9InVybCgjZykiLz48L3N2Zz4=')] opacity-30 pointer-events-none"></div>
 
             <motion.h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-center tracking-tight user-select text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"
+                className={`text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-center tracking-tight user-select ${
+                    theme === 'dark' 
+                        ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400' 
+                        : 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600'
+                }`}
                 initial={ { opacity: 0, scale: 0.85 } }
                 whileInView={ { opacity: 1, scale: 1 } }
                 transition={ { duration: 0.7 } }
                 viewport={ { once: true } }
             >
                 Find Your Dream Job With JobHunt
-                {/* <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text user-select">
-
-                </span> */}
             </motion.h1>
 
             <motion.p
-                className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed text-center user-select"
+                className={`text-xl mb-12 max-w-2xl mx-auto leading-relaxed text-center user-select ${
+                    theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                }`}
                 initial={ { opacity: 0 } }
                 whileInView={ { opacity: 1 } }
                 transition={ { delay: 0.3, duration: 0.6 } }
