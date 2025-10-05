@@ -1,0 +1,1153 @@
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e100"},
+  "title": "Senior Full Stack Developer",
+  "slug": "senior-full-stack-developer-techcorp",
+  "description": "We're looking for a Senior Full Stack Developer to join our engineering team. You'll work on building scalable web applications using React, Node.js, and cloud technologies. The ideal candidate will have 5+ years of experience in full-stack development and a passion for creating high-quality software.",
+  "company": {"$oid": "68dccfd6843e90bb8016e200"},
+  "location": {
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Senior Level (5+ years)",
+  "salary": {
+    "min": 120000,
+    "max": 180000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "5+ years of full-stack development experience",
+    "Proficiency in React, Node.js, and JavaScript/TypeScript",
+    "Experience with cloud platforms (AWS, Azure, or GCP)",
+    "Knowledge of database design and optimization",
+    "Experience with microservices architecture",
+    "Strong problem-solving and communication skills"
+  ],
+  "skills": [
+    "React",
+    "Node.js",
+    "JavaScript",
+    "TypeScript",
+    "AWS",
+    "MongoDB",
+    "PostgreSQL",
+    "Docker",
+    "Kubernetes"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Stock Options"
+  ],
+  "applicationDeadline": {"$date": "2025-02-15T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e001"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e300"},
+    {"$oid": "68dccfd6843e90bb8016e301"}
+  ],
+  "analytics": {
+    "views": 245,
+    "applications": 2,
+    "saves": 15
+  },
+  "createdAt": {"$date": "2024-12-01T10:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T14:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e101"},
+  "title": "Machine Learning Engineer",
+  "slug": "machine-learning-engineer-innovateai",
+  "description": "Join our AI team as a Machine Learning Engineer to develop and deploy machine learning models for our healthcare and finance products. You'll work with cutting-edge technologies and have the opportunity to make a real impact on people's lives.",
+  "company": {"$oid": "68dccfd6843e90bb8016e201"},
+  "location": {
+    "city": "New York",
+    "state": "NY",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 100000,
+    "max": 150000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of machine learning experience",
+    "Strong programming skills in Python",
+    "Experience with TensorFlow or PyTorch",
+    "Knowledge of data preprocessing and feature engineering",
+    "Experience with cloud ML platforms",
+    "Strong mathematical and statistical background"
+  ],
+  "skills": [
+    "Python",
+    "Machine Learning",
+    "TensorFlow",
+    "PyTorch",
+    "Scikit-learn",
+    "Pandas",
+    "NumPy",
+    "AWS",
+    "Docker"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Learning Budget"
+  ],
+  "applicationDeadline": {"$date": "2025-01-30T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e002"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e302"}
+  ],
+  "analytics": {
+    "views": 189,
+    "applications": 1,
+    "saves": 12
+  },
+  "createdAt": {"$date": "2024-12-02T09:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T16:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e102"},
+  "title": "Data Scientist",
+  "slug": "data-scientist-datatech-solutions",
+  "description": "We're seeking a Data Scientist to join our analytics team. You'll work on extracting insights from large datasets, building predictive models, and helping drive data-driven decision making across the organization.",
+  "company": {"$oid": "68dccfd6843e90bb8016e209"},
+  "location": {
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 800000,
+    "max": 1200000,
+    "currency": "INR",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of data science experience",
+    "Strong programming skills in Python and R",
+    "Experience with statistical analysis and machine learning",
+    "Knowledge of SQL and database systems",
+    "Experience with data visualization tools",
+    "Strong analytical and problem-solving skills"
+  ],
+  "skills": [
+    "Python",
+    "R",
+    "Machine Learning",
+    "SQL",
+    "Pandas",
+    "Scikit-learn",
+    "Tableau",
+    "Power BI",
+    "Jupyter"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Research Budget"
+  ],
+  "applicationDeadline": {"$date": "2025-02-20T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e010"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e303"}
+  ],
+  "analytics": {
+    "views": 156,
+    "applications": 1,
+    "saves": 8
+  },
+  "createdAt": {"$date": "2024-12-03T11:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-13T11:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e103"},
+  "title": "Senior Data Scientist",
+  "slug": "senior-data-scientist-datatech-solutions",
+  "description": "Lead our data science initiatives as a Senior Data Scientist. You'll mentor junior team members, lead complex projects, and drive the development of advanced machine learning models for our core products.",
+  "company": {"$oid": "68dccfd6843e90bb8016e209"},
+  "location": {
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Senior Level (5+ years)",
+  "salary": {
+    "min": 1200000,
+    "max": 1800000,
+    "currency": "INR",
+    "period": "yearly"
+  },
+  "requirements": [
+    "5+ years of data science experience",
+    "Advanced degree in Statistics, Mathematics, or Computer Science",
+    "Expert-level programming skills in Python and R",
+    "Experience with deep learning frameworks",
+    "Strong leadership and mentoring skills",
+    "Experience with MLOps and model deployment"
+  ],
+  "skills": [
+    "Python",
+    "R",
+    "Deep Learning",
+    "TensorFlow",
+    "PyTorch",
+    "MLOps",
+    "AWS",
+    "Docker",
+    "Kubernetes"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Professional Development",
+    "Stock Options"
+  ],
+  "applicationDeadline": {"$date": "2025-03-01T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e010"},
+  "applications": [],
+  "analytics": {
+    "views": 203,
+    "applications": 0,
+    "saves": 18
+  },
+  "createdAt": {"$date": "2024-12-04T14:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T09:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e104"},
+  "title": "UI/UX Designer",
+  "slug": "ui-ux-designer-design-studio",
+  "description": "Join our design team as a UI/UX Designer to create beautiful and intuitive user experiences. You'll work closely with product managers and developers to design user interfaces that delight our customers.",
+  "company": {"$oid": "68dccfd6843e90bb8016e202"},
+  "location": {
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 70000,
+    "max": 100000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of UI/UX design experience",
+    "Proficiency in Figma, Sketch, or Adobe Creative Suite",
+    "Strong portfolio showcasing user-centered design",
+    "Experience with user research and usability testing",
+    "Knowledge of design systems and component libraries",
+    "Excellent communication and collaboration skills"
+  ],
+  "skills": [
+    "Figma",
+    "Adobe Creative Suite",
+    "User Research",
+    "Prototyping",
+    "Design Systems",
+    "HTML/CSS",
+    "JavaScript",
+    "User Testing"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Design Tools Budget"
+  ],
+  "applicationDeadline": {"$date": "2025-01-25T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e003"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e304"}
+  ],
+  "analytics": {
+    "views": 178,
+    "applications": 1,
+    "saves": 9
+  },
+  "createdAt": {"$date": "2024-12-05T16:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-11T15:10:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e105"},
+  "title": "Senior UI/UX Designer",
+  "slug": "senior-ui-ux-designer-design-studio",
+  "description": "Lead our design team as a Senior UI/UX Designer. You'll mentor junior designers, establish design standards, and work on complex projects that shape the future of our products.",
+  "company": {"$oid": "68dccfd6843e90bb8016e202"},
+  "location": {
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Senior Level (5+ years)",
+  "salary": {
+    "min": 90000,
+    "max": 130000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "5+ years of UI/UX design experience",
+    "Expert-level proficiency in design tools",
+    "Strong leadership and mentoring skills",
+    "Experience with design systems and brand guidelines",
+    "Portfolio demonstrating complex design challenges",
+    "Experience with accessibility standards"
+  ],
+  "skills": [
+    "Figma",
+    "Adobe Creative Suite",
+    "Design Leadership",
+    "Design Systems",
+    "Accessibility",
+    "User Research",
+    "Prototyping",
+    "Brand Design"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Professional Development",
+    "Stock Options"
+  ],
+  "applicationDeadline": {"$date": "2025-02-10T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e003"},
+  "applications": [],
+  "analytics": {
+    "views": 192,
+    "applications": 0,
+    "saves": 14
+  },
+  "createdAt": {"$date": "2024-12-06T13:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-10T13:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e106"},
+  "title": "DevOps Engineer",
+  "slug": "devops-engineer-cloud-systems",
+  "description": "Join our DevOps team to build and maintain our cloud infrastructure. You'll work on automation, CI/CD pipelines, and help scale our systems to support millions of users.",
+  "company": {"$oid": "68dccfd6843e90bb8016e203"},
+  "location": {
+    "city": "Austin",
+    "state": "TX",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 85000,
+    "max": 120000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of DevOps experience",
+    "Experience with AWS, Azure, or GCP",
+    "Proficiency in Docker and Kubernetes",
+    "Experience with CI/CD pipelines",
+    "Knowledge of infrastructure as code",
+    "Strong scripting skills (Python, Bash)"
+  ],
+  "skills": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "Jenkins",
+    "Python",
+    "Bash",
+    "Linux",
+    "CI/CD"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Cloud Certifications"
+  ],
+  "applicationDeadline": {"$date": "2025-02-05T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e004"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e305"}
+  ],
+  "analytics": {
+    "views": 167,
+    "applications": 1,
+    "saves": 11
+  },
+  "createdAt": {"$date": "2024-12-07T10:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-09T16:40:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e107"},
+  "title": "Senior DevOps Engineer",
+  "slug": "senior-devops-engineer-cloud-systems",
+  "description": "Lead our DevOps initiatives as a Senior DevOps Engineer. You'll architect our cloud infrastructure, mentor team members, and drive automation across our entire technology stack.",
+  "company": {"$oid": "68dccfd6843e90bb8016e203"},
+  "location": {
+    "city": "Denver",
+    "state": "CO",
+    "country": "USA",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Senior Level (5+ years)",
+  "salary": {
+    "min": 110000,
+    "max": 160000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "5+ years of DevOps experience",
+    "Expert-level knowledge of cloud platforms",
+    "Experience with microservices architecture",
+    "Strong leadership and mentoring skills",
+    "Experience with security best practices",
+    "Advanced scripting and automation skills"
+  ],
+  "skills": [
+    "AWS",
+    "Azure",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "Ansible",
+    "Python",
+    "Go",
+    "Security"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Professional Development",
+    "Stock Options"
+  ],
+  "applicationDeadline": {"$date": "2025-03-15T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e004"},
+  "applications": [],
+  "analytics": {
+    "views": 189,
+    "applications": 0,
+    "saves": 16
+  },
+  "createdAt": {"$date": "2024-12-08T12:25:00.000Z"},
+  "updatedAt": {"$date": "2024-12-08T12:25:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e108"},
+  "title": "React Native Developer",
+  "slug": "react-native-developer-mobile-tech",
+  "description": "Join our mobile team as a React Native Developer to build cross-platform mobile applications. You'll work on exciting projects that reach millions of users worldwide.",
+  "company": {"$oid": "68dccfd6843e90bb8016e204"},
+  "location": {
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 600000,
+    "max": 900000,
+    "currency": "INR",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of React Native development experience",
+    "Strong JavaScript and TypeScript skills",
+    "Experience with iOS and Android development",
+    "Knowledge of mobile app architecture patterns",
+    "Experience with state management libraries",
+    "Strong problem-solving and debugging skills"
+  ],
+  "skills": [
+    "React Native",
+    "JavaScript",
+    "TypeScript",
+    "iOS",
+    "Android",
+    "Redux",
+    "Firebase",
+    "Git",
+    "Mobile Testing"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Mobile Device Allowance",
+    "App Store Credits"
+  ],
+  "applicationDeadline": {"$date": "2025-01-20T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e005"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e306"}
+  ],
+  "analytics": {
+    "views": 134,
+    "applications": 1,
+    "saves": 7
+  },
+  "createdAt": {"$date": "2024-12-09T14:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-07T14:50:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e109"},
+  "title": "Flutter Developer",
+  "slug": "flutter-developer-mobile-tech",
+  "description": "We're looking for a Flutter Developer to join our mobile development team. You'll work on building beautiful, performant mobile applications using Flutter and Dart.",
+  "company": {"$oid": "68dccfd6843e90bb8016e204"},
+  "location": {
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 650000,
+    "max": 950000,
+    "currency": "INR",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of Flutter development experience",
+    "Strong Dart programming skills",
+    "Experience with Flutter state management",
+    "Knowledge of mobile app design patterns",
+    "Experience with REST APIs and data persistence",
+    "Strong debugging and testing skills"
+  ],
+  "skills": [
+    "Flutter",
+    "Dart",
+    "Firebase",
+    "REST APIs",
+    "SQLite",
+    "Provider",
+    "Bloc",
+    "Git",
+    "Mobile Testing"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Mobile Device Allowance"
+  ],
+  "applicationDeadline": {"$date": "2025-02-25T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e005"},
+  "applications": [],
+  "analytics": {
+    "views": 145,
+    "applications": 0,
+    "saves": 9
+  },
+  "createdAt": {"$date": "2024-12-10T16:40:00.000Z"},
+  "updatedAt": {"$date": "2024-12-06T10:35:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e110"},
+  "title": "Product Manager",
+  "slug": "product-manager-growth-ventures",
+  "description": "Join our product team as a Product Manager to drive the development of our core products. You'll work closely with engineering, design, and business teams to deliver exceptional user experiences.",
+  "company": {"$oid": "68dccfd6843e90bb8016e205"},
+  "location": {
+    "city": "Chicago",
+    "state": "IL",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 90000,
+    "max": 130000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of product management experience",
+    "Strong analytical and problem-solving skills",
+    "Experience with user research and data analysis",
+    "Knowledge of agile development methodologies",
+    "Excellent communication and leadership skills",
+    "Experience with product analytics tools"
+  ],
+  "skills": [
+    "Product Management",
+    "Agile",
+    "User Research",
+    "Data Analysis",
+    "SQL",
+    "Figma",
+    "Analytics",
+    "Leadership",
+    "Communication"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Conference Budget",
+    "Product Tools Access"
+  ],
+  "applicationDeadline": {"$date": "2025-02-28T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e006"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e307"}
+  ],
+  "analytics": {
+    "views": 192,
+    "applications": 1,
+    "saves": 13
+  },
+  "createdAt": {"$date": "2024-12-11T15:10:00.000Z"},
+  "updatedAt": {"$date": "2024-12-05T12:25:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e111"},
+  "title": "Senior Product Manager",
+  "slug": "senior-product-manager-growth-ventures",
+  "description": "Lead our product strategy as a Senior Product Manager. You'll define product vision, work with executive leadership, and mentor junior product managers while driving key business outcomes.",
+  "company": {"$oid": "68dccfd6843e90bb8016e205"},
+  "location": {
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Senior Level (5+ years)",
+  "salary": {
+    "min": 130000,
+    "max": 180000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "5+ years of product management experience",
+    "Experience leading cross-functional teams",
+    "Strong strategic thinking and business acumen",
+    "Experience with product analytics and user research",
+    "Excellent leadership and mentoring skills",
+    "Experience with B2B and B2C products"
+  ],
+  "skills": [
+    "Product Strategy",
+    "Leadership",
+    "Business Analysis",
+    "User Research",
+    "Data Analysis",
+    "Team Management",
+    "Strategic Planning",
+    "Communication",
+    "Mentoring"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Professional Development",
+    "Stock Options"
+  ],
+  "applicationDeadline": {"$date": "2025-03-10T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e006"},
+  "applications": [],
+  "analytics": {
+    "views": 203,
+    "applications": 0,
+    "saves": 17
+  },
+  "createdAt": {"$date": "2024-12-12T09:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-04T14:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e112"},
+  "title": "Cybersecurity Analyst",
+  "slug": "cybersecurity-analyst-secure-tech",
+  "description": "Join our security team as a Cybersecurity Analyst to protect our systems and data. You'll conduct security assessments, monitor threats, and help implement security best practices.",
+  "company": {"$oid": "68dccfd6843e90bb8016e206"},
+  "location": {
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 75000,
+    "max": 110000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of cybersecurity experience",
+    "Knowledge of security frameworks and standards",
+    "Experience with security tools and technologies",
+    "Strong analytical and problem-solving skills",
+    "Knowledge of network security and protocols",
+    "Relevant security certifications preferred"
+  ],
+  "skills": [
+    "Cybersecurity",
+    "Network Security",
+    "Security Tools",
+    "Risk Assessment",
+    "Incident Response",
+    "Python",
+    "Linux",
+    "SIEM",
+    "Vulnerability Assessment"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Security Certifications",
+    "Security Clearance Support"
+  ],
+  "applicationDeadline": {"$date": "2025-01-15T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e007"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e308"}
+  ],
+  "analytics": {
+    "views": 145,
+    "applications": 1,
+    "saves": 6
+  },
+  "createdAt": {"$date": "2024-12-13T11:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-03T11:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e113"},
+  "title": "Penetration Tester",
+  "slug": "penetration-tester-secure-tech",
+  "description": "Join our security team as a Penetration Tester to help identify vulnerabilities in our systems and applications. You'll conduct ethical hacking assessments and help improve our security posture.",
+  "company": {"$oid": "68dccfd6843e90bb8016e206"},
+  "location": {
+    "city": "Washington DC",
+    "state": "DC",
+    "country": "USA",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 80000,
+    "max": 120000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of penetration testing experience",
+    "Knowledge of common vulnerabilities and attack vectors",
+    "Experience with penetration testing tools",
+    "Strong ethical hacking skills",
+    "Knowledge of web application security",
+    "Relevant certifications (CEH, OSCP preferred)"
+  ],
+  "skills": [
+    "Penetration Testing",
+    "Ethical Hacking",
+    "Web Application Security",
+    "Network Security",
+    "Python",
+    "Metasploit",
+    "Burp Suite",
+    "Nmap",
+    "OWASP"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Security Certifications",
+    "Security Clearance Support"
+  ],
+  "applicationDeadline": {"$date": "2025-02-12T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e007"},
+  "applications": [],
+  "analytics": {
+    "views": 158,
+    "applications": 0,
+    "saves": 8
+  },
+  "createdAt": {"$date": "2024-12-14T12:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-02T09:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e114"},
+  "title": "Backend Developer",
+  "slug": "backend-developer-api-solutions",
+  "description": "Join our backend team to build scalable APIs and microservices. You'll work with modern technologies to create robust backend systems that power our applications.",
+  "company": {"$oid": "68dccfd6843e90bb8016e207"},
+  "location": {
+    "city": "Dallas",
+    "state": "TX",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 80000,
+    "max": 115000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of backend development experience",
+    "Strong programming skills in Java or Python",
+    "Experience with REST APIs and microservices",
+    "Knowledge of database design and optimization",
+    "Experience with cloud platforms",
+    "Strong problem-solving and debugging skills"
+  ],
+  "skills": [
+    "Java",
+    "Spring Boot",
+    "Microservices",
+    "PostgreSQL",
+    "Redis",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "REST APIs"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Server Credits"
+  ],
+  "applicationDeadline": {"$date": "2025-02-18T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e008"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e309"}
+  ],
+  "analytics": {
+    "views": 158,
+    "applications": 1,
+    "saves": 10
+  },
+  "createdAt": {"$date": "2024-12-15T09:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-01T10:00:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e115"},
+  "title": "Senior Backend Developer",
+  "slug": "senior-backend-developer-api-solutions",
+  "description": "Lead our backend development as a Senior Backend Developer. You'll architect scalable systems, mentor junior developers, and drive technical decisions for our backend infrastructure.",
+  "company": {"$oid": "68dccfd6843e90bb8016e207"},
+  "location": {
+    "city": "Austin",
+    "state": "TX",
+    "country": "USA",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Senior Level (5+ years)",
+  "salary": {
+    "min": 110000,
+    "max": 160000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "5+ years of backend development experience",
+    "Expert-level programming skills in Java or Python",
+    "Experience with microservices architecture",
+    "Strong leadership and mentoring skills",
+    "Experience with system design and architecture",
+    "Knowledge of performance optimization"
+  ],
+  "skills": [
+    "Java",
+    "Spring Boot",
+    "Microservices",
+    "System Design",
+    "PostgreSQL",
+    "Redis",
+    "Docker",
+    "Kubernetes",
+    "Leadership"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Professional Development",
+    "Stock Options"
+  ],
+  "applicationDeadline": {"$date": "2025-03-20T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e008"},
+  "applications": [],
+  "analytics": {
+    "views": 171,
+    "applications": 0,
+    "saves": 12
+  },
+  "createdAt": {"$date": "2024-12-16T11:15:00.000Z"},
+  "updatedAt": {"$date": "2024-11-30T08:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e116"},
+  "title": "Frontend Developer",
+  "slug": "frontend-developer-web-craft",
+  "description": "Join our frontend team to build beautiful, responsive web applications. You'll work with modern frameworks and create exceptional user experiences.",
+  "company": {"$oid": "68dccfd6843e90bb8016e208"},
+  "location": {
+    "city": "Seattle",
+    "state": "WA",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Mid Level (2-5 years)",
+  "salary": {
+    "min": 75000,
+    "max": 110000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "2+ years of frontend development experience",
+    "Strong skills in React or Vue.js",
+    "Proficiency in HTML, CSS, and JavaScript",
+    "Experience with responsive design",
+    "Knowledge of modern build tools",
+    "Strong attention to detail and user experience"
+  ],
+  "skills": [
+    "React",
+    "Vue.js",
+    "TypeScript",
+    "CSS",
+    "Sass",
+    "Webpack",
+    "Jest",
+    "Responsive Design",
+    "Accessibility"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Design Tools Access",
+    "Conference Budget"
+  ],
+  "applicationDeadline": {"$date": "2025-01-30T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": false,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e009"},
+  "applications": [
+    {"$oid": "68dccfd6843e90bb8016e310"}
+  ],
+  "analytics": {
+    "views": 171,
+    "applications": 1,
+    "saves": 11
+  },
+  "createdAt": {"$date": "2024-12-17T11:15:00.000Z"},
+  "updatedAt": {"$date": "2024-11-29T15:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e117"},
+  "title": "Senior Frontend Developer",
+  "slug": "senior-frontend-developer-web-craft",
+  "description": "Lead our frontend development as a Senior Frontend Developer. You'll establish best practices, mentor junior developers, and drive the technical direction of our frontend architecture.",
+  "company": {"$oid": "68dccfd6843e90bb8016e208"},
+  "location": {
+    "city": "Portland",
+    "state": "OR",
+    "country": "USA",
+    "isRemote": false,
+    "isHybrid": true
+  },
+  "jobType": "Full-time",
+  "experienceLevel": "Senior Level (5+ years)",
+  "salary": {
+    "min": 100000,
+    "max": 150000,
+    "currency": "USD",
+    "period": "yearly"
+  },
+  "requirements": [
+    "5+ years of frontend development experience",
+    "Expert-level skills in React or Vue.js",
+    "Strong leadership and mentoring skills",
+    "Experience with frontend architecture",
+    "Knowledge of performance optimization",
+    "Experience with accessibility standards"
+  ],
+  "skills": [
+    "React",
+    "Vue.js",
+    "TypeScript",
+    "Frontend Architecture",
+    "Performance Optimization",
+    "Accessibility",
+    "Leadership",
+    "Mentoring",
+    "Code Review"
+  ],
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Professional Development",
+    "Stock Options"
+  ],
+  "applicationDeadline": {"$date": "2025-03-25T23:59:59.000Z"},
+  "isActive": true,
+  "isFeatured": true,
+  "postedBy": {"$oid": "68dccfd6843e90bb8016e009"},
+  "applications": [],
+  "analytics": {
+    "views": 189,
+    "applications": 0,
+    "saves": 15
+  },
+  "createdAt": {"$date": "2024-12-18T13:45:00.000Z"},
+  "updatedAt": {"$date": "2024-11-28T12:20:00.000Z"},
+  "__v": 0
+}

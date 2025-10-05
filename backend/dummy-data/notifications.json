@@ -1,0 +1,236 @@
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e500"},
+  "user": {"$oid": "68dccfd6843e90bb8016e010"},
+  "type": "job_match",
+  "title": "New job match found",
+  "message": "We found a Senior Full Stack Developer position at TechCorp that matches your profile perfectly!",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e100"},
+    "companyId": {"$oid": "68dccfd6843e90bb8016e200"},
+    "matchScore": 95
+  },
+  "isRead": false,
+  "priority": "high",
+  "createdAt": {"$date": "2024-12-15T09:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T09:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e501"},
+  "user": {"$oid": "68dccfd6843e90bb8016e010"},
+  "type": "application_status",
+  "title": "Application Status Update",
+  "message": "Your application for Senior Full Stack Developer at TechCorp has been reviewed and is under consideration.",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e100"},
+    "applicationId": {"$oid": "68dccfd6843e90bb8016e300"},
+    "status": "under_review"
+  },
+  "isRead": true,
+  "priority": "medium",
+  "createdAt": {"$date": "2024-12-10T14:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-10T14:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e502"},
+  "user": {"$oid": "68dccfd6843e90bb8016e011"},
+  "type": "interview_scheduled",
+  "title": "Interview Scheduled",
+  "message": "Your interview for Machine Learning Engineer at InnovateAI is scheduled for December 18th at 11:00 AM.",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e101"},
+    "applicationId": {"$oid": "68dccfd6843e90bb8016e302"},
+    "interviewDate": {"$date": "2024-12-18T11:00:00.000Z"},
+    "interviewType": "technical"
+  },
+  "isRead": false,
+  "priority": "high",
+  "createdAt": {"$date": "2024-12-12T16:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T16:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e503"},
+  "user": {"$oid": "68dccfd6843e90bb8016e011"},
+  "type": "profile_view",
+  "title": "Profile Viewed",
+  "message": "Your profile was viewed by a recruiter from DataInsights Corp.",
+  "data": {
+    "companyId": {"$oid": "68dccfd6843e90bb8016e209"},
+    "viewerType": "recruiter"
+  },
+  "isRead": true,
+  "priority": "low",
+  "createdAt": {"$date": "2024-12-08T10:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-08T10:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e504"},
+  "user": {"$oid": "68dccfd6843e90bb8016e012"},
+  "type": "job_alert",
+  "title": "New UI/UX Designer Jobs",
+  "message": "3 new UI/UX Designer positions matching your criteria have been posted.",
+  "data": {
+    "jobIds": [
+      {"$oid": "68dccfd6843e90bb8016e104"},
+      {"$oid": "68dccfd6843e90bb8016e105"}
+    ],
+    "alertId": {"$oid": "68dccfd6843e90bb8016e600"}
+  },
+  "isRead": false,
+  "priority": "medium",
+  "createdAt": {"$date": "2024-12-14T08:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T08:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e505"},
+  "user": {"$oid": "68dccfd6843e90bb8016e013"},
+  "type": "application_status",
+  "title": "Application Status Update",
+  "message": "Your application for DevOps Engineer at CloudTech Solutions is being reviewed by the hiring team.",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e106"},
+    "applicationId": {"$oid": "68dccfd6843e90bb8016e305"},
+    "status": "under_review"
+  },
+  "isRead": true,
+  "priority": "medium",
+  "createdAt": {"$date": "2024-12-12T11:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T11:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e506"},
+  "user": {"$oid": "68dccfd6843e90bb8016e014"},
+  "type": "job_match",
+  "title": "New job match found",
+  "message": "We found a React Native Developer position at MobileFirst that matches your skills perfectly!",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e108"},
+    "companyId": {"$oid": "68dccfd6843e90bb8016e204"},
+    "matchScore": 92
+  },
+  "isRead": false,
+  "priority": "high",
+  "createdAt": {"$date": "2024-12-16T13:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-16T13:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e507"},
+  "user": {"$oid": "68dccfd6843e90bb8016e015"},
+  "type": "interview_scheduled",
+  "title": "Interview Scheduled",
+  "message": "Your interview for Product Manager at ProductLab is scheduled for December 22nd at 3:00 PM.",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e110"},
+    "applicationId": {"$oid": "68dccfd6843e90bb8016e307"},
+    "interviewDate": {"$date": "2024-12-22T15:00:00.000Z"},
+    "interviewType": "product"
+  },
+  "isRead": false,
+  "priority": "high",
+  "createdAt": {"$date": "2024-12-14T12:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T12:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e508"},
+  "user": {"$oid": "68dccfd6843e90bb8016e016"},
+  "type": "profile_view",
+  "title": "Profile Viewed",
+  "message": "Your profile was viewed by a recruiter from SecureTech Corp.",
+  "data": {
+    "companyId": {"$oid": "68dccfd6843e90bb8016e206"},
+    "viewerType": "recruiter"
+  },
+  "isRead": true,
+  "priority": "low",
+  "createdAt": {"$date": "2024-12-13T15:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-13T15:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e509"},
+  "user": {"$oid": "68dccfd6843e90bb8016e017"},
+  "type": "application_status",
+  "title": "Application Status Update",
+  "message": "Your application for Backend Developer at BackendPro Inc is being reviewed by the technical team.",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e114"},
+    "applicationId": {"$oid": "68dccfd6843e90bb8016e309"},
+    "status": "under_review"
+  },
+  "isRead": true,
+  "priority": "medium",
+  "createdAt": {"$date": "2024-12-16T10:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-16T10:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e510"},
+  "user": {"$oid": "68dccfd6843e90bb8016e018"},
+  "type": "job_match",
+  "title": "New job match found",
+  "message": "We found a Frontend Developer position at FrontendStudio that matches your skills perfectly!",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e116"},
+    "companyId": {"$oid": "68dccfd6843e90bb8016e208"},
+    "matchScore": 88
+  },
+  "isRead": false,
+  "priority": "high",
+  "createdAt": {"$date": "2024-12-17T14:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-17T14:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e511"},
+  "user": {"$oid": "68dccfd6843e90bb8016e001"},
+  "type": "new_application",
+  "title": "New Application Received",
+  "message": "You have received a new application for Senior Full Stack Developer position.",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e100"},
+    "applicationId": {"$oid": "68dccfd6843e90bb8016e300"},
+    "applicantId": {"$oid": "68dccfd6843e90bb8016e010"}
+  },
+  "isRead": false,
+  "priority": "medium",
+  "createdAt": {"$date": "2024-12-05T14:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-05T14:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e512"},
+  "user": {"$oid": "68dccfd6843e90bb8016e002"},
+  "type": "new_application",
+  "title": "New Application Received",
+  "message": "You have received a new application for Machine Learning Engineer position.",
+  "data": {
+    "jobId": {"$oid": "68dccfd6843e90bb8016e101"},
+    "applicationId": {"$oid": "68dccfd6843e90bb8016e302"},
+    "applicantId": {"$oid": "68dccfd6843e90bb8016e011"}
+  },
+  "isRead": true,
+  "priority": "medium",
+  "createdAt": {"$date": "2024-12-06T09:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-06T09:45:00.000Z"},
+  "__v": 0
+}

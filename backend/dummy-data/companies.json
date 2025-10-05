@@ -1,0 +1,499 @@
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e200"},
+  "name": "TechCorp Solutions",
+  "email": "careers@techcorp.com",
+  "phoneNumber": 18005551234,
+  "website": "https://www.techcorp.com",
+  "logo": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop",
+  "description": "Leading technology company specializing in enterprise software solutions and cloud infrastructure. We're building the future of digital transformation.",
+  "industry": "Technology",
+  "companySize": "1000-5000",
+  "headquarters": "San Francisco, CA",
+  "foundedYear": 2010,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Stock Options",
+    "Gym Membership"
+  ],
+  "culture": [
+    "Innovation",
+    "Collaboration",
+    "Work-Life Balance",
+    "Diversity & Inclusion",
+    "Continuous Learning",
+    "Transparency"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/techcorp",
+    "twitter": "https://twitter.com/techcorp",
+    "facebook": "https://facebook.com/techcorp",
+    "instagram": "https://instagram.com/techcorp"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e001"}
+  ],
+  "analytics": {
+    "totalJobs": 25,
+    "activeJobs": 18,
+    "totalApplications": 1250,
+    "averageRating": 4.3
+  },
+  "createdAt": {"$date": "2024-01-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T14:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e201"},
+  "name": "InnovateAI",
+  "email": "jobs@innovateai.com",
+  "phoneNumber": 18005551235,
+  "website": "https://www.innovateai.com",
+  "logo": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=200&h=200&fit=crop",
+  "description": "Pioneering AI company focused on machine learning solutions for healthcare, finance, and autonomous systems. We're making AI accessible and impactful.",
+  "industry": "Artificial Intelligence",
+  "companySize": "100-500",
+  "headquarters": "New York, NY",
+  "foundedYear": 2018,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Stock Options",
+    "Mental Health Support",
+    "Learning Budget"
+  ],
+  "culture": [
+    "Innovation",
+    "Research-Driven",
+    "Ethical AI",
+    "Collaboration",
+    "Work-Life Balance",
+    "Diversity & Inclusion"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/innovateai",
+    "twitter": "https://twitter.com/innovateai",
+    "facebook": "https://facebook.com/innovateai"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e002"}
+  ],
+  "analytics": {
+    "totalJobs": 15,
+    "activeJobs": 12,
+    "totalApplications": 890,
+    "averageRating": 4.5
+  },
+  "createdAt": {"$date": "2024-02-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T16:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e202"},
+  "name": "DesignStudio Pro",
+  "email": "careers@designstudiopro.com",
+  "phoneNumber": 18005551236,
+  "website": "https://www.designstudiopro.com",
+  "logo": "https://images.unsplash.com/photo-1599305445771-3847a8b2a4b8?w=200&h=200&fit=crop",
+  "description": "Creative design agency specializing in brand identity, web design, and user experience. We help businesses tell their story through beautiful design.",
+  "industry": "Design & Creative",
+  "companySize": "50-100",
+  "headquarters": "Los Angeles, CA",
+  "foundedYear": 2015,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Creative Freedom",
+    "Design Tools Budget"
+  ],
+  "culture": [
+    "Creativity",
+    "Collaboration",
+    "Work-Life Balance",
+    "Diversity & Inclusion",
+    "Continuous Learning",
+    "Innovation"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/designstudiopro",
+    "twitter": "https://twitter.com/designstudiopro",
+    "instagram": "https://instagram.com/designstudiopro",
+    "dribbble": "https://dribbble.com/designstudiopro"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e003"}
+  ],
+  "analytics": {
+    "totalJobs": 8,
+    "activeJobs": 6,
+    "totalApplications": 320,
+    "averageRating": 4.2
+  },
+  "createdAt": {"$date": "2024-03-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-13T11:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e203"},
+  "name": "CloudTech Solutions",
+  "email": "jobs@cloudtech.com",
+  "phoneNumber": 18005551237,
+  "website": "https://www.cloudtech.com",
+  "logo": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&h=200&fit=crop",
+  "description": "Cloud infrastructure and DevOps solutions provider. We help companies scale their operations with modern cloud technologies and automation.",
+  "industry": "Cloud Computing",
+  "companySize": "200-500",
+  "headquarters": "Austin, TX",
+  "foundedYear": 2016,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Stock Options",
+    "Cloud Certifications"
+  ],
+  "culture": [
+    "Innovation",
+    "Technical Excellence",
+    "Collaboration",
+    "Work-Life Balance",
+    "Continuous Learning",
+    "Open Source"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/cloudtech",
+    "twitter": "https://twitter.com/cloudtech",
+    "github": "https://github.com/cloudtech"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e004"}
+  ],
+  "analytics": {
+    "totalJobs": 12,
+    "activeJobs": 9,
+    "totalApplications": 450,
+    "averageRating": 4.4
+  },
+  "createdAt": {"$date": "2024-04-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T09:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e204"},
+  "name": "MobileFirst Inc",
+  "email": "careers@mobilefirst.com",
+  "phoneNumber": 18005551238,
+  "website": "https://www.mobilefirst.com",
+  "logo": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=200&h=200&fit=crop",
+  "description": "Mobile app development company specializing in cross-platform solutions. We create engaging mobile experiences for iOS and Android.",
+  "industry": "Mobile Development",
+  "companySize": "50-200",
+  "headquarters": "Mumbai, India",
+  "foundedYear": 2017,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Mobile Device Allowance",
+    "App Store Credits"
+  ],
+  "culture": [
+    "Innovation",
+    "Mobile-First",
+    "Collaboration",
+    "Work-Life Balance",
+    "Continuous Learning",
+    "User-Centric"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/mobilefirst",
+    "twitter": "https://twitter.com/mobilefirst",
+    "instagram": "https://instagram.com/mobilefirst"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e005"}
+  ],
+  "analytics": {
+    "totalJobs": 10,
+    "activeJobs": 7,
+    "totalApplications": 380,
+    "averageRating": 4.1
+  },
+  "createdAt": {"$date": "2024-05-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-11T15:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e205"},
+  "name": "ProductLab",
+  "email": "jobs@productlab.com",
+  "phoneNumber": 18005551239,
+  "website": "https://www.productlab.com",
+  "logo": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=200&h=200&fit=crop",
+  "description": "Product management consultancy helping startups and enterprises build better products through data-driven decisions and user research.",
+  "industry": "Product Management",
+  "companySize": "20-50",
+  "headquarters": "Chicago, IL",
+  "foundedYear": 2019,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Conference Budget",
+    "Product Tools Access"
+  ],
+  "culture": [
+    "Data-Driven",
+    "User-Centric",
+    "Collaboration",
+    "Work-Life Balance",
+    "Continuous Learning",
+    "Innovation"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/productlab",
+    "twitter": "https://twitter.com/productlab",
+    "medium": "https://medium.com/@productlab"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e006"}
+  ],
+  "analytics": {
+    "totalJobs": 6,
+    "activeJobs": 4,
+    "totalApplications": 180,
+    "averageRating": 4.6
+  },
+  "createdAt": {"$date": "2024-06-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-10T13:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e206"},
+  "name": "SecureTech Corp",
+  "email": "careers@securetech.com",
+  "phoneNumber": 18005551240,
+  "website": "https://www.securetech.com",
+  "logo": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=200&h=200&fit=crop",
+  "description": "Cybersecurity company providing comprehensive security solutions including penetration testing, security audits, and compliance consulting.",
+  "industry": "Cybersecurity",
+  "companySize": "100-300",
+  "headquarters": "Atlanta, GA",
+  "foundedYear": 2014,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Security Certifications",
+    "Security Clearance Support"
+  ],
+  "culture": [
+    "Security-First",
+    "Technical Excellence",
+    "Collaboration",
+    "Work-Life Balance",
+    "Continuous Learning",
+    "Ethical Hacking"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/securetech",
+    "twitter": "https://twitter.com/securetech",
+    "github": "https://github.com/securetech"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e007"}
+  ],
+  "analytics": {
+    "totalJobs": 8,
+    "activeJobs": 6,
+    "totalApplications": 220,
+    "averageRating": 4.3
+  },
+  "createdAt": {"$date": "2024-07-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-09T16:40:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e207"},
+  "name": "BackendPro Inc",
+  "email": "jobs@backendpro.com",
+  "phoneNumber": 18005551241,
+  "website": "https://www.backendpro.com",
+  "logo": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=200&h=200&fit=crop",
+  "description": "Backend development company specializing in scalable microservices, API development, and database architecture for high-traffic applications.",
+  "industry": "Backend Development",
+  "companySize": "75-150",
+  "headquarters": "Dallas, TX",
+  "foundedYear": 2018,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Stock Options",
+    "Server Credits"
+  ],
+  "culture": [
+    "Technical Excellence",
+    "Scalability",
+    "Collaboration",
+    "Work-Life Balance",
+    "Continuous Learning",
+    "Performance-Focused"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/backendpro",
+    "twitter": "https://twitter.com/backendpro",
+    "github": "https://github.com/backendpro"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e008"}
+  ],
+  "analytics": {
+    "totalJobs": 9,
+    "activeJobs": 7,
+    "totalApplications": 340,
+    "averageRating": 4.2
+  },
+  "createdAt": {"$date": "2024-08-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-08T12:25:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e208"},
+  "name": "FrontendStudio",
+  "email": "careers@frontendstudio.com",
+  "phoneNumber": 18005551242,
+  "website": "https://www.frontendstudio.com",
+  "logo": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=200&h=200&fit=crop",
+  "description": "Frontend development agency creating beautiful, responsive, and accessible web applications with modern frameworks and best practices.",
+  "industry": "Frontend Development",
+  "companySize": "30-75",
+  "headquarters": "Seattle, WA",
+  "foundedYear": 2019,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Design Tools Access",
+    "Conference Budget"
+  ],
+  "culture": [
+    "Design-Driven",
+    "Accessibility",
+    "Collaboration",
+    "Work-Life Balance",
+    "Continuous Learning",
+    "User Experience"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/frontendstudio",
+    "twitter": "https://twitter.com/frontendstudio",
+    "github": "https://github.com/frontendstudio",
+    "dribbble": "https://dribbble.com/frontendstudio"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e009"}
+  ],
+  "analytics": {
+    "totalJobs": 7,
+    "activeJobs": 5,
+    "totalApplications": 280,
+    "averageRating": 4.4
+  },
+  "createdAt": {"$date": "2024-09-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-07T14:50:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e209"},
+  "name": "DataInsights Corp",
+  "email": "jobs@datainsights.com",
+  "phoneNumber": 18005551243,
+  "website": "https://www.datainsights.com",
+  "logo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+  "description": "Data science and analytics company helping businesses make data-driven decisions through advanced analytics, machine learning, and business intelligence.",
+  "industry": "Data Science",
+  "companySize": "150-400",
+  "headquarters": "Bangalore, India",
+  "foundedYear": 2016,
+  "benefits": [
+    "Health Insurance",
+    "Dental & Vision",
+    "401k Matching",
+    "Flexible Work Hours",
+    "Remote Work Options",
+    "Professional Development",
+    "Data Science Tools",
+    "Research Budget"
+  ],
+  "culture": [
+    "Data-Driven",
+    "Research",
+    "Collaboration",
+    "Work-Life Balance",
+    "Continuous Learning",
+    "Innovation"
+  ],
+  "socialMedia": {
+    "linkedin": "https://linkedin.com/company/datainsights",
+    "twitter": "https://twitter.com/datainsights",
+    "github": "https://github.com/datainsights"
+  },
+  "isVerified": true,
+  "recruiters": [
+    {"$oid": "68dccfd6843e90bb8016e010"}
+  ],
+  "analytics": {
+    "totalJobs": 11,
+    "activeJobs": 8,
+    "totalApplications": 520,
+    "averageRating": 4.5
+  },
+  "createdAt": {"$date": "2024-10-01T00:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-06T10:35:00.000Z"},
+  "__v": 0
+}

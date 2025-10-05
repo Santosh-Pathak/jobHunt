@@ -1,0 +1,300 @@
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e600"},
+  "user": {"$oid": "68dccfd6843e90bb8016e010"},
+  "name": "Full Stack Developer Alerts",
+  "keywords": ["Full Stack", "React", "Node.js", "JavaScript", "TypeScript"],
+  "location": {
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 80000,
+    "max": 180000,
+    "currency": "USD"
+  },
+  "industry": ["Technology", "Software Development"],
+  "companySize": ["100-500", "500-1000", "1000+"],
+  "isActive": true,
+  "frequency": "daily",
+  "lastSent": {"$date": "2024-12-15T08:00:00.000Z"},
+  "totalMatches": 12,
+  "createdAt": {"$date": "2024-11-01T10:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T08:00:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e601"},
+  "user": {"$oid": "68dccfd6843e90bb8016e011"},
+  "name": "Data Science Jobs",
+  "keywords": ["Data Scientist", "Machine Learning", "Python", "Analytics", "AI"],
+  "location": {
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 600000,
+    "max": 1800000,
+    "currency": "INR"
+  },
+  "industry": ["Data Science", "Artificial Intelligence", "Technology"],
+  "companySize": ["100-500", "500-1000", "1000+"],
+  "isActive": true,
+  "frequency": "weekly",
+  "lastSent": {"$date": "2024-12-14T09:00:00.000Z"},
+  "totalMatches": 8,
+  "createdAt": {"$date": "2024-10-15T14:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T09:00:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e602"},
+  "user": {"$oid": "68dccfd6843e90bb8016e012"},
+  "name": "UI/UX Designer Opportunities",
+  "keywords": ["UI Designer", "UX Designer", "Product Designer", "Figma", "Adobe"],
+  "location": {
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract", "Freelance"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 60000,
+    "max": 130000,
+    "currency": "USD"
+  },
+  "industry": ["Design", "Technology", "Creative"],
+  "companySize": ["20-100", "100-500", "500+"],
+  "isActive": true,
+  "frequency": "daily",
+  "lastSent": {"$date": "2024-12-15T07:30:00.000Z"},
+  "totalMatches": 5,
+  "createdAt": {"$date": "2024-11-20T16:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T07:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e603"},
+  "user": {"$oid": "68dccfd6843e90bb8016e013"},
+  "name": "DevOps Engineer Alerts",
+  "keywords": ["DevOps", "AWS", "Docker", "Kubernetes", "CI/CD", "Infrastructure"],
+  "location": {
+    "city": "Austin",
+    "state": "TX",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 75000,
+    "max": 160000,
+    "currency": "USD"
+  },
+  "industry": ["Cloud Computing", "Technology", "Infrastructure"],
+  "companySize": ["100-500", "500-1000", "1000+"],
+  "isActive": true,
+  "frequency": "weekly",
+  "lastSent": {"$date": "2024-12-13T10:15:00.000Z"},
+  "totalMatches": 6,
+  "createdAt": {"$date": "2024-09-10T12:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-13T10:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e604"},
+  "user": {"$oid": "68dccfd6843e90bb8016e014"},
+  "name": "Mobile Developer Jobs",
+  "keywords": ["React Native", "Flutter", "Mobile Developer", "iOS", "Android"],
+  "location": {
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 500000,
+    "max": 1200000,
+    "currency": "INR"
+  },
+  "industry": ["Mobile Development", "Technology", "Software Development"],
+  "companySize": ["50-200", "200-500", "500+"],
+  "isActive": true,
+  "frequency": "daily",
+  "lastSent": {"$date": "2024-12-15T06:45:00.000Z"},
+  "totalMatches": 4,
+  "createdAt": {"$date": "2024-08-25T11:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T06:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e605"},
+  "user": {"$oid": "68dccfd6843e90bb8016e015"},
+  "name": "Product Manager Opportunities",
+  "keywords": ["Product Manager", "Product Owner", "Product Strategy", "Agile", "Scrum"],
+  "location": {
+    "city": "Chicago",
+    "state": "IL",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 80000,
+    "max": 180000,
+    "currency": "USD"
+  },
+  "industry": ["Product Management", "Technology", "SaaS"],
+  "companySize": ["100-500", "500-1000", "1000+"],
+  "isActive": true,
+  "frequency": "weekly",
+  "lastSent": {"$date": "2024-12-14T08:30:00.000Z"},
+  "totalMatches": 7,
+  "createdAt": {"$date": "2024-07-15T13:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T08:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e606"},
+  "user": {"$oid": "68dccfd6843e90bb8016e016"},
+  "name": "Cybersecurity Jobs",
+  "keywords": ["Cybersecurity", "Security Analyst", "Penetration Testing", "Ethical Hacking", "Security Engineer"],
+  "location": {
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 70000,
+    "max": 140000,
+    "currency": "USD"
+  },
+  "industry": ["Cybersecurity", "Technology", "Security"],
+  "companySize": ["100-500", "500-1000", "1000+"],
+  "isActive": true,
+  "frequency": "weekly",
+  "lastSent": {"$date": "2024-12-12T11:00:00.000Z"},
+  "totalMatches": 3,
+  "createdAt": {"$date": "2024-06-20T15:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T11:00:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e607"},
+  "user": {"$oid": "68dccfd6843e90bb8016e017"},
+  "name": "Backend Developer Alerts",
+  "keywords": ["Backend Developer", "Java", "Spring Boot", "Microservices", "API Development"],
+  "location": {
+    "city": "Dallas",
+    "state": "TX",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 80000,
+    "max": 160000,
+    "currency": "USD"
+  },
+  "industry": ["Backend Development", "Technology", "Software Development"],
+  "companySize": ["100-500", "500-1000", "1000+"],
+  "isActive": true,
+  "frequency": "daily",
+  "lastSent": {"$date": "2024-12-15T09:15:00.000Z"},
+  "totalMatches": 9,
+  "createdAt": {"$date": "2024-05-10T10:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T09:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e608"},
+  "user": {"$oid": "68dccfd6843e90bb8016e018"},
+  "name": "Frontend Developer Jobs",
+  "keywords": ["Frontend Developer", "React", "Vue.js", "JavaScript", "TypeScript", "CSS"],
+  "location": {
+    "city": "Seattle",
+    "state": "WA",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": true
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 70000,
+    "max": 150000,
+    "currency": "USD"
+  },
+  "industry": ["Frontend Development", "Technology", "Software Development"],
+  "companySize": ["50-200", "200-500", "500+"],
+  "isActive": true,
+  "frequency": "daily",
+  "lastSent": {"$date": "2024-12-15T07:00:00.000Z"},
+  "totalMatches": 11,
+  "createdAt": {"$date": "2024-04-05T12:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T07:00:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e609"},
+  "user": {"$oid": "68dccfd6843e90bb8016e010"},
+  "name": "Remote Tech Jobs",
+  "keywords": ["Remote", "Work from Home", "Tech Jobs", "Software Developer", "Engineer"],
+  "location": {
+    "city": "",
+    "state": "",
+    "country": "USA",
+    "isRemote": true,
+    "isHybrid": false
+  },
+  "jobType": ["Full-time", "Contract"],
+  "experienceLevel": ["Mid Level (2-5 years)", "Senior Level (5+ years)"],
+  "salaryRange": {
+    "min": 60000,
+    "max": 200000,
+    "currency": "USD"
+  },
+  "industry": ["Technology", "Software Development", "IT"],
+  "companySize": ["100-500", "500-1000", "1000+"],
+  "isActive": true,
+  "frequency": "weekly",
+  "lastSent": {"$date": "2024-12-14T06:00:00.000Z"},
+  "totalMatches": 15,
+  "createdAt": {"$date": "2024-03-01T08:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T06:00:00.000Z"},
+  "__v": 0
+}

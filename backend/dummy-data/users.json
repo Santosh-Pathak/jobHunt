@@ -1,0 +1,599 @@
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e001"},
+  "fullName": "Sarah Johnson",
+  "email": "sarah.johnson@techcorp.com",
+  "phoneNumber": 9876543210,
+  "password": "$2a$10$VXtN.i9rl6VyPrybnqLT5OKdIMQGt1lCWlTRe4aqRO/iS/wO5uuhi",
+  "role": "recruiter",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop",
+    "bio": "Senior Talent Acquisition Manager at TechCorp with 8+ years experience in tech recruitment",
+    "skills": ["Talent Acquisition", "Technical Recruitment", "Interviewing", "HR Analytics"],
+    "education": [
+      {
+        "institution": "Stanford University",
+        "degree": "MBA in Human Resources",
+        "year": 2015,
+        "field": "Business Administration"
+      }
+    ],
+    "experience": [
+      {
+        "company": "TechCorp",
+        "position": "Senior Talent Acquisition Manager",
+        "duration": "2020-Present",
+        "description": "Leading recruitment for engineering teams"
+      }
+    ],
+    "portfolio": [],
+    "certifications": ["SHRM-CP", "LinkedIn Recruiter Certified"],
+    "languages": ["English", "Spanish"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract"],
+      "locations": ["San Francisco", "Remote"]
+    },
+    "savedJobs": []
+  },
+  "analytics": {
+    "profileViews": 245,
+    "jobApplications": 0,
+    "profileCompleteness": 95
+  },
+  "createdAt": {"$date": "2024-01-15T10:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T14:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e002"},
+  "fullName": "Michael Chen",
+  "email": "michael.chen@innovateai.com",
+  "phoneNumber": 9876543211,
+  "password": "$2a$10$VXtN.i9rl6VyPrybnqLT5OKdIMQGt1lCWlTRe4aqRO/iS/wO5uuhi",
+  "role": "recruiter",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    "bio": "AI/ML Recruitment Specialist helping companies find top talent in emerging technologies",
+    "skills": ["AI Recruitment", "Machine Learning", "Data Science", "Technical Assessment"],
+    "education": [
+      {
+        "institution": "MIT",
+        "degree": "MS in Computer Science",
+        "year": 2018,
+        "field": "Artificial Intelligence"
+      }
+    ],
+    "experience": [
+      {
+        "company": "InnovateAI",
+        "position": "Technical Recruiter",
+        "duration": "2021-Present",
+        "description": "Specialized in AI/ML talent acquisition"
+      }
+    ],
+    "portfolio": [],
+    "certifications": ["AWS Certified", "Google Cloud Professional"],
+    "languages": ["English", "Mandarin"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Part-time"],
+      "locations": ["New York", "Boston", "Remote"]
+    },
+    "savedJobs": []
+  },
+  "analytics": {
+    "profileViews": 189,
+    "jobApplications": 0,
+    "profileCompleteness": 90
+  },
+  "createdAt": {"$date": "2024-02-20T09:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-10T16:45:00.000Z"},
+  "__v": 0
+}
+
+// Students/Job Seekers (10 diverse profiles)
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e010"},
+  "fullName": "Alex Rodriguez",
+  "email": "alex.rodriguez@gmail.com",
+  "phoneNumber": 9876543212,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+    "bio": "Passionate Full Stack Developer with expertise in React, Node.js, and cloud technologies",
+    "skills": ["React", "Node.js", "JavaScript", "TypeScript", "AWS", "MongoDB", "PostgreSQL"],
+    "education": [
+      {
+        "institution": "University of California, Berkeley",
+        "degree": "Bachelor of Science in Computer Science",
+        "year": 2023,
+        "field": "Computer Science"
+      }
+    ],
+    "experience": [
+      {
+        "company": "TechStart Inc",
+        "position": "Junior Full Stack Developer",
+        "duration": "2023-2024",
+        "description": "Developed web applications using React and Node.js"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "E-commerce Platform",
+        "url": "https://github.com/alexrodriguez/ecommerce-platform",
+        "description": "Full-stack e-commerce solution with React and Node.js"
+      }
+    ],
+    "certifications": ["AWS Certified Developer", "React Developer Certification"],
+    "languages": ["English", "Spanish"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Remote"],
+      "locations": ["San Francisco", "Remote", "Seattle"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e100"},
+      {"$oid": "68dccfd6843e90bb8016e101"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 156,
+    "jobApplications": 8,
+    "profileCompleteness": 88
+  },
+  "createdAt": {"$date": "2024-03-10T12:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T10:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e011"},
+  "fullName": "Priya Sharma",
+  "email": "priya.sharma@gmail.com",
+  "phoneNumber": 9876543213,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+    "bio": "Data Scientist with strong background in machine learning and statistical analysis",
+    "skills": ["Python", "Machine Learning", "Data Analysis", "SQL", "TensorFlow", "Pandas", "Scikit-learn"],
+    "education": [
+      {
+        "institution": "Indian Institute of Technology, Delhi",
+        "degree": "Master of Technology in Data Science",
+        "year": 2022,
+        "field": "Data Science"
+      }
+    ],
+    "experience": [
+      {
+        "company": "DataInsights Corp",
+        "position": "Data Science Intern",
+        "duration": "2022-2023",
+        "description": "Developed ML models for predictive analytics"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Customer Churn Prediction Model",
+        "url": "https://github.com/priyasharma/churn-prediction",
+        "description": "ML model with 92% accuracy for customer churn prediction"
+      }
+    ],
+    "certifications": ["Google Data Analytics Certificate", "AWS Machine Learning Specialty"],
+    "languages": ["English", "Hindi"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract"],
+      "locations": ["Bangalore", "Mumbai", "Remote"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e102"},
+      {"$oid": "68dccfd6843e90bb8016e103"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 203,
+    "jobApplications": 12,
+    "profileCompleteness": 92
+  },
+  "createdAt": {"$date": "2024-04-05T14:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T09:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e012"},
+  "fullName": "David Kim",
+  "email": "david.kim@gmail.com",
+  "phoneNumber": 9876543214,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+    "bio": "UI/UX Designer passionate about creating intuitive and beautiful user experiences",
+    "skills": ["Figma", "Adobe Creative Suite", "User Research", "Prototyping", "Design Systems", "HTML/CSS"],
+    "education": [
+      {
+        "institution": "Art Center College of Design",
+        "degree": "Bachelor of Fine Arts in Graphic Design",
+        "year": 2023,
+        "field": "Design"
+      }
+    ],
+    "experience": [
+      {
+        "company": "DesignStudio Pro",
+        "position": "Junior UI/UX Designer",
+        "duration": "2023-2024",
+        "description": "Designed mobile and web applications"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Mobile Banking App Redesign",
+        "url": "https://dribbble.com/davidkim/banking-app",
+        "description": "Complete redesign of mobile banking interface"
+      }
+    ],
+    "certifications": ["Google UX Design Certificate", "Adobe Certified Expert"],
+    "languages": ["English", "Korean"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract", "Freelance"],
+      "locations": ["Los Angeles", "San Francisco", "Remote"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e104"},
+      {"$oid": "68dccfd6843e90bb8016e105"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 178,
+    "jobApplications": 6,
+    "profileCompleteness": 85
+  },
+  "createdAt": {"$date": "2024-05-12T11:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-08T13:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e013"},
+  "fullName": "Emily Watson",
+  "email": "emily.watson@gmail.com",
+  "phoneNumber": 9876543215,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop",
+    "bio": "DevOps Engineer with expertise in cloud infrastructure and automation",
+    "skills": ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "Python", "Linux"],
+    "education": [
+      {
+        "institution": "Carnegie Mellon University",
+        "degree": "Master of Science in Software Engineering",
+        "year": 2022,
+        "field": "Software Engineering"
+      }
+    ],
+    "experience": [
+      {
+        "company": "CloudTech Solutions",
+        "position": "DevOps Engineer",
+        "duration": "2022-2024",
+        "description": "Managed cloud infrastructure and CI/CD pipelines"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Microservices Infrastructure Setup",
+        "url": "https://github.com/emilywatson/microservices-infra",
+        "description": "Complete infrastructure setup for microservices architecture"
+      }
+    ],
+    "certifications": ["AWS Solutions Architect", "Kubernetes Administrator"],
+    "languages": ["English"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract"],
+      "locations": ["Austin", "Remote", "Denver"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e106"},
+      {"$oid": "68dccfd6843e90bb8016e107"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 167,
+    "jobApplications": 9,
+    "profileCompleteness": 90
+  },
+  "createdAt": {"$date": "2024-06-18T16:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T12:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e014"},
+  "fullName": "Raj Patel",
+  "email": "raj.patel@gmail.com",
+  "phoneNumber": 9876543216,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+    "bio": "Mobile App Developer specializing in React Native and Flutter",
+    "skills": ["React Native", "Flutter", "JavaScript", "Dart", "Firebase", "iOS", "Android"],
+    "education": [
+      {
+        "institution": "University of Mumbai",
+        "degree": "Bachelor of Engineering in Computer Science",
+        "year": 2023,
+        "field": "Computer Science"
+      }
+    ],
+    "experience": [
+      {
+        "company": "MobileFirst Inc",
+        "position": "Mobile Developer Intern",
+        "duration": "2023-2024",
+        "description": "Developed cross-platform mobile applications"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Food Delivery App",
+        "url": "https://github.com/rajpatel/food-delivery-app",
+        "description": "Cross-platform food delivery app with real-time tracking"
+      }
+    ],
+    "certifications": ["Google Mobile Development Certificate", "React Native Certification"],
+    "languages": ["English", "Hindi", "Gujarati"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract"],
+      "locations": ["Mumbai", "Bangalore", "Remote"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e108"},
+      {"$oid": "68dccfd6843e90bb8016e109"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 134,
+    "jobApplications": 7,
+    "profileCompleteness": 82
+  },
+  "createdAt": {"$date": "2024-07-22T08:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-11T15:10:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e015"},
+  "fullName": "Lisa Chen",
+  "email": "lisa.chen@gmail.com",
+  "phoneNumber": 9876543217,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
+    "bio": "Product Manager with strong technical background and user-focused approach",
+    "skills": ["Product Management", "Agile", "User Research", "Data Analysis", "SQL", "Figma"],
+    "education": [
+      {
+        "institution": "Northwestern University",
+        "degree": "Master of Science in Product Management",
+        "year": 2022,
+        "field": "Product Management"
+      }
+    ],
+    "experience": [
+      {
+        "company": "ProductLab",
+        "position": "Associate Product Manager",
+        "duration": "2022-2024",
+        "description": "Led product development for mobile applications"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Product Strategy Framework",
+        "url": "https://medium.com/@lisachen/product-strategy",
+        "description": "Comprehensive framework for product strategy development"
+      }
+    ],
+    "certifications": ["Google Product Management Certificate", "Scrum Master"],
+    "languages": ["English", "Mandarin"],
+    "preferences": {
+      "jobTypes": ["Full-time"],
+      "locations": ["Chicago", "San Francisco", "New York"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e110"},
+      {"$oid": "68dccfd6843e90bb8016e111"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 192,
+    "jobApplications": 11,
+    "profileCompleteness": 89
+  },
+  "createdAt": {"$date": "2024-08-15T13:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-13T11:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e016"},
+  "fullName": "Marcus Johnson",
+  "email": "marcus.johnson@gmail.com",
+  "phoneNumber": 9876543218,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    "bio": "Cybersecurity Specialist with expertise in penetration testing and security architecture",
+    "skills": ["Cybersecurity", "Penetration Testing", "Python", "Linux", "Network Security", "Ethical Hacking"],
+    "education": [
+      {
+        "institution": "Georgia Institute of Technology",
+        "degree": "Bachelor of Science in Cybersecurity",
+        "year": 2023,
+        "field": "Cybersecurity"
+      }
+    ],
+    "experience": [
+      {
+        "company": "SecureTech Corp",
+        "position": "Cybersecurity Analyst",
+        "duration": "2023-2024",
+        "description": "Conducted security assessments and vulnerability testing"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Security Assessment Tool",
+        "url": "https://github.com/marcusjohnson/security-tool",
+        "description": "Automated security assessment and reporting tool"
+      }
+    ],
+    "certifications": ["CISSP", "CEH", "CompTIA Security+"],
+    "languages": ["English"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract"],
+      "locations": ["Atlanta", "Washington DC", "Remote"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e112"},
+      {"$oid": "68dccfd6843e90bb8016e113"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 145,
+    "jobApplications": 5,
+    "profileCompleteness": 87
+  },
+  "createdAt": {"$date": "2024-09-10T10:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-09T14:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e017"},
+  "fullName": "Sofia Martinez",
+  "email": "sofia.martinez@gmail.com",
+  "phoneNumber": 9876543219,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop",
+    "bio": "Backend Developer with expertise in scalable systems and database design",
+    "skills": ["Java", "Spring Boot", "Microservices", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
+    "education": [
+      {
+        "institution": "University of Texas at Austin",
+        "degree": "Bachelor of Science in Computer Science",
+        "year": 2023,
+        "field": "Computer Science"
+      }
+    ],
+    "experience": [
+      {
+        "company": "BackendPro Inc",
+        "position": "Backend Developer",
+        "duration": "2023-2024",
+        "description": "Developed microservices architecture for e-commerce platform"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Microservices E-commerce Backend",
+        "url": "https://github.com/sofiamartinez/ecommerce-backend",
+        "description": "Scalable microservices backend with Spring Boot"
+      }
+    ],
+    "certifications": ["Oracle Java Certification", "Spring Professional"],
+    "languages": ["English", "Spanish"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract"],
+      "locations": ["Austin", "Dallas", "Remote"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e114"},
+      {"$oid": "68dccfd6843e90bb8016e115"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 158,
+    "jobApplications": 8,
+    "profileCompleteness": 86
+  },
+  "createdAt": {"$date": "2024-10-05T12:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-16T09:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e018"},
+  "fullName": "Kevin O'Brien",
+  "email": "kevin.obrien@gmail.com",
+  "phoneNumber": 9876543220,
+  "password": "$2a$10$mxXAqTn9C.79tYYlNXQRk.h8lsWNiOtvfvPh0AfbDsW2VObg8IRAy",
+  "role": "student",
+  "isVerified": true,
+  "profile": {
+    "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    "bio": "Frontend Developer passionate about creating responsive and accessible web applications",
+    "skills": ["React", "Vue.js", "TypeScript", "CSS", "Sass", "Webpack", "Jest"],
+    "education": [
+      {
+        "institution": "University of Washington",
+        "degree": "Bachelor of Science in Computer Science",
+        "year": 2023,
+        "field": "Computer Science"
+      }
+    ],
+    "experience": [
+      {
+        "company": "FrontendStudio",
+        "position": "Frontend Developer",
+        "duration": "2023-2024",
+        "description": "Developed responsive web applications with React and Vue.js"
+      }
+    ],
+    "portfolio": [
+      {
+        "title": "Responsive Dashboard Component Library",
+        "url": "https://github.com/kevinobrien/dashboard-components",
+        "description": "Reusable component library for admin dashboards"
+      }
+    ],
+    "certifications": ["React Developer Certification", "Web Accessibility Specialist"],
+    "languages": ["English"],
+    "preferences": {
+      "jobTypes": ["Full-time", "Contract"],
+      "locations": ["Seattle", "Portland", "Remote"]
+    },
+    "savedJobs": [
+      {"$oid": "68dccfd6843e90bb8016e116"},
+      {"$oid": "68dccfd6843e90bb8016e117"}
+    ]
+  },
+  "analytics": {
+    "profileViews": 171,
+    "jobApplications": 10,
+    "profileCompleteness": 84
+  },
+  "createdAt": {"$date": "2024-11-12T15:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-17T11:15:00.000Z"},
+  "__v": 0
+}

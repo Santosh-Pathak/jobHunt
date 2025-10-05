@@ -1,0 +1,320 @@
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e400"},
+  "company": {"$oid": "68dccfd6843e90bb8016e200"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e010"},
+  "job": {"$oid": "68dccfd6843e90bb8016e100"},
+  "rating": 5,
+  "title": "Excellent work environment and growth opportunities",
+  "review": "TechCorp Solutions provides an amazing work environment with great opportunities for professional growth. The team is supportive, the projects are challenging, and the company culture is fantastic. I've learned so much working here and would highly recommend it to anyone looking for a career in tech.",
+  "pros": [
+    "Great work-life balance",
+    "Excellent learning opportunities",
+    "Supportive team environment",
+    "Competitive salary and benefits",
+    "Flexible work arrangements"
+  ],
+  "cons": [
+    "Fast-paced environment can be challenging",
+    "High expectations for performance"
+  ],
+  "workLifeBalance": 5,
+  "culture": 5,
+  "compensation": 4,
+  "careerGrowth": 5,
+  "management": 4,
+  "isVerified": true,
+  "helpful": 12,
+  "notHelpful": 1,
+  "createdAt": {"$date": "2024-11-15T10:30:00.000Z"},
+  "updatedAt": {"$date": "2024-11-15T10:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e401"},
+  "company": {"$oid": "68dccfd6843e90bb8016e201"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e011"},
+  "job": {"$oid": "68dccfd6843e90bb8016e101"},
+  "rating": 4,
+  "title": "Great place for AI and machine learning professionals",
+  "review": "InnovateAI is an excellent company for anyone passionate about artificial intelligence and machine learning. The projects are cutting-edge, and you get to work with the latest technologies. The team is knowledgeable and collaborative, making it a great learning environment.",
+  "pros": [
+    "Cutting-edge AI projects",
+    "Collaborative team environment",
+    "Remote work flexibility",
+    "Learning budget for courses",
+    "Innovative company culture"
+  ],
+  "cons": [
+    "High pressure environment",
+    "Long hours during project deadlines"
+  ],
+  "workLifeBalance": 3,
+  "culture": 5,
+  "compensation": 4,
+  "careerGrowth": 5,
+  "management": 4,
+  "isVerified": true,
+  "helpful": 8,
+  "notHelpful": 0,
+  "createdAt": {"$date": "2024-11-20T14:15:00.000Z"},
+  "updatedAt": {"$date": "2024-11-20T14:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e402"},
+  "company": {"$oid": "68dccfd6843e90bb8016e202"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e012"},
+  "job": {"$oid": "68dccfd6843e90bb8016e104"},
+  "rating": 5,
+  "title": "Creative and inspiring design environment",
+  "review": "DesignStudio Pro is a fantastic place for designers to grow and express their creativity. The team is incredibly talented, and the projects are diverse and challenging. The company truly values design and gives designers the freedom to explore new ideas.",
+  "pros": [
+    "Creative freedom",
+    "Talented design team",
+    "Diverse project portfolio",
+    "Design tools budget",
+    "Flexible work arrangements"
+  ],
+  "cons": [
+    "Tight deadlines sometimes",
+    "Client feedback can be challenging"
+  ],
+  "workLifeBalance": 4,
+  "culture": 5,
+  "compensation": 4,
+  "careerGrowth": 5,
+  "management": 5,
+  "isVerified": true,
+  "helpful": 15,
+  "notHelpful": 1,
+  "createdAt": {"$date": "2024-11-25T16:45:00.000Z"},
+  "updatedAt": {"$date": "2024-11-25T16:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e403"},
+  "company": {"$oid": "68dccfd6843e90bb8016e203"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e013"},
+  "job": {"$oid": "68dccfd6843e90bb8016e106"},
+  "rating": 4,
+  "title": "Great place for DevOps professionals",
+  "review": "CloudTech Solutions is an excellent company for DevOps engineers. The infrastructure projects are challenging and you get to work with cutting-edge cloud technologies. The team is supportive and there are great opportunities for professional development.",
+  "pros": [
+    "Cutting-edge cloud technologies",
+    "Supportive team environment",
+    "Professional development opportunities",
+    "Cloud certifications support",
+    "Remote work flexibility"
+  ],
+  "cons": [
+    "On-call responsibilities",
+    "High pressure during incidents"
+  ],
+  "workLifeBalance": 3,
+  "culture": 4,
+  "compensation": 4,
+  "careerGrowth": 5,
+  "management": 4,
+  "isVerified": true,
+  "helpful": 10,
+  "notHelpful": 2,
+  "createdAt": {"$date": "2024-11-30T12:20:00.000Z"},
+  "updatedAt": {"$date": "2024-11-30T12:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e404"},
+  "company": {"$oid": "68dccfd6843e90bb8016e204"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e014"},
+  "job": {"$oid": "68dccfd6843e90bb8016e108"},
+  "rating": 4,
+  "title": "Excellent mobile development opportunities",
+  "review": "MobileFirst Inc is a great company for mobile developers. The projects are interesting and you get to work with both React Native and Flutter. The team is collaborative and there are good opportunities for learning and growth.",
+  "pros": [
+    "Interesting mobile projects",
+    "Collaborative team environment",
+    "Mobile device allowance",
+    "App store credits",
+    "Flexible work arrangements"
+  ],
+  "cons": [
+    "Tight project deadlines",
+    "Cross-platform challenges"
+  ],
+  "workLifeBalance": 4,
+  "culture": 4,
+  "compensation": 4,
+  "careerGrowth": 4,
+  "management": 4,
+  "isVerified": true,
+  "helpful": 7,
+  "notHelpful": 1,
+  "createdAt": {"$date": "2024-12-05T09:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-05T09:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e405"},
+  "company": {"$oid": "68dccfd6843e90bb8016e205"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e015"},
+  "job": {"$oid": "68dccfd6843e90bb8016e110"},
+  "rating": 5,
+  "title": "Outstanding product management environment",
+  "review": "ProductLab is an exceptional place for product managers. The company truly values data-driven decision making and gives PMs the autonomy to drive product strategy. The team is collaborative and the learning opportunities are excellent.",
+  "pros": [
+    "Data-driven culture",
+    "Autonomy in product decisions",
+    "Collaborative team environment",
+    "Conference budget",
+    "Product tools access"
+  ],
+  "cons": [
+    "High expectations",
+    "Fast-paced environment"
+  ],
+  "workLifeBalance": 4,
+  "culture": 5,
+  "compensation": 5,
+  "careerGrowth": 5,
+  "management": 5,
+  "isVerified": true,
+  "helpful": 18,
+  "notHelpful": 0,
+  "createdAt": {"$date": "2024-12-10T11:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-10T11:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e406"},
+  "company": {"$oid": "68dccfd6843e90bb8016e206"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e016"},
+  "job": {"$oid": "68dccfd6843e90bb8016e112"},
+  "rating": 4,
+  "title": "Great place for cybersecurity professionals",
+  "review": "SecureTech Corp is an excellent company for cybersecurity professionals. The security projects are challenging and you get to work with cutting-edge security tools. The team is knowledgeable and there are great opportunities for professional development.",
+  "pros": [
+    "Challenging security projects",
+    "Knowledgeable team",
+    "Professional development opportunities",
+    "Security certifications support",
+    "Security clearance support"
+  ],
+  "cons": [
+    "High pressure environment",
+    "On-call responsibilities"
+  ],
+  "workLifeBalance": 3,
+  "culture": 4,
+  "compensation": 4,
+  "careerGrowth": 5,
+  "management": 4,
+  "isVerified": true,
+  "helpful": 9,
+  "notHelpful": 1,
+  "createdAt": {"$date": "2024-12-15T13:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T13:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e407"},
+  "company": {"$oid": "68dccfd6843e90bb8016e207"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e017"},
+  "job": {"$oid": "68dccfd6843e90bb8016e114"},
+  "rating": 4,
+  "title": "Excellent backend development environment",
+  "review": "BackendPro Inc is a great company for backend developers. The microservices projects are challenging and you get to work with modern technologies. The team is collaborative and there are good opportunities for learning and growth.",
+  "pros": [
+    "Challenging microservices projects",
+    "Collaborative team environment",
+    "Modern technology stack",
+    "Server credits for personal projects",
+    "Flexible work arrangements"
+  ],
+  "cons": [
+    "Complex system architecture",
+    "High performance expectations"
+  ],
+  "workLifeBalance": 4,
+  "culture": 4,
+  "compensation": 4,
+  "careerGrowth": 4,
+  "management": 4,
+  "isVerified": true,
+  "helpful": 11,
+  "notHelpful": 2,
+  "createdAt": {"$date": "2024-12-20T15:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-20T15:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e408"},
+  "company": {"$oid": "68dccfd6843e90bb8016e208"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e018"},
+  "job": {"$oid": "68dccfd6843e90bb8016e116"},
+  "rating": 5,
+  "title": "Amazing frontend development culture",
+  "review": "FrontendStudio is an incredible place for frontend developers. The company truly values design and user experience, and gives developers the tools and freedom to create beautiful, accessible web applications. The team is talented and collaborative.",
+  "pros": [
+    "Design-driven culture",
+    "Focus on accessibility",
+    "Talented team",
+    "Design tools access",
+    "Conference budget"
+  ],
+  "cons": [
+    "High design standards",
+    "Tight deadlines sometimes"
+  ],
+  "workLifeBalance": 4,
+  "culture": 5,
+  "compensation": 4,
+  "careerGrowth": 5,
+  "management": 5,
+  "isVerified": true,
+  "helpful": 14,
+  "notHelpful": 1,
+  "createdAt": {"$date": "2024-12-25T10:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-25T10:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e409"},
+  "company": {"$oid": "68dccfd6843e90bb8016e209"},
+  "reviewer": {"$oid": "68dccfd6843e90bb8016e011"},
+  "job": {"$oid": "68dccfd6843e90bb8016e102"},
+  "rating": 5,
+  "title": "Outstanding data science environment",
+  "review": "DataInsights Corp is an exceptional place for data scientists. The company truly values data-driven decision making and gives data scientists the resources and freedom to explore innovative solutions. The team is knowledgeable and collaborative.",
+  "pros": [
+    "Data-driven culture",
+    "Innovative projects",
+    "Research budget",
+    "Knowledgeable team",
+    "Professional development opportunities"
+  ],
+  "cons": [
+    "High expectations",
+    "Complex data challenges"
+  ],
+  "workLifeBalance": 4,
+  "culture": 5,
+  "compensation": 5,
+  "careerGrowth": 5,
+  "management": 5,
+  "isVerified": true,
+  "helpful": 16,
+  "notHelpful": 0,
+  "createdAt": {"$date": "2024-12-30T14:10:00.000Z"},
+  "updatedAt": {"$date": "2024-12-30T14:10:00.000Z"},
+  "__v": 0
+}

@@ -18,15 +18,71 @@ const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
 
     const [menuOpen, setMenuOpen] = useState(false);
+    const [notifications, setNotifications] = useState([]);
+    const [unreadCount, setUnreadCount] = useState(3); // Mock unread count
 
     // Ensure theme is always available
     const currentTheme = theme || 'light';
+
+    // Mock notifications data
+    const mockNotifications = [
+        {
+            id: 1,
+            title: 'New job match found',
+            message: 'Software Engineer at Google matches your profile',
+            time: '2 hours ago',
+            read: false,
+            type: 'job_match'
+        },
+        {
+            id: 2,
+            title: 'Interview scheduled',
+            message: 'Your interview with Microsoft is tomorrow at 2 PM',
+            time: '5 hours ago',
+            read: false,
+            type: 'interview'
+        },
+        {
+            id: 3,
+            title: 'Profile viewed',
+            message: 'Your profile was viewed by Amazon recruiter',
+            time: '1 day ago',
+            read: true,
+            type: 'profile_view'
+        }
+    ];
 
     // Debug logging
     console.log('Navbar rendered with theme:', currentTheme, 'user:', user?.role);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
+    };
+
+    // Initialize notifications
+    React.useEffect(() => {
+        setNotifications(mockNotifications);
+        setUnreadCount(mockNotifications.filter(n => !n.read).length);
+    }, []);
+
+    // Mark notification as read
+    const markAsRead = (notificationId) => {
+        setNotifications(prev => 
+            prev.map(notification => 
+                notification.id === notificationId 
+                    ? { ...notification, read: true }
+                    : notification
+            )
+        );
+        setUnreadCount(prev => Math.max(0, prev - 1));
+    };
+
+    // Mark all as read
+    const markAllAsRead = () => {
+        setNotifications(prev => 
+            prev.map(notification => ({ ...notification, read: true }))
+        );
+        setUnreadCount(0);
     };
 
     const logoutHandler = async () => {
@@ -191,20 +247,6 @@ const Navbar = () => {
                                                         : 'hover:text-blue-600 hover:bg-blue-50'
                                                 }`}>Jobs</li>
                                             </Link>
-                                            <Link to='/browse'>
-                                                <li className={`cursor-pointer font-semibold px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${
-                                                    currentTheme === 'dark' 
-                                                        ? 'hover:text-blue-300 hover:bg-blue-900/20' 
-                                                        : 'hover:text-blue-600 hover:bg-blue-50'
-                                                }`}>Browse</li>
-                                            </Link>
-                                            <Link to='/enhanced-search'>
-                                                <li className={`cursor-pointer font-semibold px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${
-                                                    currentTheme === 'dark' 
-                                                        ? 'hover:text-blue-300 hover:bg-blue-900/20' 
-                                                        : 'hover:text-blue-600 hover:bg-blue-50'
-                                                }`}>Search</li>
-                                            </Link>
                                             <Link to='/dashboard'>
                                                 <li className={`cursor-pointer font-semibold flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${
                                                     currentTheme === 'dark' 
@@ -217,6 +259,107 @@ const Navbar = () => {
                                         </>
                                     ) }
                                 </ul>
+                                
+                                {/* Notifications */}
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className={`relative transition-colors duration-300 ${
+                                                currentTheme === 'dark' 
+                                                    ? 'text-white hover:text-blue-300 hover:bg-blue-900/20' 
+                                                    : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50'
+                                            }`}
+                                        >
+                                            <Bell className="h-5 w-5" />
+                                            {unreadCount > 0 && (
+                                                <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium">
+                                                    {unreadCount > 9 ? '9+' : unreadCount}
+                                                </span>
+                                            )}
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className={`p-4 shadow-xl rounded-xl w-80 backdrop-blur-md border transition-all duration-300 ${
+                                        currentTheme === 'dark' 
+                                            ? 'bg-gradient-to-br from-slate-800/95 to-blue-900/95 border-slate-700' 
+                                            : 'bg-gradient-to-br from-white/95 to-blue-50/95 border-slate-200'
+                                    }`}>
+                                        <div className="flex items-center justify-between mb-4">
+                                            <h3 className={`font-semibold text-lg ${
+                                                currentTheme === 'dark' ? 'text-blue-300' : 'text-blue-600'
+                                            }`}>
+                                                Notifications
+                                            </h3>
+                                            {unreadCount > 0 && (
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    onClick={markAllAsRead}
+                                                    className={`text-xs ${
+                                                        currentTheme === 'dark' 
+                                                            ? 'text-gray-400 hover:text-white' 
+                                                            : 'text-gray-600 hover:text-gray-900'
+                                                    }`}
+                                                >
+                                                    Mark all as read
+                                                </Button>
+                                            )}
+                                        </div>
+                                        
+                                        <div className="space-y-3 max-h-80 overflow-y-auto">
+                                            {notifications.length > 0 ? (
+                                                notifications.map((notification) => (
+                                                    <div
+                                                        key={notification.id}
+                                                        className={`p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+                                                            !notification.read 
+                                                                ? currentTheme === 'dark'
+                                                                    ? 'bg-blue-900/30 border border-blue-500/30'
+                                                                    : 'bg-blue-50 border border-blue-200'
+                                                                : currentTheme === 'dark'
+                                                                    ? 'bg-gray-700/30 hover:bg-gray-700/50'
+                                                                    : 'bg-gray-50 hover:bg-gray-100'
+                                                        }`}
+                                                        onClick={() => markAsRead(notification.id)}
+                                                    >
+                                                        <div className="flex items-start space-x-3">
+                                                            <div className={`w-2 h-2 rounded-full mt-2 ${
+                                                                !notification.read ? 'bg-blue-500' : 'bg-gray-400'
+                                                            }`} />
+                                                            <div className="flex-1 min-w-0">
+                                                                <h4 className={`text-sm font-medium ${
+                                                                    currentTheme === 'dark' ? 'text-white' : 'text-gray-900'
+                                                                }`}>
+                                                                    {notification.title}
+                                                                </h4>
+                                                                <p className={`text-xs mt-1 ${
+                                                                    currentTheme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                                                                }`}>
+                                                                    {notification.message}
+                                                                </p>
+                                                                <p className={`text-xs mt-1 ${
+                                                                    currentTheme === 'dark' ? 'text-gray-500' : 'text-gray-500'
+                                                                }`}>
+                                                                    {notification.time}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <div className={`text-center py-8 ${
+                                                    currentTheme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                                                }`}>
+                                                    <Bell className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                                                    <p className="text-sm">No notifications yet</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </PopoverContent>
+                                </Popover>
+
+                                {/* Profile */}
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <Avatar className="w-8 h-8 rounded-full overflow-hidden cursor-pointer ring-2 ring-transparent hover:ring-blue-400 transition-all duration-300">
@@ -227,117 +370,68 @@ const Navbar = () => {
                                             />
                                         </Avatar>
                                     </PopoverTrigger>
-                                    <PopoverContent className={`p-4 shadow-xl rounded-xl w-80 backdrop-blur-md border transition-all duration-300 ${
+                                    <PopoverContent className={`p-6 shadow-xl rounded-xl w-72 backdrop-blur-md border transition-all duration-300 ${
                                         currentTheme === 'dark' 
                                             ? 'bg-gradient-to-br from-slate-800/95 to-blue-900/95 border-slate-700' 
                                             : 'bg-gradient-to-br from-white/95 to-blue-50/95 border-slate-200'
                                     }`}>
-                                        <div className="flex items-center gap-4">
-                                            <Avatar className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-400">
+                                        {/* User Info */}
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <Avatar className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-blue-400">
                                                 <AvatarImage
                                                     src={ user?.profile?.profilePhoto }
                                                     alt="User Avatar"
                                                     className="object-cover w-full h-full"
                                                 />
                                             </Avatar>
-                                            <div>
-                                                <h1 className={`font-semibold text-lg ${
+                                            <div className="flex-1">
+                                                <h1 className={`font-bold text-lg ${
                                                     currentTheme === 'dark' ? 'text-blue-300' : 'text-blue-600'
                                                 }`}>{ user?.fullname }</h1>
                                                 <p className={`text-sm ${
                                                     currentTheme === 'dark' ? 'text-slate-400' : 'text-slate-600'
-                                                }`}>{ user?.profile?.bio }</p>
+                                                }`}>{ user?.profile?.bio || 'Job Seeker Profile' }</p>
                                             </div>
                                         </div>
-                                        <div className="mt-4 space-y-2">
-                                            { user && user.role === 'student' ? (
-                                                <div className="grid grid-cols-2 gap-2">
-                                                    <Link to="/profile">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-blue-300 hover:bg-blue-900/20 hover:text-blue-200' 
-                                                                : 'text-blue-600 hover:bg-blue-50 hover:text-blue-700'
-                                                        }`}>
-                                                            <User2 className="w-4 h-4" />
-                                                            Profile
-                                                        </Button>
-                                                    </Link>
-                                                    <Link to="/resume-builder">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-emerald-300 hover:bg-emerald-900/20 hover:text-emerald-200' 
-                                                                : 'text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700'
-                                                        }`}>
-                                                            <FileText className="w-4 h-4" />
-                                                            Resume
-                                                        </Button>
-                                                    </Link>
-                                                    <Link to="/interview-scheduler">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-purple-300 hover:bg-purple-900/20 hover:text-purple-200' 
-                                                                : 'text-purple-600 hover:bg-purple-50 hover:text-purple-700'
-                                                        }`}>
-                                                            <Calendar className="w-4 h-4" />
-                                                            Interviews
-                                                        </Button>
-                                                    </Link>
-                                                    <Link to="/job-alerts">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-yellow-300 hover:bg-yellow-900/20 hover:text-yellow-200' 
-                                                                : 'text-yellow-600 hover:bg-yellow-50 hover:text-yellow-700'
-                                                        }`}>
-                                                            <Bell className="w-4 h-4" />
-                                                            Alerts
-                                                        </Button>
-                                                    </Link>
-                                                    <Link to="/chat-system">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-pink-300 hover:bg-pink-900/20 hover:text-pink-200' 
-                                                                : 'text-pink-600 hover:bg-pink-50 hover:text-pink-700'
-                                                        }`}>
-                                                            <MessageSquare className="w-4 h-4" />
-                                                            Chat
-                                                        </Button>
-                                                    </Link>
-                                                    <Link to="/social-features">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-orange-300 hover:bg-orange-900/20 hover:text-orange-200' 
-                                                                : 'text-orange-600 hover:bg-orange-50 hover:text-orange-700'
-                                                        }`}>
-                                                            <Users className="w-4 h-4" />
-                                                            Social
-                                                        </Button>
-                                                    </Link>
-                                                </div>
-                                            ) : (
-                                                <div className="grid grid-cols-2 gap-2">
-                                                    <Link to="/admin/content-moderation">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-orange-300 hover:bg-orange-900/20 hover:text-orange-200' 
-                                                                : 'text-orange-600 hover:bg-orange-50 hover:text-orange-700'
-                                                        }`}>
-                                                            <Shield className="w-4 h-4" />
-                                                            Moderation
-                                                        </Button>
-                                                    </Link>
-                                                    <Link to="/admin/system-monitoring">
-                                                        <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
-                                                            currentTheme === 'dark' 
-                                                                ? 'text-emerald-300 hover:bg-emerald-900/20 hover:text-emerald-200' 
-                                                                : 'text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700'
-                                                        }`}>
-                                                            <Monitor className="w-4 h-4" />
-                                                            System
-                                                        </Button>
-                                                    </Link>
-                                                </div>
-                                            ) }
-                                            <div className={`pt-2 border-t transition-colors duration-300 ${
+
+                                        {/* Quick Actions */}
+                                        <div className="space-y-3">
+                                            {/* Dashboard Access - Primary Action */}
+                                            <Link to="/dashboard">
+                                                <Button className={`w-full justify-start py-3 px-4 rounded-xl font-medium transition-all duration-300 hover:scale-105 ${
+                                                    currentTheme === 'dark' 
+                                                        ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                                                        : 'bg-blue-600 hover:bg-blue-700 text-white'
+                                                }`}>
+                                                    <BarChart3 className="w-5 h-5 mr-3" />
+                                                    My Dashboard
+                                                </Button>
+                                            </Link>
+
+                                            {/* Profile & Settings */}
+                                            <div className="grid grid-cols-2 gap-2">
+                                                <Link to="/profile">
+                                                    <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
+                                                        currentTheme === 'dark' 
+                                                            ? 'text-blue-300 hover:bg-blue-900/20 hover:text-blue-200' 
+                                                            : 'text-blue-600 hover:bg-blue-50 hover:text-blue-700'
+                                                    }`}>
+                                                        <User2 className="w-4 h-4" />
+                                                        Profile
+                                                    </Button>
+                                                </Link>
+                                                <Button variant="ghost" size="sm" className={`flex items-center gap-2 w-full transition-all duration-300 hover:scale-105 ${
+                                                    currentTheme === 'dark' 
+                                                        ? 'text-gray-300 hover:bg-gray-700/20 hover:text-white' 
+                                                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                                                }`}>
+                                                    <Settings className="w-4 h-4" />
+                                                    Settings
+                                                </Button>
+                                            </div>
+
+                                            {/* Logout */}
+                                            <div className={`pt-3 border-t transition-colors duration-300 ${
                                                 currentTheme === 'dark' ? 'border-slate-700' : 'border-slate-200'
                                             }`}>
                                                 <Button
@@ -454,13 +548,6 @@ const Navbar = () => {
                                         : 'hover:text-blue-600 hover:bg-blue-50'
                                 }`}>
                                     <Link to="/jobs">Jobs</Link>
-                                </li>
-                                <li className={`cursor-pointer font-semibold px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${
-                                    currentTheme === 'dark' 
-                                        ? 'hover:text-blue-300 hover:bg-blue-900/20' 
-                                        : 'hover:text-blue-600 hover:bg-blue-50'
-                                }`}>
-                                    <Link to="/browse">Browse</Link>
                                 </li>
                             </>
                         ) }

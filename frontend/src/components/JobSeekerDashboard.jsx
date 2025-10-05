@@ -17,7 +17,12 @@ import {
     Search,
     Star,
     MapPin,
-    Clock
+    Clock,
+    FileText,
+    Bell,
+    MessageSquare,
+    Settings,
+    User2
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
@@ -26,6 +31,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Progress } from './ui/progress';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import Navbar from './shared/Navbar';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -55,6 +62,65 @@ ChartJS.register(
 const JobSeekerDashboard = () => {
     const { isDark } = useTheme();
     const { user } = useSelector(store => store.auth);
+    const navigate = useNavigate();
+
+    // Quick Actions Data
+    const quickActions = [
+        {
+            title: 'Resume Builder',
+            description: 'Create and update your resume',
+            icon: FileText,
+            color: 'emerald',
+            link: '/resume-builder'
+        },
+        {
+            title: 'Interview Scheduler',
+            description: 'Schedule and manage interviews',
+            icon: Calendar,
+            color: 'purple',
+            link: '/interview-scheduler'
+        },
+        {
+            title: 'Job Alerts',
+            description: 'Set up personalized job alerts',
+            icon: Bell,
+            color: 'yellow',
+            link: '/job-alerts'
+        },
+        {
+            title: 'Chat Support',
+            description: 'Get help from our support team',
+            icon: MessageSquare,
+            color: 'pink',
+            link: '/chat-system'
+        },
+        {
+            title: 'Social Features',
+            description: 'Connect with other professionals',
+            icon: Users,
+            color: 'orange',
+            link: '/social-features'
+        },
+        {
+            title: 'Profile Settings',
+            description: 'Manage your account settings',
+            icon: Settings,
+            color: 'gray',
+            link: '/profile'
+        }
+    ];
+
+    const getColorClasses = (color) => {
+        const colors = {
+            emerald: isDark ? 'bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30' : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200',
+            purple: isDark ? 'bg-purple-600/20 text-purple-400 hover:bg-purple-600/30' : 'bg-purple-100 text-purple-700 hover:bg-purple-200',
+            yellow: isDark ? 'bg-yellow-600/20 text-yellow-400 hover:bg-yellow-600/30' : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200',
+            pink: isDark ? 'bg-pink-600/20 text-pink-400 hover:bg-pink-600/30' : 'bg-pink-100 text-pink-700 hover:bg-pink-200',
+            orange: isDark ? 'bg-orange-600/20 text-orange-400 hover:bg-orange-600/30' : 'bg-orange-100 text-orange-700 hover:bg-orange-200',
+            gray: isDark ? 'bg-gray-600/20 text-gray-400 hover:bg-gray-600/30' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+        };
+        return colors[color] || colors.gray;
+    };
     const [dashboardData, setDashboardData] = useState({
         stats: {
             applications: 0,
@@ -214,17 +280,49 @@ const JobSeekerDashboard = () => {
     }
 
     return (
-        <div className={`min-h-screen ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className={`min-h-screen transition-all duration-300 ${
+            isDark 
+                ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+                : 'bg-gradient-to-br from-blue-50 via-white to-emerald-50'
+        }`}>
+            <Navbar />
+            
+            <div className="max-w-7xl mx-auto pt-24 pb-12 px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                        Welcome back, {user?.fullName}!
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        Here's your job search overview and insights
-                    </p>
-                </div>
+                <motion.div
+                    className="mb-8"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <div className="flex items-center justify-between mb-6">
+                        <div>
+                            <h1 className={`text-4xl font-bold mb-2 ${
+                                isDark ? 'text-white' : 'text-gray-900'
+                            }`}>
+                                Welcome back, {user?.fullname?.split(' ')[0] || user?.fullName?.split(' ')[0] || 'User'}! 👋
+                            </h1>
+                            <p className={`text-lg ${
+                                isDark ? 'text-gray-300' : 'text-gray-600'
+                            }`}>
+                                Here's your job search overview and insights
+                            </p>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                            <Button
+                                onClick={() => navigate('/jobs')}
+                                className={`transition-all duration-200 ${
+                                    isDark 
+                                        ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                                        : 'bg-blue-600 hover:bg-blue-700 text-white'
+                                }`}
+                            >
+                                <Search className="h-4 w-4 mr-2" />
+                                Find Jobs
+                            </Button>
+                        </div>
+                    </div>
+                </motion.div>
 
                 {/* Stats Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -304,6 +402,53 @@ const JobSeekerDashboard = () => {
                         </Card>
                     </motion.div>
                 </div>
+
+                {/* Quick Actions Section */}
+                <motion.div
+                    className="mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                    <Card className={`transition-all duration-300 ${
+                        isDark ? 'bg-gray-800/50 border-gray-700' : 'bg-white/80 border-gray-200'
+                    } backdrop-blur-sm`}>
+                        <CardHeader>
+                            <CardTitle className={`flex items-center gap-2 ${
+                                isDark ? 'text-white' : 'text-gray-900'
+                            }`}>
+                                <Star className="h-5 w-5 text-yellow-500" />
+                                Quick Actions
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {quickActions.map((action, index) => {
+                                    const IconComponent = action.icon;
+                                    return (
+                                        <motion.div
+                                            key={index}
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                        >
+                                            <Link to={action.link}>
+                                                <Card className={`p-4 cursor-pointer transition-all duration-200 ${getColorClasses(action.color)}`}>
+                                                    <div className="flex items-start space-x-3">
+                                                        <IconComponent className="h-6 w-6 mt-1" />
+                                                        <div>
+                                                            <h3 className="font-semibold text-sm mb-1">{action.title}</h3>
+                                                            <p className="text-xs opacity-80">{action.description}</p>
+                                                        </div>
+                                                    </div>
+                                                </Card>
+                                            </Link>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
 
                 {/* Main Content */}
                 <Tabs defaultValue="overview" className="space-y-6">

@@ -1,0 +1,330 @@
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e700"},
+  "job": {"$oid": "68dccfd6843e90bb8016e100"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e010"},
+  "company": {"$oid": "68dccfd6843e90bb8016e200"},
+  "application": {"$oid": "68dccfd6843e90bb8016e300"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e001"},
+  "type": "technical",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-20T14:00:00.000Z"},
+  "duration": 60,
+  "location": "San Francisco Office",
+  "isRemote": false,
+  "meetingLink": null,
+  "agenda": "Technical interview covering React, Node.js, system design, and coding challenges",
+  "requirements": [
+    "Bring laptop for coding exercises",
+    "Prepare examples of previous projects",
+    "Review system design concepts"
+  ],
+  "notes": "Strong candidate with relevant experience. Focus on system design and problem-solving skills.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-10T16:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-10T16:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e701"},
+  "job": {"$oid": "68dccfd6843e90bb8016e101"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e011"},
+  "company": {"$oid": "68dccfd6843e90bb8016e201"},
+  "application": {"$oid": "68dccfd6843e90bb8016e302"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e002"},
+  "type": "technical",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-18T11:00:00.000Z"},
+  "duration": 90,
+  "location": "Remote",
+  "isRemote": true,
+  "meetingLink": "https://meet.google.com/abc-defg-hij",
+  "agenda": "Machine Learning technical interview covering algorithms, model evaluation, and practical ML problems",
+  "requirements": [
+    "Prepare coding environment",
+    "Review ML algorithms and concepts",
+    "Bring examples of ML projects"
+  ],
+  "notes": "Excellent ML background. Focus on practical implementation and problem-solving approach.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-12T14:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T14:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e702"},
+  "job": {"$oid": "68dccfd6843e90bb8016e110"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e015"},
+  "company": {"$oid": "68dccfd6843e90bb8016e205"},
+  "application": {"$oid": "68dccfd6843e90bb8016e307"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e006"},
+  "type": "product",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-22T15:00:00.000Z"},
+  "duration": 75,
+  "location": "Chicago Office",
+  "isRemote": false,
+  "meetingLink": null,
+  "agenda": "Product management interview covering strategy, user research, and product roadmap",
+  "requirements": [
+    "Prepare product case study",
+    "Review product metrics and analytics",
+    "Bring examples of product decisions"
+  ],
+  "notes": "Strong product management background. Focus on strategic thinking and user-centric approach.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-14T11:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T11:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e703"},
+  "job": {"$oid": "68dccfd6843e90bb8016e100"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e017"},
+  "company": {"$oid": "68dccfd6843e90bb8016e200"},
+  "application": {"$oid": "68dccfd6843e90bb8016e301"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e001"},
+  "type": "technical",
+  "round": 1,
+  "status": "completed",
+  "scheduledDate": {"$date": "2024-12-15T10:00:00.000Z"},
+  "duration": 60,
+  "location": "San Francisco Office",
+  "isRemote": false,
+  "meetingLink": null,
+  "agenda": "Technical interview covering Java, Spring Boot, microservices, and system design",
+  "requirements": [
+    "Bring laptop for coding exercises",
+    "Prepare examples of microservices projects",
+    "Review system design concepts"
+  ],
+  "notes": "Excellent backend experience. Strong technical skills and problem-solving approach.",
+  "feedback": "Candidate demonstrated strong technical skills in Java and Spring Boot. Good understanding of microservices architecture. Coding skills were solid. Recommended for next round.",
+  "rating": 4,
+  "recommendation": "proceed",
+  "createdAt": {"$date": "2024-12-08T10:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T12:00:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e704"},
+  "job": {"$oid": "68dccfd6843e90bb8016e100"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e017"},
+  "company": {"$oid": "68dccfd6843e90bb8016e200"},
+  "application": {"$oid": "68dccfd6843e90bb8016e301"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e001"},
+  "type": "behavioral",
+  "round": 2,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-25T16:00:00.000Z"},
+  "duration": 45,
+  "location": "San Francisco Office",
+  "isRemote": false,
+  "meetingLink": null,
+  "agenda": "Behavioral interview covering leadership, teamwork, and cultural fit",
+  "requirements": [
+    "Prepare examples of leadership experiences",
+    "Review company values and culture",
+    "Think about challenging situations"
+  ],
+  "notes": "Strong technical candidate. Focus on cultural fit and leadership potential.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-15T12:00:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T12:00:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e705"},
+  "job": {"$oid": "68dccfd6843e90bb8016e104"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e012"},
+  "company": {"$oid": "68dccfd6843e90bb8016e202"},
+  "application": {"$oid": "68dccfd6843e90bb8016e304"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e003"},
+  "type": "design",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-19T13:30:00.000Z"},
+  "duration": 90,
+  "location": "Los Angeles Office",
+  "isRemote": false,
+  "meetingLink": null,
+  "agenda": "Design interview covering portfolio review, design process, and creative problem-solving",
+  "requirements": [
+    "Bring portfolio and design samples",
+    "Prepare design process examples",
+    "Review design principles and trends"
+  ],
+  "notes": "Strong design portfolio. Focus on creative process and user-centered design approach.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-09T13:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-09T13:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e706"},
+  "job": {"$oid": "68dccfd6843e90bb8016e106"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e013"},
+  "company": {"$oid": "68dccfd6843e90bb8016e203"},
+  "application": {"$oid": "68dccfd6843e90bb8016e305"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e004"},
+  "type": "technical",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-21T09:00:00.000Z"},
+  "duration": 75,
+  "location": "Remote",
+  "isRemote": true,
+  "meetingLink": "https://zoom.us/j/123456789",
+  "agenda": "DevOps technical interview covering cloud infrastructure, automation, and CI/CD",
+  "requirements": [
+    "Prepare coding environment",
+    "Review AWS and Kubernetes concepts",
+    "Bring examples of automation projects"
+  ],
+  "notes": "Strong DevOps background. Focus on practical implementation and problem-solving skills.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-12T09:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T09:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e707"},
+  "job": {"$oid": "68dccfd6843e90bb8016e108"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e014"},
+  "company": {"$oid": "68dccfd6843e90bb8016e204"},
+  "application": {"$oid": "68dccfd6843e90bb8016e306"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e005"},
+  "type": "technical",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-23T14:30:00.000Z"},
+  "duration": 60,
+  "location": "Remote",
+  "isRemote": true,
+  "meetingLink": "https://meet.google.com/xyz-abc-def",
+  "agenda": "Mobile development technical interview covering React Native, cross-platform development, and mobile best practices",
+  "requirements": [
+    "Prepare coding environment",
+    "Review React Native concepts",
+    "Bring examples of mobile projects"
+  ],
+  "notes": "Strong mobile development skills. Focus on cross-platform development and performance optimization.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-11T15:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-11T15:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e708"},
+  "job": {"$oid": "68dccfd6843e90bb8016e112"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e016"},
+  "company": {"$oid": "68dccfd6843e90bb8016e206"},
+  "application": {"$oid": "68dccfd6843e90bb8016e308"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e007"},
+  "type": "technical",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-24T10:00:00.000Z"},
+  "duration": 90,
+  "location": "Atlanta Office",
+  "isRemote": false,
+  "meetingLink": null,
+  "agenda": "Cybersecurity technical interview covering security concepts, penetration testing, and incident response",
+  "requirements": [
+    "Prepare security tools environment",
+    "Review cybersecurity concepts",
+    "Bring examples of security assessments"
+  ],
+  "notes": "Strong cybersecurity background. Focus on practical security skills and problem-solving approach.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-13T14:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-13T14:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e709"},
+  "job": {"$oid": "68dccfd6843e90bb8016e114"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e017"},
+  "company": {"$oid": "68dccfd6843e90bb8016e207"},
+  "application": {"$oid": "68dccfd6843e90bb8016e309"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e008"},
+  "type": "technical",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-26T11:00:00.000Z"},
+  "duration": 75,
+  "location": "Remote",
+  "isRemote": true,
+  "meetingLink": "https://teams.microsoft.com/l/meetup-join/123456789",
+  "agenda": "Backend development technical interview covering Java, Spring Boot, microservices, and database design",
+  "requirements": [
+    "Prepare coding environment",
+    "Review Java and Spring Boot concepts",
+    "Bring examples of backend projects"
+  ],
+  "notes": "Strong backend development experience. Focus on microservices architecture and system design.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-16T10:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-16T10:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e710"},
+  "job": {"$oid": "68dccfd6843e90bb8016e116"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e018"},
+  "company": {"$oid": "68dccfd6843e90bb8016e208"},
+  "application": {"$oid": "68dccfd6843e90bb8016e310"},
+  "interviewer": {"$oid": "68dccfd6843e90bb8016e009"},
+  "type": "technical",
+  "round": 1,
+  "status": "scheduled",
+  "scheduledDate": {"$date": "2024-12-27T15:30:00.000Z"},
+  "duration": 60,
+  "location": "Remote",
+  "isRemote": true,
+  "meetingLink": "https://meet.google.com/frontend-interview",
+  "agenda": "Frontend development technical interview covering React, Vue.js, CSS, and responsive design",
+  "requirements": [
+    "Prepare coding environment",
+    "Review React and Vue.js concepts",
+    "Bring examples of frontend projects"
+  ],
+  "notes": "Strong frontend development skills. Focus on modern frameworks and user experience.",
+  "feedback": null,
+  "rating": null,
+  "recommendation": null,
+  "createdAt": {"$date": "2024-12-17T14:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-17T14:20:00.000Z"},
+  "__v": 0
+}

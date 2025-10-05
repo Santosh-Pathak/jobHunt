@@ -18,7 +18,7 @@ const Home = () => {
   useGetAllJobs();
   const { user } = useSelector(store => store.auth);
   const navigate = useNavigate();
-  const { theme } = useTheme();
+  const { isDark } = useTheme();
 
   useEffect(() => {
     if (user?.role === 'recruiter') {
@@ -26,30 +26,84 @@ const Home = () => {
     }
   }, [user, navigate]);
 
+  // Animation variants for the main container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
+
   return (
     <motion.div
       className={`min-h-screen transition-all duration-500 ${
-        theme === 'dark' 
-          ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-emerald-900' 
-          : 'bg-gradient-to-br from-white via-blue-50 to-emerald-50'
+        isDark 
+          ? 'bg-gradient-to-br from-gray-900 via-blue-900/10 to-emerald-900/10' 
+          : 'bg-gradient-to-br from-white via-blue-50/30 to-emerald-50/30'
       }`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
     >
       {/* Static navbar */}
       <Navbar />
 
-      {/* Main content */}
+      {/* Main content with proper spacing and sections */}
       <div className="relative">
-        <HeroSection />
-        <CategoryCarousel />
-        <LatestJobs />
-        <FeaturedCompanies />
-        <Benefits />
-        <Testimonials />
-        <Footer />
+        {/* Hero Section */}
+        <motion.div variants={sectionVariants}>
+          <HeroSection />
+        </motion.div>
+
+        {/* Popular Job Categories */}
+        <motion.div variants={sectionVariants}>
+          <CategoryCarousel />
+        </motion.div>
+
+        {/* Latest Jobs */}
+        <motion.div variants={sectionVariants}>
+          <LatestJobs />
+        </motion.div>
+
+        {/* Featured Companies */}
+        <motion.div variants={sectionVariants}>
+          <FeaturedCompanies />
+        </motion.div>
+
+        {/* Benefits Section */}
+        <motion.div variants={sectionVariants}>
+          <Benefits />
+        </motion.div>
+
+        {/* Testimonials */}
+        <motion.div variants={sectionVariants}>
+          <Testimonials />
+        </motion.div>
+
+        {/* Footer */}
+        <motion.div variants={sectionVariants}>
+          <Footer />
+        </motion.div>
       </div>
+
+      {/* Chat Boat */}
       <ChatBoat />
     </motion.div>
   );

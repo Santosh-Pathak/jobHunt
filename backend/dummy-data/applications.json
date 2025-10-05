@@ -1,0 +1,396 @@
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e300"},
+  "job": {"$oid": "68dccfd6843e90bb8016e100"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e010"},
+  "company": {"$oid": "68dccfd6843e90bb8016e200"},
+  "status": "applied",
+  "appliedAt": {"$date": "2024-12-05T14:30:00.000Z"},
+  "coverLetter": "Dear Hiring Manager,\n\nI am excited to apply for the Senior Full Stack Developer position at TechCorp Solutions. With my 3+ years of experience in React, Node.js, and cloud technologies, I believe I would be a great fit for your team.\n\nIn my current role at TechStart Inc, I have successfully developed and deployed multiple web applications using React and Node.js. I have experience with AWS cloud services, MongoDB, and PostgreSQL databases. I am passionate about creating scalable and maintainable code.\n\nI am particularly drawn to TechCorp's mission of building the future of digital transformation and would love to contribute to your innovative projects.\n\nThank you for considering my application. I look forward to discussing how I can contribute to your team.\n\nBest regards,\nAlex Rodriguez",
+  "resume": "https://example.com/resumes/alex-rodriguez-resume.pdf",
+  "portfolio": "https://github.com/alexrodriguez",
+  "experience": [
+    {
+      "company": "TechStart Inc",
+      "position": "Junior Full Stack Developer",
+      "duration": "2023-2024",
+      "description": "Developed web applications using React and Node.js"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of California, Berkeley",
+      "degree": "Bachelor of Science in Computer Science",
+      "year": 2023,
+      "field": "Computer Science"
+    }
+  ],
+  "skills": ["React", "Node.js", "JavaScript", "TypeScript", "AWS", "MongoDB", "PostgreSQL"],
+  "notes": "Strong candidate with relevant experience. Schedule technical interview.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-05T14:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-05T14:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e301"},
+  "job": {"$oid": "68dccfd6843e90bb8016e100"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e017"},
+  "company": {"$oid": "68dccfd6843e90bb8016e200"},
+  "status": "under_review",
+  "appliedAt": {"$date": "2024-12-08T10:15:00.000Z"},
+  "coverLetter": "Dear TechCorp Team,\n\nI am writing to express my strong interest in the Senior Full Stack Developer position. With my extensive experience in Java, Spring Boot, and microservices architecture, I am confident I can make a significant contribution to your engineering team.\n\nAt BackendPro Inc, I have architected and developed scalable microservices that handle millions of requests daily. I have deep expertise in PostgreSQL, Redis, Docker, and Kubernetes. I am passionate about building robust, high-performance systems.\n\nI am excited about the opportunity to work with TechCorp's innovative technology stack and contribute to your digital transformation initiatives.\n\nThank you for your consideration.\n\nSincerely,\nSofia Martinez",
+  "resume": "https://example.com/resumes/sofia-martinez-resume.pdf",
+  "portfolio": "https://github.com/sofiamartinez",
+  "experience": [
+    {
+      "company": "BackendPro Inc",
+      "position": "Backend Developer",
+      "duration": "2023-2024",
+      "description": "Developed microservices architecture for e-commerce platform"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Texas at Austin",
+      "degree": "Bachelor of Science in Computer Science",
+      "year": 2023,
+      "field": "Computer Science"
+    }
+  ],
+  "skills": ["Java", "Spring Boot", "Microservices", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
+  "notes": "Excellent backend experience. Strong technical skills. Consider for interview.",
+  "interviewScheduled": true,
+  "interviewDate": {"$date": "2024-12-20T14:00:00.000Z"},
+  "interviewNotes": "Technical interview scheduled for December 20th at 2 PM",
+  "createdAt": {"$date": "2024-12-08T10:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-10T16:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e302"},
+  "job": {"$oid": "68dccfd6843e90bb8016e101"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e011"},
+  "company": {"$oid": "68dccfd6843e90bb8016e201"},
+  "status": "interview_scheduled",
+  "appliedAt": {"$date": "2024-12-06T09:45:00.000Z"},
+  "coverLetter": "Dear InnovateAI Team,\n\nI am thrilled to apply for the Machine Learning Engineer position. With my strong background in data science and machine learning, I am excited about the opportunity to contribute to your AI initiatives.\n\nMy experience includes developing ML models for predictive analytics, working with TensorFlow and PyTorch, and implementing data preprocessing pipelines. I have a Master's degree in Data Science from IIT Delhi and hands-on experience with cloud ML platforms.\n\nI am particularly interested in InnovateAI's work in healthcare and finance AI applications, and I would love to contribute to making AI more accessible and impactful.\n\nThank you for considering my application.\n\nBest regards,\nPriya Sharma",
+  "resume": "https://example.com/resumes/priya-sharma-resume.pdf",
+  "portfolio": "https://github.com/priyasharma",
+  "experience": [
+    {
+      "company": "DataInsights Corp",
+      "position": "Data Science Intern",
+      "duration": "2022-2023",
+      "description": "Developed ML models for predictive analytics"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Indian Institute of Technology, Delhi",
+      "degree": "Master of Technology in Data Science",
+      "year": 2022,
+      "field": "Data Science"
+    }
+  ],
+  "skills": ["Python", "Machine Learning", "Data Analysis", "SQL", "TensorFlow", "Pandas", "Scikit-learn"],
+  "notes": "Excellent ML background. Strong academic credentials. Schedule technical interview.",
+  "interviewScheduled": true,
+  "interviewDate": {"$date": "2024-12-18T11:00:00.000Z"},
+  "interviewNotes": "Technical interview scheduled for December 18th at 11 AM",
+  "createdAt": {"$date": "2024-12-06T09:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T14:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e303"},
+  "job": {"$oid": "68dccfd6843e90bb8016e102"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e011"},
+  "company": {"$oid": "68dccfd6843e90bb8016e209"},
+  "status": "applied",
+  "appliedAt": {"$date": "2024-12-07T16:20:00.000Z"},
+  "coverLetter": "Dear DataInsights Team,\n\nI am excited to apply for the Data Scientist position. Having worked as a Data Science Intern at your company, I am familiar with your data-driven approach and would love to continue contributing as a full-time team member.\n\nDuring my internship, I successfully developed ML models for customer churn prediction with 92% accuracy. I have strong skills in Python, R, statistical analysis, and data visualization. I am passionate about extracting meaningful insights from data to drive business decisions.\n\nI am eager to bring my analytical skills and machine learning expertise to help DataInsights continue its mission of enabling data-driven decision making.\n\nThank you for considering my application.\n\nBest regards,\nPriya Sharma",
+  "resume": "https://example.com/resumes/priya-sharma-resume.pdf",
+  "portfolio": "https://github.com/priyasharma",
+  "experience": [
+    {
+      "company": "DataInsights Corp",
+      "position": "Data Science Intern",
+      "duration": "2022-2023",
+      "description": "Developed ML models for predictive analytics"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Indian Institute of Technology, Delhi",
+      "degree": "Master of Technology in Data Science",
+      "year": 2022,
+      "field": "Data Science"
+    }
+  ],
+  "skills": ["Python", "R", "Machine Learning", "SQL", "Pandas", "Scikit-learn", "Tableau", "Power BI"],
+  "notes": "Internal candidate with proven track record. Strong recommendation from internship supervisor.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-07T16:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-07T16:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e304"},
+  "job": {"$oid": "68dccfd6843e90bb8016e104"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e012"},
+  "company": {"$oid": "68dccfd6843e90bb8016e202"},
+  "status": "applied",
+  "appliedAt": {"$date": "2024-12-09T13:30:00.000Z"},
+  "coverLetter": "Dear DesignStudio Pro Team,\n\nI am excited to apply for the UI/UX Designer position. With my passion for creating intuitive and beautiful user experiences, I believe I would be a valuable addition to your creative team.\n\nI have 2+ years of experience in UI/UX design, working with Figma, Adobe Creative Suite, and conducting user research. My portfolio includes mobile banking app redesigns and e-commerce interfaces that have improved user engagement by 40%.\n\nI am particularly drawn to DesignStudio Pro's creative approach and would love to contribute to your innovative design projects.\n\nThank you for considering my application.\n\nBest regards,\nDavid Kim",
+  "resume": "https://example.com/resumes/david-kim-resume.pdf",
+  "portfolio": "https://dribbble.com/davidkim",
+  "experience": [
+    {
+      "company": "DesignStudio Pro",
+      "position": "Junior UI/UX Designer",
+      "duration": "2023-2024",
+      "description": "Designed mobile and web applications"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Art Center College of Design",
+      "degree": "Bachelor of Fine Arts in Graphic Design",
+      "year": 2023,
+      "field": "Design"
+    }
+  ],
+  "skills": ["Figma", "Adobe Creative Suite", "User Research", "Prototyping", "Design Systems", "HTML/CSS"],
+  "notes": "Strong design portfolio. Good fit for our team culture. Schedule design review.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-09T13:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-09T13:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e305"},
+  "job": {"$oid": "68dccfd6843e90bb8016e106"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e013"},
+  "company": {"$oid": "68dccfd6843e90bb8016e203"},
+  "status": "under_review",
+  "appliedAt": {"$date": "2024-12-10T11:45:00.000Z"},
+  "coverLetter": "Dear CloudTech Solutions Team,\n\nI am excited to apply for the DevOps Engineer position. With my expertise in cloud infrastructure and automation, I am confident I can contribute to your DevOps initiatives.\n\nI have 2+ years of experience managing cloud infrastructure using AWS, Docker, and Kubernetes. I have successfully implemented CI/CD pipelines and automated deployment processes that reduced deployment time by 60%.\n\nI am passionate about building scalable and reliable systems and would love to contribute to CloudTech's cloud infrastructure solutions.\n\nThank you for considering my application.\n\nBest regards,\nEmily Watson",
+  "resume": "https://example.com/resumes/emily-watson-resume.pdf",
+  "portfolio": "https://github.com/emilywatson",
+  "experience": [
+    {
+      "company": "CloudTech Solutions",
+      "position": "DevOps Engineer",
+      "duration": "2022-2024",
+      "description": "Managed cloud infrastructure and CI/CD pipelines"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Carnegie Mellon University",
+      "degree": "Master of Science in Software Engineering",
+      "year": 2022,
+      "field": "Software Engineering"
+    }
+  ],
+  "skills": ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "Python", "Linux"],
+  "notes": "Strong DevOps background. Good technical skills. Consider for technical interview.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-10T11:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-12T09:30:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e306"},
+  "job": {"$oid": "68dccfd6843e90bb8016e108"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e014"},
+  "company": {"$oid": "68dccfd6843e90bb8016e204"},
+  "status": "applied",
+  "appliedAt": {"$date": "2024-12-11T15:20:00.000Z"},
+  "coverLetter": "Dear MobileFirst Team,\n\nI am excited to apply for the React Native Developer position. With my passion for mobile app development and expertise in cross-platform solutions, I believe I would be a great fit for your team.\n\nI have 2+ years of experience developing mobile applications using React Native and Flutter. I have successfully built and deployed apps for both iOS and Android platforms, including a food delivery app with real-time tracking features.\n\nI am particularly interested in MobileFirst's innovative approach to mobile development and would love to contribute to your exciting projects.\n\nThank you for considering my application.\n\nBest regards,\nRaj Patel",
+  "resume": "https://example.com/resumes/raj-patel-resume.pdf",
+  "portfolio": "https://github.com/rajpatel",
+  "experience": [
+    {
+      "company": "MobileFirst Inc",
+      "position": "Mobile Developer Intern",
+      "duration": "2023-2024",
+      "description": "Developed cross-platform mobile applications"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Mumbai",
+      "degree": "Bachelor of Engineering in Computer Science",
+      "year": 2023,
+      "field": "Computer Science"
+    }
+  ],
+  "skills": ["React Native", "Flutter", "JavaScript", "Dart", "Firebase", "iOS", "Android"],
+  "notes": "Strong mobile development skills. Good portfolio. Schedule technical interview.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-11T15:20:00.000Z"},
+  "updatedAt": {"$date": "2024-12-11T15:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e307"},
+  "job": {"$oid": "68dccfd6843e90bb8016e110"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e015"},
+  "company": {"$oid": "68dccfd6843e90bb8016e205"},
+  "status": "interview_scheduled",
+  "appliedAt": {"$date": "2024-12-12T10:30:00.000Z"},
+  "coverLetter": "Dear ProductLab Team,\n\nI am excited to apply for the Product Manager position. With my strong technical background and user-focused approach, I believe I can drive successful product development at ProductLab.\n\nI have 2+ years of product management experience, leading cross-functional teams and driving product strategy. I have successfully launched mobile applications that achieved 50% user growth within 6 months. My experience includes user research, data analysis, and agile development methodologies.\n\nI am particularly drawn to ProductLab's data-driven approach and would love to contribute to your innovative product initiatives.\n\nThank you for considering my application.\n\nBest regards,\nLisa Chen",
+  "resume": "https://example.com/resumes/lisa-chen-resume.pdf",
+  "portfolio": "https://medium.com/@lisachen",
+  "experience": [
+    {
+      "company": "ProductLab",
+      "position": "Associate Product Manager",
+      "duration": "2022-2024",
+      "description": "Led product development for mobile applications"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Northwestern University",
+      "degree": "Master of Science in Product Management",
+      "year": 2022,
+      "field": "Product Management"
+    }
+  ],
+  "skills": ["Product Management", "Agile", "User Research", "Data Analysis", "SQL", "Figma"],
+  "notes": "Strong product management background. Good analytical skills. Schedule product interview.",
+  "interviewScheduled": true,
+  "interviewDate": {"$date": "2024-12-22T15:00:00.000Z"},
+  "interviewNotes": "Product interview scheduled for December 22nd at 3 PM",
+  "createdAt": {"$date": "2024-12-12T10:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-14T11:45:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e308"},
+  "job": {"$oid": "68dccfd6843e90bb8016e112"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e016"},
+  "company": {"$oid": "68dccfd6843e90bb8016e206"},
+  "status": "applied",
+  "appliedAt": {"$date": "2024-12-13T14:15:00.000Z"},
+  "coverLetter": "Dear SecureTech Team,\n\nI am excited to apply for the Cybersecurity Analyst position. With my expertise in cybersecurity and passion for protecting systems and data, I believe I can contribute to your security initiatives.\n\nI have 2+ years of experience in cybersecurity, including conducting security assessments, monitoring threats, and implementing security best practices. I have strong skills in network security, vulnerability assessment, and incident response.\n\nI am particularly interested in SecureTech's comprehensive security solutions and would love to contribute to protecting organizations from cyber threats.\n\nThank you for considering my application.\n\nBest regards,\nMarcus Johnson",
+  "resume": "https://example.com/resumes/marcus-johnson-resume.pdf",
+  "portfolio": "https://github.com/marcusjohnson",
+  "experience": [
+    {
+      "company": "SecureTech Corp",
+      "position": "Cybersecurity Analyst",
+      "duration": "2023-2024",
+      "description": "Conducted security assessments and vulnerability testing"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Georgia Institute of Technology",
+      "degree": "Bachelor of Science in Cybersecurity",
+      "year": 2023,
+      "field": "Cybersecurity"
+    }
+  ],
+  "skills": ["Cybersecurity", "Penetration Testing", "Python", "Linux", "Network Security", "Ethical Hacking"],
+  "notes": "Strong cybersecurity background. Good technical skills. Schedule security interview.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-13T14:15:00.000Z"},
+  "updatedAt": {"$date": "2024-12-13T14:15:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e309"},
+  "job": {"$oid": "68dccfd6843e90bb8016e114"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e017"},
+  "company": {"$oid": "68dccfd6843e90bb8016e207"},
+  "status": "under_review",
+  "appliedAt": {"$date": "2024-12-14T12:45:00.000Z"},
+  "coverLetter": "Dear BackendPro Team,\n\nI am excited to apply for the Backend Developer position. With my expertise in scalable backend systems and microservices architecture, I believe I can contribute to your backend development initiatives.\n\nI have 2+ years of experience developing backend systems using Java, Spring Boot, and microservices. I have successfully built scalable APIs that handle millions of requests daily. My experience includes database design, performance optimization, and cloud deployment.\n\nI am particularly interested in BackendPro's focus on scalable microservices and would love to contribute to your high-performance backend solutions.\n\nThank you for considering my application.\n\nBest regards,\nSofia Martinez",
+  "resume": "https://example.com/resumes/sofia-martinez-resume.pdf",
+  "portfolio": "https://github.com/sofiamartinez",
+  "experience": [
+    {
+      "company": "BackendPro Inc",
+      "position": "Backend Developer",
+      "duration": "2023-2024",
+      "description": "Developed microservices architecture for e-commerce platform"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Texas at Austin",
+      "degree": "Bachelor of Science in Computer Science",
+      "year": 2023,
+      "field": "Computer Science"
+    }
+  ],
+  "skills": ["Java", "Spring Boot", "Microservices", "PostgreSQL", "Redis", "Docker", "Kubernetes"],
+  "notes": "Strong backend development skills. Good experience with microservices. Consider for technical interview.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-14T12:45:00.000Z"},
+  "updatedAt": {"$date": "2024-12-16T09:20:00.000Z"},
+  "__v": 0
+}
+
+{
+  "_id": {"$oid": "68dccfd6843e90bb8016e310"},
+  "job": {"$oid": "68dccfd6843e90bb8016e116"},
+  "applicant": {"$oid": "68dccfd6843e90bb8016e018"},
+  "company": {"$oid": "68dccfd6843e90bb8016e208"},
+  "status": "applied",
+  "appliedAt": {"$date": "2024-12-15T16:30:00.000Z"},
+  "coverLetter": "Dear FrontendStudio Team,\n\nI am excited to apply for the Frontend Developer position. With my passion for creating responsive and accessible web applications, I believe I would be a valuable addition to your frontend team.\n\nI have 2+ years of experience developing frontend applications using React, Vue.js, and modern web technologies. I have successfully built responsive web applications that work seamlessly across all devices. My experience includes CSS, Sass, Webpack, and Jest testing.\n\nI am particularly drawn to FrontendStudio's focus on accessibility and user experience, and I would love to contribute to your beautiful web applications.\n\nThank you for considering my application.\n\nBest regards,\nKevin O'Brien",
+  "resume": "https://example.com/resumes/kevin-obrien-resume.pdf",
+  "portfolio": "https://github.com/kevinobrien",
+  "experience": [
+    {
+      "company": "FrontendStudio",
+      "position": "Frontend Developer",
+      "duration": "2023-2024",
+      "description": "Developed responsive web applications with React and Vue.js"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Washington",
+      "degree": "Bachelor of Science in Computer Science",
+      "year": 2023,
+      "field": "Computer Science"
+    }
+  ],
+  "skills": ["React", "Vue.js", "TypeScript", "CSS", "Sass", "Webpack", "Jest"],
+  "notes": "Strong frontend development skills. Good portfolio. Schedule technical interview.",
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "interviewNotes": "",
+  "createdAt": {"$date": "2024-12-15T16:30:00.000Z"},
+  "updatedAt": {"$date": "2024-12-15T16:30:00.000Z"},
+  "__v": 0
+}
