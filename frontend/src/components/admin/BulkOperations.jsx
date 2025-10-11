@@ -106,7 +106,7 @@ const JobCard = ({ job, isSelected, onSelect }) => {
                                 <div>
                                     <h3 className="font-semibold">{job.title}</h3>
                                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                                        {job.company.name} • {job.location}
+                                        {job.company.name} • {job.location?.city || job.location || 'Location not specified'}
                                     </p>
                                     <p className="text-xs text-gray-500">
                                         Posted on {formatDate(job.createdAt)}

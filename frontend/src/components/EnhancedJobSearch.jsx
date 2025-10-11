@@ -18,6 +18,7 @@ import {
     Share2,
     Bookmark,
     Eye,
+    ArrowUpRight,
     EyeOff
 } from 'lucide-react';
 import { Button } from './ui/button';
@@ -29,6 +30,7 @@ import { Slider } from './ui/slider';
 import { Checkbox } from './ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import Pagination from './ui/pagination';
 import { useTheme } from '../contexts/ThemeContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchedQuery, setFilters } from '@/redux/jobSlice';
@@ -48,6 +50,7 @@ const EnhancedJobSearch = () => {
     const [showStats, setShowStats] = useState(false);
     const [sortBy, setSortBy] = useState('relevance');
     const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+    const [pageSize, setPageSize] = useState(20);
     
     // Enhanced search hook
     const {
@@ -95,6 +98,20 @@ const EnhancedJobSearch = () => {
             search(query, {});
         }
     };
+
+    // Pagination handlers
+    const handlePageChange = (page) => {
+        search(query, filters, page);
+    };
+
+    const handlePageSizeChange = (newPageSize) => {
+        setPageSize(newPageSize);
+        search(query, filters, 1); // Reset to first page
+    };
+
+    // Calculate pagination info
+    const totalPages = Math.ceil(totalResults / pageSize);
+    const currentPage = Math.floor(results.length / pageSize) + 1;
 
     const handleSuggestionClick = (suggestion) => {
         setQuery(suggestion);
@@ -588,8 +605,17 @@ const EnhancedJobSearch = () => {
                                             
                                             <div className="flex items-center justify-between">
                                                 <Badge variant="secondary">{job.category}</Badge>
-                                                <Button size="sm" onClick={() => navigate(`/description/${job._id}`)}>
-                                                    View Details
+                                                <Button 
+                                                    size="sm" 
+                                                    onClick={() => navigate(`/description/${job._id}`)}
+                                                    className="group/btn relative overflow-hidden bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-400 hover:to-pink-400 text-white border-0 rounded-lg px-4 py-2 font-medium transition-all duration-300 shadow-md hover:shadow-indigo-500/25"
+                                                >
+                                                    <span className="relative z-10 flex items-center">
+                                                        Learn More
+                                                        <ArrowUpRight className="ml-1 h-3 w-3 group-hover/btn:rotate-12 group-hover/btn:scale-110 transition-transform duration-300" />
+                                                    </span>
+                                                    {/* Pulse effect */}
+                                                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-full group-hover/btn:translate-x-0"></div>
                                                 </Button>
                                             </div>
                                         </div>
@@ -598,16 +624,20 @@ const EnhancedJobSearch = () => {
                             ))}
                         </div>
 
-                        {/* Load More Button */}
-                        {hasMore && (
-                            <div className="text-center mt-6">
-                                <Button onClick={loadMore} disabled={loading}>
-                                    {loading ? (
-                                        <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                                    ) : (
-                                        'Load More'
-                                    )}
-                                </Button>
+                        {/* Pagination */}
+                        {totalResults > 0 && (
+                            <div className="mt-6">
+                                <Pagination
+                                    currentPage={currentPage}
+                                    totalPages={totalPages}
+                                    totalItems={totalResults}
+                                    itemsPerPage={pageSize}
+                                    onPageChange={handlePageChange}
+                                    onPageSizeChange={handlePageSizeChange}
+                                    itemLabel="jobs"
+                                    theme={isDark ? 'dark' : 'light'}
+                                    pageSizeOptions={[10, 20, 50, 100]}
+                                />
                             </div>
                         )}
                     </CardContent>

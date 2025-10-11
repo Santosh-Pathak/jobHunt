@@ -10,6 +10,13 @@ const jobSlice = createSlice({
         allAppliedJobs: [],
         searchedQuery: "",
         filters: {},
+        pagination: {
+            current: 1,
+            pages: 1,
+            total: 0,
+            limit: 12
+        },
+        loading: false,
     },
     reducers: {
         // actions
@@ -33,6 +40,12 @@ const jobSlice = createSlice({
         },
         setFilters: (state, action) => {
             state.filters = action.payload;
+        },
+        setPagination: (state, action) => {
+            state.pagination = action.payload;
+        },
+        setLoading: (state, action) => {
+            state.loading = action.payload;
         }
     }
 });
@@ -43,6 +56,8 @@ export const {
     setSearchJobByText,
     setAllAppliedJobs,
     setSearchedQuery,
-    setFilters
+    setFilters,
+    setPagination,
+    setLoading
 } = jobSlice.actions;
 export default jobSlice.reducer;

@@ -134,7 +134,7 @@ export const getCompanyAnalytics = async (req, res) => {
         const userId = req.user._id;
 
         // Verify user owns this company
-        const company = await Company.findOne({ _id: companyId, createdBy: userId });
+        const company = await Company.findOne({ _id: companyId, userId: userId });
         if (!company) {
             return res.status(404).json({
                 success: false,
@@ -268,7 +268,7 @@ export const getDashboardStats = async (req, res) => {
             const applications = await Application.countDocuments({
                 job: { $in: await Job.find({ createdBy: userId }).select('_id') }
             });
-            const companies = await Company.countDocuments({ createdBy: userId });
+            const companies = await Company.countDocuments({ userId: userId });
 
             res.status(200).json({
                 success: true,

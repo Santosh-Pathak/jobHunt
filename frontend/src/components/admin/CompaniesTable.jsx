@@ -8,11 +8,16 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '@/utils/axiosConfig';
 import { COMPANY_API_END_POINT } from '@/utils/constant';
 import { toast } from 'sonner';
+import { useTheme } from '../../contexts/ThemeContext';
+import CompanyDetailsModal from './CompanyDetailsModal';
 
 const CompaniesTable = () => {
     const { companies, searchCompanyByText } = useSelector((store) => store.company);
     const [filterCompany, setFilterCompany] = useState(companies);
     const navigate = useNavigate();
+    const { isDark } = useTheme();
+    const [selectedCompany, setSelectedCompany] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const filteredCompany = companies.length >= 0 && companies.filter((company) => {
@@ -21,6 +26,16 @@ const CompaniesTable = () => {
         });
         setFilterCompany(filteredCompany);
     }, [companies, searchCompanyByText]);
+
+    const handleViewCompany = (company) => {
+        setSelectedCompany(company);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedCompany(null);
+    };
 
     const handleDeleteCompany = async (companyId) => {
         try {
@@ -42,54 +57,78 @@ const CompaniesTable = () => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-5 transition-all duration-300">
+        <div className={`rounded-lg shadow-md p-5 transition-all duration-300 ${
+            isDark ? 'bg-card border border-border' : 'bg-white'
+        }`}>
             <Table>
-                <TableCaption>A list of your recent registered companies</TableCaption>
+                <TableCaption className={`${isDark ? 'text-muted-foreground' : 'text-gray-600'}`}>
+                    A list of your recent registered companies
+                </TableCaption>
                 <TableHeader>
-                    <TableRow>
-                        <TableHead>Logo</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead className="text-right">Action</TableHead>
+                    <TableRow className={`${isDark ? 'border-border' : 'border-gray-200'}`}>
+                        <TableHead className={`${isDark ? 'text-foreground' : 'text-gray-900'}`}>Logo</TableHead>
+                        <TableHead className={`${isDark ? 'text-foreground' : 'text-gray-900'}`}>Name</TableHead>
+                        <TableHead className={`${isDark ? 'text-foreground' : 'text-gray-900'}`}>Date</TableHead>
+                        <TableHead className={`text-right ${isDark ? 'text-foreground' : 'text-gray-900'}`}>Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {
                         filterCompany?.map((company) => (
                             <motion.tr
-                                key={ company._id }
-                                className="hover:bg-blue-50"
-                                initial={ { opacity: 0, y: -10 } }
-                                animate={ { opacity: 1, y: 0 } }
-                                exit={ { opacity: 0, y: -10 } }
-                                transition={ { duration: 0.2 } }
+                                key={company._id}
+                                className={`transition-all duration-200 ${
+                                    isDark 
+                                        ? 'hover:bg-accent/50 border-border' 
+                                        : 'hover:bg-blue-50 border-gray-200'
+                                }`}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.2 }}
                             >
                                 <TableCell>
                                     <Avatar className="w-10 h-10">
-                                        <AvatarImage src={ company.logo } alt={ company.name } />
+                                        <AvatarImage src={company.logo} alt={company.name} />
                                     </Avatar>
                                 </TableCell>
-                                <TableCell>{ company.name }</TableCell>
-                                <TableCell>{ company.createdAt.split("T")[0] }</TableCell>
+                                <TableCell className={`${isDark ? 'text-foreground' : 'text-gray-900'}`}>
+                                    {company.name}
+                                </TableCell>
+                                <TableCell className={`${isDark ? 'text-muted-foreground' : 'text-gray-600'}`}>
+                                    {company.createdAt.split("T")[0]}
+                                </TableCell>
                                 <TableCell className="text-right">
                                     <div className="flex items-center justify-end gap-2">
                                         <button
-                                            onClick={ () => navigate(`/admin/companies/${company._id}`) }
-                                            className="p-2 text-blue-600 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all duration-200"
+                                            onClick={() => handleViewCompany(company)}
+                                            className={`p-2 rounded-md transition-all duration-200 ${
+                                                isDark 
+                                                    ? 'text-primary hover:text-primary/80 hover:bg-primary/10' 
+                                                    : 'text-blue-600 hover:text-blue-500 hover:bg-blue-50'
+                                            }`}
                                             title="View Details"
                                         >
                                             <Eye className="w-4 h-4" />
                                         </button>
                                         <button
-                                            onClick={ () => navigate(`/admin/companies/${company._id}/edit`) }
-                                            className="p-2 text-blue-600 hover:text-blue-500 hover:bg-blue-50 rounded-md transition-all duration-200"
+                                            onClick={() => navigate(`/admin/companies/${company._id}/edit`)}
+                                            className={`p-2 rounded-md transition-all duration-200 ${
+                                                isDark 
+                                                    ? 'text-primary hover:text-primary/80 hover:bg-primary/10' 
+                                                    : 'text-blue-600 hover:text-blue-500 hover:bg-blue-50'
+                                            }`}
                                             title="Edit Company"
                                         >
                                             <Edit2 className="w-4 h-4" />
                                         </button>
                                         <button
-                                            onClick={ () => handleDeleteCompany(company._id) }
-                                            className="p-2 text-red-600 hover:text-red-500 hover:bg-red-50 rounded-md transition-all duration-200"
+                                            onClick={() => handleDeleteCompany(company._id)}
+                                            className={`p-2 rounded-md transition-all duration-200 ${
+                                                isDark 
+                                                    ? 'text-destructive hover:text-destructive/80 hover:bg-destructive/10' 
+                                                    : 'text-red-600 hover:text-red-500 hover:bg-red-50'
+                                            }`}
                                             title="Delete Company"
                                         >
                                             <Trash2 className="w-4 h-4" />
@@ -101,6 +140,13 @@ const CompaniesTable = () => {
                     }
                 </TableBody>
             </Table>
+            
+            {/* Company Details Modal */}
+            <CompanyDetailsModal
+                company={selectedCompany}
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+            />
         </div>
     );
 };

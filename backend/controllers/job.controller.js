@@ -145,35 +145,59 @@ export const postJob = async (req, res) => {
 
 export const getAllJobs = async (req, res) => {
   try {
-    //Very Important : Pagination Logic for Jobs Listing Page (Backend) - 1 of 2 - 1 of 2 - 1 of 2
-    const keyword = req.query.keyword || "";
-    const query = {
-      title: {
-        $regex: keyword,
-        $options: "i",
-      },
-      description: {
-        $regex: keyword,
-        $options: "i",
-      },
-    };
-    // search for title or description that matches the keyword in the query string and return the results that match the keyword in the title or description field of the job document in the database
-    // Here we will use the $regex operator to search for the keyword in the title and description fields of the job document in the database. The $regex operator is used to search for a specified string in a field.
-    // here we will use Populate to get the company details of the job as well
+    // Pagination parameters
+    const { page = 1, limit = 12, keyword = "" } = req.query;
+    
+    // Build search query
+    const query = {};
+    if (keyword) {
+      query.$or = [
+        { title: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } },
+        { skills: { $regex: keyword, $options: "i" } },
+        { location: { $regex: keyword, $options: "i" } }
+      ];
+    }
+
+    // Calculate pagination
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    
+    // Fetch jobs with pagination
     const jobs = await Job.find(query)
       .populate({
         path: "company",
+        select: "name logo industry"
       })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .limit(parseInt(limit))
+      .skip(skip);
+
+    // Get total count for pagination info
+    const total = await Job.countDocuments(query);
+    const totalPages = Math.ceil(total / parseInt(limit));
+
     if (!jobs) {
       return res.status(404).json({ message: "No Jobs Found", success: false });
     }
 
-    return res
-      .status(200)
-      .json({ jobs, message: "JObs Fetched SuccessFully", success: true });
-  } catch ({ error }) {
+    return res.status(200).json({ 
+      jobs, 
+      message: "Jobs Fetched Successfully", 
+      success: true,
+      pagination: {
+        current: parseInt(page),
+        pages: totalPages,
+        total,
+        limit: parseInt(limit)
+      }
+    });
+  } catch (error) {
     console.log(error);
+    return res.status(500).json({ 
+      message: "Internal Server Error", 
+      success: false,
+      error: error.message 
+    });
   }
 };
 // THIS WILL BE FOR STUDENT SIDE

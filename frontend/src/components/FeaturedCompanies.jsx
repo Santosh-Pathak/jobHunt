@@ -2,8 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, MapPin, Users } from 'lucide-react';
 import { featuredCompanies } from '@/data/staticData';
+import { useTheme } from '../contexts/ThemeContext';
 
 const FeaturedCompanies = () => {
+    const { isDark } = useTheme();
+    
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -35,10 +38,16 @@ const FeaturedCompanies = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                <h2 className={`text-4xl font-bold mb-4 ${
+                    isDark 
+                        ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400' 
+                        : 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600'
+                }`}>
                     Featured Companies
                 </h2>
-                <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                <p className={`text-lg max-w-2xl mx-auto ${
+                    isDark ? 'text-muted-foreground' : 'text-gray-600'
+                }`}>
                     Discover opportunities with top companies that are actively hiring talented professionals like you.
                 </p>
             </motion.div>
@@ -52,7 +61,11 @@ const FeaturedCompanies = () => {
                 {featuredCompanies.map((company) => (
                     <motion.div
                         key={company.id}
-                        className="bg-gradient-to-br from-[#00040A] to-[#001636] border border-gray-700 rounded-xl p-6 hover:border-purple-500 transition-all duration-300"
+                        className={`rounded-xl p-6 transition-all duration-300 ${
+                            isDark 
+                                ? 'bg-gradient-to-br from-card to-card/80 border border-border hover:border-primary' 
+                                : 'bg-gradient-to-br from-white to-gray-50 border border-gray-200 hover:border-blue-300'
+                        }`}
                         variants={itemVariants}
                         whileHover={{ 
                             scale: 1.05, 
@@ -67,29 +80,41 @@ const FeaturedCompanies = () => {
                                 className="w-12 h-12 rounded-lg object-cover mr-4"
                             />
                             <div>
-                                <h3 className="text-xl font-semibold text-white">
+                                <h3 className={`text-xl font-semibold ${
+                                    isDark ? 'text-foreground' : 'text-gray-900'
+                                }`}>
                                     {company.name}
                                 </h3>
-                                <div className="flex items-center text-gray-400 text-sm">
+                                <div className={`flex items-center text-sm ${
+                                    isDark ? 'text-muted-foreground' : 'text-gray-600'
+                                }`}>
                                     <MapPin className="h-4 w-4 mr-1" />
                                     {company.location?.city || company.location || 'Location not specified'}
                                 </div>
                             </div>
                         </div>
 
-                        <p className="text-gray-300 mb-4 text-sm">
+                        <p className={`mb-4 text-sm ${
+                            isDark ? 'text-muted-foreground' : 'text-gray-600'
+                        }`}>
                             {company.description}
                         </p>
 
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                                <Star className="h-4 w-4 text-yellow-400 mr-1" />
-                                <span className="text-white font-medium">
+                                <Star className={`h-4 w-4 mr-1 ${
+                                    isDark ? 'text-yellow-400' : 'text-yellow-500'
+                                }`} />
+                                <span className={`font-medium ${
+                                    isDark ? 'text-foreground' : 'text-gray-900'
+                                }`}>
                                     {company.rating}
                                 </span>
                             </div>
                             
-                            <div className="flex items-center text-purple-400">
+                            <div className={`flex items-center ${
+                                isDark ? 'text-primary' : 'text-blue-600'
+                            }`}>
                                 <Users className="h-4 w-4 mr-1" />
                                 <span className="text-sm font-medium">
                                     {company.jobsCount} Jobs
@@ -98,7 +123,11 @@ const FeaturedCompanies = () => {
                         </div>
 
                         <motion.button
-                            className="w-full mt-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+                            className={`w-full mt-4 py-2 px-4 rounded-lg font-medium transition-all duration-300 ${
+                                isDark 
+                                    ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
+                                    : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700'
+                            }`}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
@@ -115,7 +144,11 @@ const FeaturedCompanies = () => {
                 transition={{ delay: 0.8 }}
             >
                 <motion.button
-                    className="bg-transparent border border-purple-500 text-purple-400 px-8 py-3 rounded-full font-medium hover:bg-purple-500 hover:text-white transition-all duration-300"
+                    className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                        isDark 
+                            ? 'bg-transparent border border-primary text-primary hover:bg-primary hover:text-primary-foreground' 
+                            : 'bg-transparent border border-purple-500 text-purple-600 hover:bg-purple-500 hover:text-white'
+                    }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >

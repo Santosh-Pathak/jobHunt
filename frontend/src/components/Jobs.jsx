@@ -13,20 +13,23 @@ import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { setSearchedQuery, setFilters } from '@/redux/jobSlice';
 import useGetAllJobs from '@/hooks/useGetAllJobs';
+import Pagination from './ui/pagination';
 
 const Jobs = () => {
-    useGetAllJobs(); // Fetch all jobs
-    const { allJobs, searchedQuery, filters } = useSelector(store => store.job);
+    const { allJobs, searchedQuery, filters, pagination, loading } = useSelector(store => store.job);
     const { isDark } = useTheme();
     const dispatch = useDispatch();
     
-    const [filteredJobs, setFilteredJobs] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
     const [showFilters, setShowFilters] = useState(false);
     const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
     const [sortBy, setSortBy] = useState('relevance'); // 'relevance', 'date', 'salary'
     const [searchQuery, setSearchQuery] = useState('');
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [searchHistory, setSearchHistory] = useState([]);
+    
+    // Use pagination hook
+    useGetAllJobs(currentPage, 12);
 
     // Popular search suggestions
     const suggestions = [
@@ -36,87 +39,17 @@ const Jobs = () => {
         'Machine Learning Engineer', 'Remote Jobs', 'Startup Jobs'
     ];
 
-    // Enhanced search and filtering logic
+    // Handle page change
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        // Scroll to top when page changes
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Reset to first page when search query changes
     useEffect(() => {
-        let filtered = [...allJobs];
-
-        // Apply search query filter
-        if (searchedQuery || searchQuery) {
-            const query = (searchedQuery || searchQuery).toLowerCase();
-            const queryWords = query.split(" ").filter(word => word.length > 0);
-            
-            filtered = filtered.filter(job => {
-                const searchFields = [
-                    job.title,
-                    job.description,
-                    job.requirements?.join(" "),
-                    job.location?.city || job.location,
-                    job.company?.name,
-                    job.skills?.join(" "),
-                    job.industry
-                ].filter(Boolean);
-                
-                return queryWords.some(word =>
-                    searchFields.some(field => 
-                        field.toLowerCase().includes(word)
-                    )
-                );
-            });
-        }
-
-        // Apply advanced filters
-        if (filters) {
-            Object.entries(filters).forEach(([key, values]) => {
-                if (values && values.length > 0) {
-                    filtered = filtered.filter(job => {
-                        switch (key) {
-                            case 'location':
-                                return values.some(location => 
-                                    (job.location?.city || job.location || '').toLowerCase().includes(location.toLowerCase())
-                                );
-                            case 'job_type':
-                                return values.some(type => 
-                                    job.jobType?.toLowerCase().includes(type.toLowerCase())
-                                );
-                            case 'experience':
-                                return values.some(exp => 
-                                    job.experienceLevel?.toLowerCase().includes(exp.toLowerCase())
-                                );
-                            case 'salary_range':
-                                return values.some(range => {
-                                    const salary = job.salary?.min || job.salary || 0;
-                                    if (range.includes('0-3')) return salary >= 0 && salary <= 3;
-                                    if (range.includes('3-6')) return salary >= 3 && salary <= 6;
-                                    if (range.includes('6-10')) return salary >= 6 && salary <= 10;
-                                    if (range.includes('10-15')) return salary >= 10 && salary <= 15;
-                                    if (range.includes('15+')) return salary >= 15;
-                                    return true;
-                                });
-                            default:
-                                return true;
-                        }
-                    });
-                }
-            });
-        }
-
-        // Apply sorting
-        filtered.sort((a, b) => {
-            switch (sortBy) {
-                case 'date':
-                    return new Date(b.createdAt) - new Date(a.createdAt);
-                case 'salary':
-                    const salaryA = a.salary?.min || a.salary || 0;
-                    const salaryB = b.salary?.min || b.salary || 0;
-                    return salaryB - salaryA;
-                case 'relevance':
-                default:
-                    return 0; // Keep original order for relevance
-            }
-        });
-
-            setFilteredJobs(filtered);
-    }, [allJobs, searchedQuery, searchQuery, filters, sortBy]);
+        setCurrentPage(1);
+    }, [searchedQuery]);
 
     // Handle search
     const handleSearch = (query) => {
@@ -310,7 +243,7 @@ const Jobs = () => {
                     {/* Results Summary */}
                     <div className="flex items-center justify-between mb-6">
                         <div className="text-sm text-muted-foreground">
-                            <span className="font-semibold text-primary">{filteredJobs.length}</span> jobs found
+                            <span className="font-semibold text-primary">{pagination.total}</span> jobs found
                             {searchedQuery && (
                                 <span> for "<span className="font-medium">{searchedQuery}</span>"</span>
                             )}
@@ -386,24 +319,43 @@ const Jobs = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        {filteredJobs.length > 0 ? (
-                            <div className={`space-y-6 ${
-                                viewMode === 'grid' ? 'grid grid-cols-1 xl:grid-cols-2 gap-6' : ''
-                            }`}>
-                                {filteredJobs.map((job, index) => (
-                                    <motion.div
-                                        key={job?._id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ 
-                                            duration: 0.4, 
-                                            delay: index * 0.1 
-                                        }}
-                                    >
-                                        <Job job={job} />
-                                    </motion.div>
-                                ))}
+                        {loading ? (
+                            <div className="flex items-center justify-center py-16">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
                             </div>
+                        ) : allJobs.length > 0 ? (
+                            <>
+                                <div className={`space-y-6 ${
+                                    viewMode === 'grid' ? 'grid grid-cols-1 xl:grid-cols-2 gap-6' : ''
+                                }`}>
+                                    {allJobs.map((job, index) => (
+                                        <motion.div
+                                            key={job?._id}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ 
+                                                duration: 0.4, 
+                                                delay: index * 0.1 
+                                            }}
+                                        >
+                                            <Job job={job} />
+                                        </motion.div>
+                                    ))}
+                                </div>
+                                
+                                {/* Pagination */}
+                                {pagination.pages > 1 && (
+                                    <div className="mt-12">
+                                        <Pagination
+                                            currentPage={pagination.current}
+                                            totalPages={pagination.pages}
+                                            totalItems={pagination.total}
+                                            itemsPerPage={pagination.limit}
+                                            onPageChange={handlePageChange}
+                                        />
+                                    </div>
+                                )}
+                            </>
                         ) : (
                             <motion.div
                                 className="text-center py-16"

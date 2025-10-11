@@ -94,7 +94,7 @@ export const getAllCompanies = async (req, res) => {
         }
 
         const companies = await Company.find(filter)
-            .populate('createdBy', 'fullName email')
+            .populate('userId', 'fullName email')
             .limit(limit * 1)
             .skip((page - 1) * limit)
             .sort({ createdAt: -1 });

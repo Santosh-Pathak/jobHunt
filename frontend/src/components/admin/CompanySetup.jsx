@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { useSelector } from 'react-redux';
 import useGetCompanyById from '@/hooks/useGetCompanyById';
 import Footer from '../shared/Footer';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const CompanySetup = () => {
     const params = useParams();
@@ -26,6 +27,7 @@ const CompanySetup = () => {
     const { singleCompany } = useSelector((store) => store.company);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { isDark } = useTheme();
 
     const changeEventHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
@@ -81,16 +83,28 @@ const CompanySetup = () => {
     if (isLoading || !singleCompany) {
         return (
             <motion.div
-                className="bg-white min-h-screen flex items-center justify-center"
-                initial={ { opacity: 0 } }
-                animate={ { opacity: 1 } }
-                transition={ { duration: 0.5 } }
+                className={`min-h-screen flex items-center justify-center transition-all duration-300 ${
+                    isDark ? 'bg-background' : 'bg-white'
+                }`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
             >
                 <div className="text-center">
-                    <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
-                    <p className="text-gray-600">Loading company data...</p>
-                    <p className="text-sm text-gray-500 mt-2">Company ID: {params.id}</p>
-                    {isLoading && <p className="text-xs text-gray-400 mt-1">Fetching data...</p>}
+                    <Loader2 className={`h-8 w-8 animate-spin mx-auto mb-4 ${
+                        isDark ? 'text-primary' : 'text-blue-600'
+                    }`} />
+                    <p className={`${isDark ? 'text-muted-foreground' : 'text-gray-600'}`}>
+                        Loading company data...
+                    </p>
+                    <p className={`text-sm mt-2 ${isDark ? 'text-muted-foreground/70' : 'text-gray-500'}`}>
+                        Company ID: {params.id}
+                    </p>
+                    {isLoading && (
+                        <p className={`text-xs mt-1 ${isDark ? 'text-muted-foreground/50' : 'text-gray-400'}`}>
+                            Fetching data...
+                        </p>
+                    )}
                 </div>
             </motion.div>
         );
@@ -98,83 +112,133 @@ const CompanySetup = () => {
 
     return (
         <motion.div
-            className="bg-white min-h-screen"
-            initial={ { opacity: 0, y: 20 } }
-            animate={ { opacity: 1, y: 0 } }
-            exit={ { opacity: 0, y: 20 } }
-            transition={ { duration: 0.5 } }
+            className={`min-h-screen transition-all duration-300 ${
+                isDark ? 'bg-background' : 'bg-white'
+            }`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5 }}
         >
             <Navbar />
-            <div className="max-w-xl mx-auto my-10 p-5 rounded-lg shadow-lg bg-gray-50">
-                <form onSubmit={ submitHandler }>
+            <div className={`max-w-xl mx-auto my-10 p-5 rounded-lg shadow-lg transition-all duration-300 ${
+                isDark ? 'bg-card border border-border' : 'bg-gray-50'
+            }`}>
+                <form onSubmit={submitHandler}>
                     <div className="flex items-center gap-5 p-4">
                         <Button
-                            onClick={ () => navigate("/admin/companies") }
+                            onClick={() => navigate("/admin/companies")}
                             variant="outline"
-                            className="flex items-center gap-2 text-gray-500 font-semibold transition duration-200 hover:bg-blue-100"
+                            className={`flex items-center gap-2 font-semibold transition duration-200 ${
+                                isDark 
+                                    ? 'text-muted-foreground hover:bg-accent hover:text-accent-foreground border-border' 
+                                    : 'text-gray-500 hover:bg-blue-100'
+                            }`}
                         >
                             <ArrowLeft />
                         </Button>
-                        <h1 className="font-bold text-xl text-blue-600">Company Setup</h1>
+                        <h1 className={`font-bold text-xl ${
+                            isDark ? 'text-primary' : 'text-blue-600'
+                        }`}>
+                            Company Setup
+                        </h1>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <Label className="text-gray-700">Company Name</Label>
+                            <Label className={`${isDark ? 'text-foreground' : 'text-gray-700'}`}>
+                                Company Name
+                            </Label>
                             <Input
                                 type="text"
                                 name="name"
-                                value={ input.name }
-                                onChange={ changeEventHandler }
-                                className="border border-gray-300 rounded-md shadow-sm transition duration-200 focus:border-blue-400"
+                                value={input.name}
+                                onChange={changeEventHandler}
+                                className={`border rounded-md shadow-sm transition duration-200 ${
+                                    isDark 
+                                        ? 'border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary' 
+                                        : 'border-gray-300 focus:border-blue-400'
+                                }`}
                             />
                         </div>
                         <div>
-                            <Label className="text-gray-700">Description</Label>
+                            <Label className={`${isDark ? 'text-foreground' : 'text-gray-700'}`}>
+                                Description
+                            </Label>
                             <Input
                                 type="text"
                                 name="description"
-                                value={ input.description }
-                                onChange={ changeEventHandler }
-                                className="border border-gray-300 rounded-md shadow-sm transition duration-200 focus:border-blue-400"
+                                value={input.description}
+                                onChange={changeEventHandler}
+                                className={`border rounded-md shadow-sm transition duration-200 ${
+                                    isDark 
+                                        ? 'border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary' 
+                                        : 'border-gray-300 focus:border-blue-400'
+                                }`}
                             />
                         </div>
                         <div>
-                            <Label className="text-gray-700">Website</Label>
+                            <Label className={`${isDark ? 'text-foreground' : 'text-gray-700'}`}>
+                                Website
+                            </Label>
                             <Input
                                 type="text"
                                 name="website"
-                                value={ input.website }
-                                onChange={ changeEventHandler }
-                                className="border border-gray-300 rounded-md shadow-sm transition duration-200 focus:border-blue-400"
+                                value={input.website}
+                                onChange={changeEventHandler}
+                                className={`border rounded-md shadow-sm transition duration-200 ${
+                                    isDark 
+                                        ? 'border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary' 
+                                        : 'border-gray-300 focus:border-blue-400'
+                                }`}
                             />
                         </div>
                         <div>
-                            <Label className="text-gray-700">Location</Label>
+                            <Label className={`${isDark ? 'text-foreground' : 'text-gray-700'}`}>
+                                Location
+                            </Label>
                             <Input
                                 type="text"
                                 name="location"
-                                value={ input.location }
-                                onChange={ changeEventHandler }
-                                className="border border-gray-300 rounded-md shadow-sm transition duration-200 focus:border-blue-400"
+                                value={input.location}
+                                onChange={changeEventHandler}
+                                className={`border rounded-md shadow-sm transition duration-200 ${
+                                    isDark 
+                                        ? 'border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary' 
+                                        : 'border-gray-300 focus:border-blue-400'
+                                }`}
                             />
                         </div>
                         <div>
-                            <Label className="text-gray-700">Logo</Label>
+                            <Label className={`${isDark ? 'text-foreground' : 'text-gray-700'}`}>
+                                Logo
+                            </Label>
                             <Input
                                 type="file"
                                 accept="image/*"
-                                onChange={ changeFileHandler }
-                                className="border border-gray-300 rounded-md shadow-sm transition duration-200"
+                                onChange={changeFileHandler}
+                                className={`border rounded-md shadow-sm transition duration-200 ${
+                                    isDark 
+                                        ? 'border-border bg-background text-foreground' 
+                                        : 'border-gray-300'
+                                }`}
                             />
                         </div>
                     </div>
                     {
                         loading ? (
-                            <Button className="w-full my-4 bg-blue-500 text-white" disabled>
+                            <Button className={`w-full my-4 transition duration-200 ${
+                                isDark 
+                                    ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
+                                    : 'bg-blue-500 text-white'
+                            }`} disabled>
                                 <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait
                             </Button>
                         ) : (
-                            <Button type="submit" className="w-full my-4 bg-blue-500 text-white hover:bg-blue-600 transition duration-200">
+                            <Button type="submit" className={`w-full my-4 transition duration-200 ${
+                                isDark 
+                                    ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
+                                    : 'bg-blue-500 text-white hover:bg-blue-600'
+                            }`}>
                                 Update
                             </Button>
                         )
