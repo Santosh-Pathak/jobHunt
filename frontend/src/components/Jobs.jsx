@@ -157,11 +157,7 @@ const Jobs = () => {
     }, [showSuggestions]);
 
     return (
-        <div className={`min-h-screen transition-all duration-300 ${
-            isDark 
-                ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
-                : 'bg-gradient-to-br from-blue-50 via-white to-emerald-50'
-        }`}>
+        <div className="min-h-screen transition-all duration-300 bg-background">
             <Navbar />
             
             {/* Main Container */}
@@ -175,30 +171,22 @@ const Jobs = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <div className="text-center mb-8">
-                        <h1 className={`text-4xl font-bold mb-4 ${
-                            isDark ? 'text-white' : 'text-gray-900'
-                        }`}>
+                        <h1 className="text-4xl font-bold mb-4 text-foreground">
                             Find Your Dream Job
                         </h1>
-                        <p className={`text-lg ${
-                            isDark ? 'text-gray-300' : 'text-gray-600'
-                        }`}>
+                        <p className="text-lg text-muted-foreground">
                             Discover amazing opportunities from top companies
                         </p>
                     </div>
 
                     {/* Enhanced Search Bar */}
                     <div className="max-w-4xl mx-auto mb-6">
-                        <Card className={`transition-all duration-300 ${
-                            isDark ? 'bg-gray-800/50 border-gray-700' : 'bg-white/80 border-gray-200'
-                        } backdrop-blur-sm`}>
+                        <Card className="transition-all duration-300 bg-card/80 border-border backdrop-blur-sm">
                             <CardContent className="p-6">
                                 <div className="relative search-container">
                                     <div className="flex items-center space-x-2">
                                         <div className="relative flex-1">
-                                            <Search className={`absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 ${
-                                                isDark ? 'text-gray-400' : 'text-gray-500'
-                                            }`} />
+                                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                                             <Input
                                                 type="text"
                                                 placeholder="Search jobs, companies, skills, or locations..."
@@ -213,20 +201,14 @@ const Jobs = () => {
                                                         handleSearch(searchQuery);
                                                     }
                                                 }}
-                                                className={`pl-12 pr-12 py-4 text-lg rounded-xl border-2 transition-all duration-200 ${
-                                                    isDark 
-                                                        ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500' 
-                                                        : 'bg-white border-gray-200 text-gray-900 placeholder-gray-500 focus:border-blue-400'
-                                                }`}
+                                                className="pl-12 pr-12 py-4 text-lg rounded-xl border-2 transition-all duration-200 bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary"
                                             />
                                             {searchQuery && (
                                                 <Button
                                                     variant="ghost"
                                                     size="sm"
                                                     onClick={clearSearch}
-                                                    className={`absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 ${
-                                                        isDark ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-700'
-                                                    }`}
+                                                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
                                                 >
                                                     <X className="h-4 w-4" />
                                                 </Button>
@@ -234,11 +216,7 @@ const Jobs = () => {
                                         </div>
                                         <Button 
                                             onClick={() => handleSearch(searchQuery)}
-                                            className={`px-6 py-4 text-lg font-medium transition-all duration-200 ${
-                                                isDark 
-                                                    ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                                                    : 'bg-blue-600 hover:bg-blue-700 text-white'
-                                            }`}
+                                            className="px-6 py-4 text-lg font-medium transition-all duration-200 bg-primary hover:bg-primary/90 text-primary-foreground"
                                         >
                                             Search
                                         </Button>
@@ -250,28 +228,18 @@ const Jobs = () => {
                                             initial={{ opacity: 0, y: -10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -10 }}
-                                            className={`absolute top-full left-0 right-0 mt-2 rounded-xl border shadow-xl z-50 ${
-                                                isDark 
-                                                    ? 'bg-gray-800/95 border-gray-700' 
-                                                    : 'bg-white/95 border-gray-200'
-                                            } backdrop-blur-sm`}
+                                            className="absolute top-full left-0 right-0 mt-2 rounded-xl border shadow-xl z-50 bg-card/95 border-border backdrop-blur-sm"
                                         >
                                             {/* Search History */}
                                             {searchHistory.length > 0 && (
-                                                <div className="p-4 border-b border-gray-200/50">
-                                                    <h4 className={`text-sm font-medium mb-2 ${
-                                                        isDark ? 'text-gray-300' : 'text-gray-600'
-                                                    }`}>Recent Searches</h4>
+                                                <div className="p-4 border-b border-border/50">
+                                                    <h4 className="text-sm font-medium mb-2 text-foreground">Recent Searches</h4>
                                                     <div className="space-y-1">
                                                         {searchHistory.map((item, index) => (
                                                             <button
                                                                 key={index}
                                                                 onClick={() => handleSuggestionClick(item)}
-                                                                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors duration-200 ${
-                                                                    isDark 
-                                                                        ? 'text-gray-300 hover:bg-gray-700/50 hover:text-white' 
-                                                                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                                                                }`}
+                                                                className="w-full text-left px-3 py-2 rounded-lg text-sm transition-colors duration-200 text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                                                             >
                                                                 <Clock className="inline h-4 w-4 mr-2" />
                                                                 {item}
@@ -283,19 +251,13 @@ const Jobs = () => {
 
                                             {/* Popular Suggestions */}
                                             <div className="p-4">
-                                                <h4 className={`text-sm font-medium mb-2 ${
-                                                    isDark ? 'text-gray-300' : 'text-gray-600'
-                                                }`}>Popular Searches</h4>
+                                                <h4 className="text-sm font-medium mb-2 text-foreground">Popular Searches</h4>
                                                 <div className="grid grid-cols-2 gap-2">
                                                     {suggestions.slice(0, 8).map((suggestion, index) => (
                                                         <button
                                                             key={index}
                                                             onClick={() => handleSuggestionClick(suggestion)}
-                                                            className={`text-left px-3 py-2 rounded-lg text-sm transition-colors duration-200 ${
-                                                                isDark 
-                                                                    ? 'text-gray-300 hover:bg-gray-700/50 hover:text-white' 
-                                                                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                                                            }`}
+                                                            className="text-left px-3 py-2 rounded-lg text-sm transition-colors duration-200 text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                                                         >
                                                             {suggestion}
                                                         </button>
@@ -310,11 +272,7 @@ const Jobs = () => {
                                 <div className="mt-4 flex flex-wrap gap-2">
                                     <Badge 
                                         variant="outline" 
-                                        className={`cursor-pointer transition-all duration-200 ${
-                                            isDark 
-                                                ? 'border-gray-600 text-gray-300 hover:bg-gray-700/50' 
-                                                : 'border-gray-300 text-gray-600 hover:bg-gray-100'
-                                        }`}
+                                        className="cursor-pointer transition-all duration-200 border-border text-foreground hover:bg-accent hover:text-accent-foreground"
                                         onClick={() => handleSuggestionClick('Remote Jobs')}
                                     >
                                         <MapPin className="h-3 w-3 mr-1" />
@@ -322,11 +280,7 @@ const Jobs = () => {
                                     </Badge>
                                     <Badge 
                                         variant="outline" 
-                                        className={`cursor-pointer transition-all duration-200 ${
-                                            isDark 
-                                                ? 'border-gray-600 text-gray-300 hover:bg-gray-700/50' 
-                                                : 'border-gray-300 text-gray-600 hover:bg-gray-100'
-                                        }`}
+                                        className="cursor-pointer transition-all duration-200 border-border text-foreground hover:bg-accent hover:text-accent-foreground"
                                         onClick={() => handleSuggestionClick('Frontend Developer')}
                                     >
                                         <Briefcase className="h-3 w-3 mr-1" />
@@ -334,11 +288,7 @@ const Jobs = () => {
                                     </Badge>
                                     <Badge 
                                         variant="outline" 
-                                        className={`cursor-pointer transition-all duration-200 ${
-                                            isDark 
-                                                ? 'border-gray-600 text-gray-300 hover:bg-gray-700/50' 
-                                                : 'border-gray-300 text-gray-600 hover:bg-gray-100'
-                                        }`}
+                                        className="cursor-pointer transition-all duration-200 border-border text-foreground hover:bg-accent hover:text-accent-foreground"
                                         onClick={() => handleSuggestionClick('Full Stack Engineer')}
                                     >
                                         <Users className="h-3 w-3 mr-1" />
@@ -346,11 +296,7 @@ const Jobs = () => {
                                     </Badge>
                                     <Badge 
                                         variant="outline" 
-                                        className={`cursor-pointer transition-all duration-200 ${
-                                            isDark 
-                                                ? 'border-gray-600 text-gray-300 hover:bg-gray-700/50' 
-                                                : 'border-gray-300 text-gray-600 hover:bg-gray-100'
-                                        }`}
+                                        className="cursor-pointer transition-all duration-200 border-border text-foreground hover:bg-accent hover:text-accent-foreground"
                                         onClick={() => handleSuggestionClick('Data Scientist')}
                                     >
                                         <DollarSign className="h-3 w-3 mr-1" />
@@ -363,10 +309,8 @@ const Jobs = () => {
 
                     {/* Results Summary */}
                     <div className="flex items-center justify-between mb-6">
-                        <div className={`text-sm ${
-                            isDark ? 'text-gray-400' : 'text-gray-600'
-                        }`}>
-                            <span className="font-semibold text-blue-600">{filteredJobs.length}</span> jobs found
+                        <div className="text-sm text-muted-foreground">
+                            <span className="font-semibold text-primary">{filteredJobs.length}</span> jobs found
                             {searchedQuery && (
                                 <span> for "<span className="font-medium">{searchedQuery}</span>"</span>
                             )}
@@ -376,11 +320,7 @@ const Jobs = () => {
                         <div className="flex items-center space-x-4">
                             {/* Sort Dropdown */}
                             <Select value={sortBy} onValueChange={setSortBy}>
-                                <SelectTrigger className={`w-40 ${
-                                    isDark 
-                                        ? 'bg-gray-800/50 border-gray-600 text-white' 
-                                        : 'bg-white border-gray-200 text-gray-900'
-                                }`}>
+                                <SelectTrigger className="w-40 bg-background border-border text-foreground">
                                     <SelectValue placeholder="Sort by" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -391,20 +331,12 @@ const Jobs = () => {
                             </Select>
 
                             {/* View Mode Toggle */}
-                            <div className={`flex rounded-lg p-1 ${
-                                isDark ? 'bg-gray-800/50' : 'bg-gray-100'
-                            }`}>
+                            <div className="flex rounded-lg p-1 bg-muted">
                                 <Button
                                     variant={viewMode === 'grid' ? 'default' : 'ghost'}
                                     size="sm"
                                     onClick={() => setViewMode('grid')}
-                                    className={`px-3 ${
-                                        viewMode === 'grid' 
-                                            ? 'bg-blue-600 text-white' 
-                                            : isDark 
-                                                ? 'text-gray-400 hover:text-white' 
-                                                : 'text-gray-600 hover:text-gray-900'
-                                    }`}
+                                    className="px-3 text-muted-foreground hover:text-foreground"
                                 >
                                     <Grid className="h-4 w-4" />
                                 </Button>
@@ -412,13 +344,7 @@ const Jobs = () => {
                                     variant={viewMode === 'list' ? 'default' : 'ghost'}
                                     size="sm"
                                     onClick={() => setViewMode('list')}
-                                    className={`px-3 ${
-                                        viewMode === 'list' 
-                                            ? 'bg-blue-600 text-white' 
-                                            : isDark 
-                                                ? 'text-gray-400 hover:text-white' 
-                                                : 'text-gray-600 hover:text-gray-900'
-                                    }`}
+                                    className="px-3 text-muted-foreground hover:text-foreground"
                                 >
                                     <List className="h-4 w-4" />
                                 </Button>
@@ -434,11 +360,7 @@ const Jobs = () => {
                     <div className="lg:hidden">
                         <Button
                             onClick={() => setShowFilters(!showFilters)}
-                            className={`w-full py-3 rounded-xl font-medium transition-all duration-200 ${
-                                isDark 
-                                    ? 'bg-gray-800/50 border-gray-600 text-white hover:bg-gray-700/50' 
-                                    : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50'
-                            } border-2`}
+                            className="w-full py-3 rounded-xl font-medium transition-all duration-200 bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground border-2"
                         >
                             <Filter className="h-5 w-5 mr-2" />
                             {showFilters ? 'Hide Filters' : 'Show Filters'}
@@ -489,21 +411,13 @@ const Jobs = () => {
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.6 }}
                             >
-                                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 ${
-                                    isDark ? 'bg-gray-800/50' : 'bg-gray-100'
-                                }`}>
-                                    <Search className={`h-10 w-10 ${
-                                        isDark ? 'text-gray-400' : 'text-gray-500'
-                                    }`} />
+                                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 bg-muted">
+                                    <Search className="h-10 w-10 text-muted-foreground" />
                                 </div>
-                                <h3 className={`text-2xl font-bold mb-2 ${
-                                    isDark ? 'text-white' : 'text-gray-900'
-                                }`}>
+                                <h3 className="text-2xl font-bold mb-2 text-foreground">
                                     No jobs found
                                 </h3>
-                                <p className={`text-lg ${
-                                    isDark ? 'text-gray-400' : 'text-gray-600'
-                                }`}>
+                                <p className="text-lg text-muted-foreground">
                                     Try adjusting your search criteria or filters
                                 </p>
                             </motion.div>

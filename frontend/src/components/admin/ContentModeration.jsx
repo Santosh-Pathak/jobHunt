@@ -155,9 +155,9 @@ const ContentModeration = () => {
             }
             
             const [queueRes, reportsRes, usersRes] = await Promise.all([
-                apiClient.get('/api/v1/admin/moderation/queue', { params: apiFilters }),
-                apiClient.get('/api/v1/admin/moderation/reports', { params: apiFilters }),
-                apiClient.get('/api/v1/admin/moderation/flagged-users', { params: apiFilters })
+                apiClient.get('/admin/moderation/queue', { params: apiFilters }),
+                apiClient.get('/admin/moderation/reports', { params: apiFilters }),
+                apiClient.get('/admin/moderation/flagged-users', { params: apiFilters })
             ]);
 
             setModerationQueue(queueRes.data.queue || []);
@@ -173,7 +173,7 @@ const ContentModeration = () => {
 
     const fetchModerationStats = async () => {
         try {
-            const res = await apiClient.get('/api/v1/admin/moderation/stats');
+            const res = await apiClient.get('/admin/moderation/stats');
             setModerationStats(res.data.stats);
         } catch (error) {
             console.error('Error fetching moderation stats:', error);
@@ -182,7 +182,7 @@ const ContentModeration = () => {
 
     const handleModerationAction = async (itemId, action, reason) => {
         try {
-            const res = await apiClient.post(`/api/v1/admin/moderation/${action}`, {
+            const res = await apiClient.post(`/admin/moderation/${action}`, {
                 itemId,
                 reason,
                 moderatorId: user._id
@@ -205,7 +205,7 @@ const ContentModeration = () => {
         }
 
         try {
-            const res = await apiClient.post(`/api/v1/admin/moderation/bulk-${action}`, {
+            const res = await apiClient.post(`/admin/moderation/bulk-${action}`, {
                 itemIds: selectedItems,
                 reason,
                 moderatorId: user._id
@@ -224,7 +224,7 @@ const ContentModeration = () => {
 
     const handleUserAction = async (userId, action, reason) => {
         try {
-            const res = await apiClient.post(`/api/v1/admin/users/${action}`, {
+            const res = await apiClient.post(`/admin/users/${action}`, {
                 userId,
                 reason,
                 moderatorId: user._id

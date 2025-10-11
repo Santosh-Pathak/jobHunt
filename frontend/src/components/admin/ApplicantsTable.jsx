@@ -13,8 +13,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { MoreHorizontal } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
-import { APPLICATION_API_END_POINT } from '@/utils/constant';
-import axios from 'axios';
+import apiClient from '@/utils/axiosConfig';
 
 const shortlistingStatus = ['Accepted', 'Rejected'];
 
@@ -28,13 +27,12 @@ const ApplicantsTable = () => {
 
     const statusHandler = async (status, id) => {
         try {
-            axios.defaults.withCredentials = true;
-            const res = await axios.post(`${APPLICATION_API_END_POINT}/status/${id}/update`, { status });
+            const res = await apiClient.put(`/application/status/${id}/update`, { status });
             if (res.data.success) {
                 toast.success(res.data.message);
             }
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || 'Failed to update status');
         }
     };
 
@@ -57,7 +55,7 @@ const ApplicantsTable = () => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    { applicants?.applications?.map((item, index) => (
+                    { applicants?.applications?.length > 0 ? applicants.applications.map((item, index) => (
                         <motion.tr
                             key={ item._id }
                             variants={ tableRowVariants }
@@ -66,24 +64,24 @@ const ApplicantsTable = () => {
                             transition={ { delay: index * 0.1 } }
                             className="hover:bg-blue-50"
                         >
-                            <TableCell>{ item?.applicant?.fullname }</TableCell>
-                            <TableCell>{ item?.applicant?.email }</TableCell>
-                            <TableCell>{ item?.applicant?.phoneNumber }</TableCell>
+                            <TableCell>{ item?.user?.fullName || 'N/A' }</TableCell>
+                            <TableCell>{ item?.user?.email || 'N/A' }</TableCell>
+                            <TableCell>{ item?.user?.profile?.phoneNumber || 'N/A' }</TableCell>
                             <TableCell>
-                                { item.applicant?.profile?.resume ? (
+                                { item?.resume ? (
                                     <a
                                         className="text-blue-600 cursor-pointer"
-                                        href={ item?.applicant?.profile?.resume }
+                                        href={ item?.resume }
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        { item?.applicant?.profile?.resumeOriginalName }
+                                        { item?.resumeOriginalName || 'Resume' }
                                     </a>
                                 ) : (
                                     <span>NA</span>
                                 ) }
                             </TableCell>
-                            <TableCell>{ item?.applicant.createdAt.split('T')[0] }</TableCell>
+                            <TableCell>{ item?.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'N/A' }</TableCell>
                             <TableCell className="float-right cursor-pointer">
                                 <Popover>
                                     <PopoverTrigger>
@@ -104,7 +102,13 @@ const ApplicantsTable = () => {
                                 </Popover>
                             </TableCell>
                         </motion.tr>
-                    )) }
+                    )) : (
+                        <TableRow>
+                            <TableCell colSpan={6} className="text-center text-gray-500 py-8">
+                                No applicants found for this job.
+                            </TableCell>
+                        </TableRow>
+                    ) }
                 </TableBody>
             </Table>
         </motion.div>

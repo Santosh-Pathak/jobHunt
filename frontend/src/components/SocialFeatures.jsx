@@ -56,9 +56,9 @@ const SocialFeatures = () => {
     const fetchSocialData = async () => {
         try {
             const [reviewsRes, companiesRes, sharedJobsRes] = await Promise.all([
-                apiClient.get('/api/v1/reviews'),
-                apiClient.get('/api/v1/companies'),
-                apiClient.get('/api/v1/social/shared-jobs')
+                apiClient.get('/reviews'),
+                apiClient.get('/companies'),
+                apiClient.get('/social/shared-jobs')
             ]);
 
             setReviews(reviewsRes.data.reviews || []);
@@ -73,7 +73,7 @@ const SocialFeatures = () => {
 
     const shareJob = async (jobId, platform) => {
         try {
-            const response = await apiClient.post('/api/v1/social/share-job', {
+            const response = await apiClient.post('/social/share-job', {
                 jobId,
                 platform,
                 message: `Check out this job opportunity!`
@@ -90,7 +90,7 @@ const SocialFeatures = () => {
 
     const submitReview = async (reviewData) => {
         try {
-            const response = await apiClient.post('/api/v1/reviews', reviewData);
+            const response = await apiClient.post('/reviews', reviewData);
             
             if (response.data.success) {
                 toast.success('Review submitted successfully');
@@ -104,7 +104,7 @@ const SocialFeatures = () => {
 
     const likeReview = async (reviewId) => {
         try {
-            const response = await apiClient.post(`/api/v1/reviews/${reviewId}/like`);
+            const response = await apiClient.post(`/reviews/${reviewId}/like`);
             
             if (response.data.success) {
                 toast.success('Review liked');
@@ -117,7 +117,7 @@ const SocialFeatures = () => {
 
     const reportReview = async (reviewId, reason) => {
         try {
-            const response = await apiClient.post(`/api/v1/reviews/${reviewId}/report`, { reason });
+            const response = await apiClient.post(`/reviews/${reviewId}/report`, { reason });
             
             if (response.data.success) {
                 toast.success('Review reported');

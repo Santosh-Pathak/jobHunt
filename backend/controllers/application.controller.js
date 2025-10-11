@@ -131,13 +131,6 @@ export const getApplicants = async (req, res) => {
 
     const total = await Application.countDocuments(filter);
 
-    if (!applications || applications.length === 0) {
-      return res.status(404).json({ 
-        message: "No applicants found for this job", 
-        success: false 
-      });
-    }
-
     return res.status(200).json({ 
       success: true, 
       applications,

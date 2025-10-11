@@ -48,7 +48,7 @@ const JobAlerts = () => {
 
     const fetchAlerts = async () => {
         try {
-            const response = await apiClient.get('/api/v1/job-alerts');
+            const response = await apiClient.get('/job-alerts');
             setAlerts(response.data.alerts || []);
         } catch (error) {
             console.error('Error fetching alerts:', error);
@@ -59,7 +59,7 @@ const JobAlerts = () => {
 
     const createAlert = async (alertData) => {
         try {
-            const response = await apiClient.post('/api/v1/job-alerts', alertData);
+            const response = await apiClient.post('/job-alerts', alertData);
             
             if (response.data.success) {
                 toast.success('Job alert created successfully');
@@ -73,7 +73,7 @@ const JobAlerts = () => {
 
     const updateAlert = async (alertId, alertData) => {
         try {
-            const response = await apiClient.put(`/api/v1/job-alerts/${alertId}`, alertData);
+            const response = await apiClient.put(`/job-alerts/${alertId}`, alertData);
             
             if (response.data.success) {
                 toast.success('Job alert updated successfully');
@@ -87,7 +87,7 @@ const JobAlerts = () => {
 
     const deleteAlert = async (alertId) => {
         try {
-            const response = await apiClient.delete(`/api/v1/job-alerts/${alertId}`);
+            const response = await apiClient.delete(`/job-alerts/${alertId}`);
             
             if (response.data.success) {
                 toast.success('Job alert deleted successfully');
@@ -100,7 +100,7 @@ const JobAlerts = () => {
 
     const toggleAlert = async (alertId, isActive) => {
         try {
-            const response = await apiClient.patch(`/api/v1/job-alerts/${alertId}/toggle`, { isActive });
+            const response = await apiClient.patch(`/job-alerts/${alertId}/toggle`, { isActive });
             
             if (response.data.success) {
                 toast.success(`Job alert ${isActive ? 'activated' : 'deactivated'}`);

@@ -70,6 +70,39 @@ export const postJob = async (req, res) => {
       });
     }
 
+    // Generate a unique non-null slug to satisfy unique index
+    const slugify = (value) => {
+      if (!value) return '';
+      return value
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+    };
+
+    const baseSlugParts = [slugify(title)];
+    if (companyId) {
+      // add a short stable suffix to improve uniqueness without leaking full id
+      const shortId = companyId.toString().slice(-6);
+      baseSlugParts.push(shortId);
+    }
+    const baseSlug = baseSlugParts.filter(Boolean).join('-');
+
+    let uniqueSlug = baseSlug || `job-${Date.now()}`;
+    let attempt = 1;
+    // ensure uniqueness by probing existing slugs
+    // note: this loop will run very few times in practice
+    // guard with a sane upper bound
+    while (await Job.exists({ slug: uniqueSlug })) {
+      uniqueSlug = `${baseSlug}-${attempt++}`;
+      if (attempt > 50) {
+        uniqueSlug = `${baseSlug}-${Date.now()}`;
+        break;
+      }
+    }
+
     const newJob = await Job.create({
       title,
       description,
@@ -93,7 +126,8 @@ export const postJob = async (req, res) => {
       createdBy: userId,
       category: 'Technology', // Default category
       industry: 'Technology', // Default industry
-      status: 'active'
+      status: 'active',
+      slug: uniqueSlug
     });
 
     return res

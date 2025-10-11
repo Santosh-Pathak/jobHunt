@@ -16,6 +16,11 @@ export const ThemeProvider = ({ children }) => {
         return savedTheme || 'light';
     });
 
+    const [highContrast, setHighContrast] = useState(() => {
+        const saved = localStorage.getItem('highContrast');
+        return saved ? saved === 'true' : false;
+    });
+
     useEffect(() => {
         localStorage.setItem('theme', theme);
         // Apply theme to document element for CSS variables
@@ -26,14 +31,25 @@ export const ThemeProvider = ({ children }) => {
         document.body.setAttribute('data-theme', theme);
     }, [theme]);
 
+    useEffect(() => {
+        localStorage.setItem('highContrast', String(highContrast));
+        document.documentElement.classList.toggle('high-contrast', highContrast);
+    }, [highContrast]);
+
     const toggleTheme = () => {
         setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    };
+
+    const toggleHighContrast = () => {
+        setHighContrast(prev => !prev);
     };
 
     const value = {
         theme,
         toggleTheme,
-        isDark: theme === 'dark'
+        isDark: theme === 'dark',
+        highContrast,
+        toggleHighContrast,
     };
 
     return (

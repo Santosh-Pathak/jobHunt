@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '../shared/Navbar';
 import ApplicantsTable from './ApplicantsTable';
-import axios from 'axios';
-import { APPLICATION_API_END_POINT } from '@/utils/constant';
+import apiClient from '@/utils/axiosConfig';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAllApplicants } from '@/redux/applicationSlice';
@@ -17,11 +16,8 @@ const Applicants = () => {
     useEffect(() => {
         const fetchAllApplicants = async () => {
             try {
-                const res = await axios.get(
-                    `${APPLICATION_API_END_POINT}/${params.id}/applicants`,
-                    { withCredentials: true }
-                );
-                dispatch(setAllApplicants(res.data.job));
+                const res = await apiClient.get(`/application/${params.id}/applicants`);
+                dispatch(setAllApplicants({ applications: res.data.applications, pagination: res.data.pagination }));
             } catch (error) {
 
             }

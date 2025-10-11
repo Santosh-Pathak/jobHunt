@@ -311,8 +311,8 @@ const BulkOperations = () => {
             }
             
             const [applicationsRes, jobsRes] = await Promise.all([
-                apiClient.get('/api/v1/application/bulk', { params: apiFilters }),
-                apiClient.get('/api/v1/job/getadminjobs')
+                apiClient.get('/application/bulk', { params: apiFilters }),
+                apiClient.get('/job/getadminjobs')
             ]);
 
             setApplications(applicationsRes.data.applications || []);
@@ -365,7 +365,7 @@ const BulkOperations = () => {
 
         setBulkActionLoading(true);
         try {
-            const response = await apiClient.post('/api/v1/application/bulk-status', {
+            const response = await apiClient.post('/application/bulk-status', {
                 applicationIds: selectedApplications,
                 status,
                 message
@@ -392,7 +392,7 @@ const BulkOperations = () => {
 
         setBulkActionLoading(true);
         try {
-            const response = await apiClient.post('/api/v1/application/bulk-email', {
+            const response = await apiClient.post('/application/bulk-email', {
                 applicationIds: selectedApplications,
                 ...emailData
             });
@@ -417,7 +417,7 @@ const BulkOperations = () => {
 
         setBulkActionLoading(true);
         try {
-            const response = await apiClient.post('/api/v1/interviews/bulk-schedule', {
+            const response = await apiClient.post('/interviews/bulk-schedule', {
                 applicationIds: selectedApplications,
                 ...interviewData
             });
@@ -441,7 +441,7 @@ const BulkOperations = () => {
         }
 
         try {
-            const response = await apiClient.post('/api/v1/application/bulk-export', {
+            const response = await apiClient.post('/application/bulk-export', {
                 applicationIds: selectedApplications,
                 format
             }, {
@@ -475,7 +475,7 @@ const BulkOperations = () => {
 
         setBulkActionLoading(true);
         try {
-            const response = await apiClient.post('/api/v1/job/bulk-close', {
+            const response = await apiClient.post('/job/bulk-close', {
                 jobIds: selectedJobs
             });
 

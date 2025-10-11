@@ -8,9 +8,10 @@ import { Send, X } from "lucide-react";
 import axios from "axios";
 import './ChatBot.css';
 
-// Mistral AI API integration
-const API_URL = "https://api.mistral.ai/v1/chat/completions";
-const HIRE_HUB_SYSTEM_PROMPT = `You are Hire Hub AI, created by Hire Hub Technologies in India. 
+// Gemini API integration
+const GEMINI_MODEL = "gemini-2.0-flash-lite-001";
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent`;
+const JOB_HUNT_SYSTEM_PROMPT = `You are job Hunt AI, created by jobHunt Technologies in India. 
 You help job seekers and recruiters connect. IMPORTANT: Keep all responses extremely brief (1-2 short sentences max).
 Never use bullet points or lists. Never write more than 150 characters in a response.
 Focus only on the most essential information in a conversational tone.
@@ -19,7 +20,7 @@ You assist with job searches, resume tips, interview prep, and connecting recrui
 const ChatBot = () => {
     const [chatBotOpen, setChatBotOpen] = useState(false);
     const [conversationHistory, setConversationHistory] = useState([
-        { role: "system", content: HIRE_HUB_SYSTEM_PROMPT }
+        { role: "system", content: JOB_HUNT_SYSTEM_PROMPT }
     ]);
     const [messages, setMessages] = useState([
         { sender: "bot", text: "Hi there! How can I help you today?" },
@@ -37,36 +38,67 @@ const ChatBot = () => {
     ]);
 
     const messagesEndRef = useRef(null);
-    const API_KEY = import.meta.env.VITE_MISTRAL_API_KEY;
+    const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
-    const generateMistralResponse = async (userInput) => {
+    const toGeminiContents = (historyArray) => {
+        // Prepend system prompt as first user message for v1 generateContent
+        const contents = [{ role: 'user', parts: [{ text: JOB_HUNT_SYSTEM_PROMPT }] }];
+        for (const item of historyArray) {
+            if (item.role === 'system') continue;
+            const role = item.role === 'assistant' ? 'model' : 'user';
+            contents.push({ role, parts: [{ text: item.content }] });
+        }
+        return contents;
+    };
+
+    const listAvailableModels = async () => {
         try {
-            // Add user message to conversation history
+            const response = await axios.get(
+                `https://generativelanguage.googleapis.com/v1/models?key=${API_KEY}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    timeout: 10000,
+                }
+            );
+            console.log("Available models:", response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error listing models:", error);
+            return null;
+        }
+    };
+
+    const generateGeminiResponse = async (userInput) => {
+        try {
             const updatedHistory = [
                 ...conversationHistory,
                 { role: "user", content: userInput }
             ];
 
-            const response = await axios.post(
-                API_URL,
-                {
-                    model: "mistral-tiny",
-                    messages: updatedHistory,
+            const payload = {
+                contents: toGeminiContents(updatedHistory),
+                generationConfig: {
                     temperature: 0.7,
-                    max_tokens: 100, // Reduced max tokens for shorter responses
-                },
+                    maxOutputTokens: 120
+                }
+            };
+
+            const response = await axios.post(
+                `${GEMINI_API_URL}?key=${API_KEY}`,
+                payload,
                 {
                     headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${API_KEY}`,
+                        "Content-Type": "application/json"
                     },
                     timeout: 15000,
                 }
             );
 
-            const aiResponse = response.data.choices[0].message.content;
+            const candidates = response?.data?.candidates;
+            const aiResponse = candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that.";
 
-            // Update conversation history with AI response
             setConversationHistory([
                 ...updatedHistory,
                 { role: "assistant", content: aiResponse }
@@ -74,7 +106,13 @@ const ChatBot = () => {
 
             return aiResponse;
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Gemini Error:", error?.response?.data || error?.message || error);
+            
+            if (error?.response?.status === 404) {
+                console.log("Model not found, listing available models...");
+                await listAvailableModels();
+            }
+            
             return "Sorry, I couldn't process that. Please try again.";
         }
     };
@@ -87,7 +125,7 @@ const ChatBot = () => {
         setLoading(true);
 
         try {
-            const botResponse = await generateMistralResponse(message);
+            const botResponse = await generateGeminiResponse(message);
             simulateTypingEffect(botResponse);
         } catch (error) {
             toast.error("Connection error");
@@ -119,7 +157,7 @@ const ChatBot = () => {
                 clearInterval(typingInterval);
                 setLoading(false);
             }
-        }, 50); // Even faster typing for short messages
+        }, 50);
     };
 
     useEffect(() => {
@@ -128,7 +166,6 @@ const ChatBot = () => {
         }
     }, [messages]);
 
-    // Check if categories should be shown
     const shouldShowCategories = messages.length === 2 && messages[0].sender === "bot" && messages[1].sender === "bot";
 
     return (

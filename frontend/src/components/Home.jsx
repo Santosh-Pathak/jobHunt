@@ -53,11 +53,7 @@ const Home = () => {
 
   return (
     <motion.div
-      className={`min-h-screen transition-all duration-500 ${
-        isDark 
-          ? 'bg-gradient-to-br from-gray-900 via-blue-900/10 to-emerald-900/10' 
-          : 'bg-gradient-to-br from-white via-blue-50/30 to-emerald-50/30'
-      }`}
+      className="min-h-screen transition-all duration-500 bg-background"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

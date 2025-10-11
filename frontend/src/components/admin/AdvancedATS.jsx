@@ -357,8 +357,8 @@ const AdvancedATS = () => {
             }
             
             const [applicationsRes, jobsRes] = await Promise.all([
-                apiClient.get('/api/v1/application/ats', { params: apiFilters }),
-                apiClient.get('/api/v1/job/getadminjobs')
+                apiClient.get('/ats/applications', { params: apiFilters }),
+                apiClient.get('/job/getadminjobs')
             ]);
 
             setApplications(applicationsRes.data.applications || []);
@@ -373,7 +373,7 @@ const AdvancedATS = () => {
 
     const fetchAnalytics = async () => {
         try {
-            const res = await apiClient.get('/api/v1/application/analytics');
+            const res = await apiClient.get('/ats/analytics');
             setAnalytics(res.data.analytics);
         } catch (error) {
             console.error('Error fetching analytics:', error);
@@ -382,7 +382,7 @@ const AdvancedATS = () => {
 
     const updateApplicationStatus = async (applicationId, status, notes) => {
         try {
-            const res = await apiClient.put(`/api/v1/application/${applicationId}/status`, {
+            const res = await apiClient.put(`/ats/applications/${applicationId}/status`, {
                 status,
                 notes
             });
@@ -398,7 +398,7 @@ const AdvancedATS = () => {
 
     const addApplicationNote = async (applicationId, note) => {
         try {
-            const res = await apiClient.post(`/api/v1/application/${applicationId}/notes`, {
+            const res = await apiClient.post(`/ats/applications/${applicationId}/notes`, {
                 note
             });
 
@@ -413,7 +413,7 @@ const AdvancedATS = () => {
 
     const rateCandidate = async (applicationId, rating, feedback) => {
         try {
-            const res = await apiClient.post(`/api/v1/application/${applicationId}/rating`, {
+            const res = await apiClient.post(`/ats/applications/${applicationId}/rating`, {
                 rating,
                 feedback
             });

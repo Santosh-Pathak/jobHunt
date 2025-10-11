@@ -50,7 +50,7 @@ const InterviewScheduler = () => {
 
     const fetchInterviews = async () => {
         try {
-            const response = await apiClient.get('/api/v1/interviews');
+            const response = await apiClient.get('/interviews');
             setInterviews(response.data.interviews || []);
         } catch (error) {
             console.error('Error fetching interviews:', error);
@@ -75,7 +75,7 @@ const InterviewScheduler = () => {
                 status: 'scheduled'
             };
 
-            const response = await apiClient.post('/api/v1/interviews/schedule', interviewData);
+            const response = await apiClient.post('/interviews/schedule', interviewData);
             
             if (response.data.success) {
                 toast.success('Interview scheduled successfully');

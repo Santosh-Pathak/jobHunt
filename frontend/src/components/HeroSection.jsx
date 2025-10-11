@@ -71,11 +71,7 @@ const HeroSection = () => {
 
     return (
         <motion.section 
-            className={`relative overflow-hidden pt-24 pb-20 min-h-screen ${
-                isDark 
-                    ? 'bg-gradient-to-br from-gray-900 via-blue-900/20 to-emerald-900/20' 
-                    : 'bg-gradient-to-br from-white via-blue-50/50 to-emerald-50/50'
-            }`}
+            className="relative overflow-hidden pt-24 pb-20 min-h-screen bg-background"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -84,16 +80,12 @@ const HeroSection = () => {
             <div className="absolute inset-0 overflow-hidden">
                 {/* Gradient Orbs */}
                 <motion.div 
-                    className={`absolute top-20 left-10 w-72 h-72 rounded-full opacity-20 blur-3xl ${
-                        isDark ? 'bg-blue-500' : 'bg-blue-400'
-                    }`}
+                    className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-20 blur-3xl bg-primary"
                     variants={floatingVariants}
                     animate="animate"
                 />
                 <motion.div 
-                    className={`absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-15 blur-3xl ${
-                        isDark ? 'bg-emerald-500' : 'bg-emerald-400'
-                    }`}
+                    className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-15 blur-3xl bg-secondary"
                     variants={floatingVariants}
                     animate="animate"
                     style={{ animationDelay: '2s' }}
@@ -118,19 +110,15 @@ const HeroSection = () => {
                         }}
                         variants={itemVariants}
                     >
-                        <Sparkles className={`h-4 w-4 ${isDark ? 'text-yellow-400' : 'text-yellow-500'}`} />
-                        <span className={`text-sm font-medium ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>
+                        <Sparkles className="h-4 w-4 text-accent-foreground" />
+                        <span className="text-sm font-medium text-primary">
                             #1 Job Search Platform
                         </span>
                     </motion.div>
 
                     {/* Main Heading */}
             <motion.h1
-                        className={`text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 tracking-tight ${
-                            isDark 
-                                ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400' 
-                                : 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600'
-                        }`}
+                        className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary"
                         variants={itemVariants}
                     >
                         Find Your Dream Job
@@ -140,13 +128,11 @@ const HeroSection = () => {
 
                     {/* Subtitle */}
             <motion.p
-                        className={`text-xl lg:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed ${
-                            isDark ? 'text-gray-300' : 'text-gray-600'
-                }`}
+                        className="text-xl lg:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed text-muted-foreground"
                         variants={itemVariants}
             >
                         Connect with top employers and discover opportunities that match your skills and aspirations. 
-                        <span className={`font-semibold ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>
+                        <span className="font-semibold text-primary">
                             Your next career move starts here.
                         </span>
             </motion.p>
@@ -159,11 +145,7 @@ const HeroSection = () => {
                 <Button
                     size="lg"
                             onClick={() => navigate('/jobs')}
-                            className={`px-8 py-4 text-lg font-medium transition-all duration-200 ${
-                                isDark 
-                                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
-                                    : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
-                            } shadow-lg hover:shadow-xl hover:scale-105`}
+                            className="px-8 py-4 text-lg font-medium transition-all duration-200 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl hover:scale-105"
                         >
                             <Search className="mr-2 h-5 w-5" />
                     Find Jobs
@@ -174,11 +156,7 @@ const HeroSection = () => {
                             onClick={handleNavigation}
                     size="lg"
                     variant="outline"
-                            className={`px-8 py-4 text-lg font-medium transition-all duration-200 ${
-                                isDark 
-                                    ? 'border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-gray-500'
-                                    : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-400'
-                            } hover:scale-105`}
+                            className="px-8 py-4 text-lg font-medium transition-all duration-200 border-border text-foreground hover:bg-accent hover:text-accent-foreground hover:scale-105"
                         >
                             <Briefcase className="mr-2 h-5 w-5" />
                     Post a Job
@@ -190,34 +168,22 @@ const HeroSection = () => {
                         className="max-w-2xl mx-auto mb-16"
                         variants={itemVariants}
                     >
-                        <Card className={`transition-all duration-300 ${
-                            isDark ? 'bg-gray-800/50 border-gray-700' : 'bg-white/80 border-gray-200'
-                        } backdrop-blur-sm shadow-xl`}>
+                        <Card className="transition-all duration-300 bg-card/80 border-border backdrop-blur-sm shadow-xl">
                             <CardContent className="p-6">
                                 <form onSubmit={searchJobHandler} className="flex gap-4">
                                     <div className="relative flex-1">
-                                        <Search className={`absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 ${
-                                            isDark ? 'text-gray-400' : 'text-gray-500'
-                                        }`} />
+                                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                     type="text"
                                             value={query}
                                             placeholder="Search by job title, skills, or company..."
                                             onChange={(e) => setQuery(e.target.value)}
-                                            className={`pl-12 pr-4 py-4 text-lg rounded-xl border-2 transition-all duration-200 ${
-                                                isDark
-                                                    ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500'
-                                                    : 'bg-white border-gray-200 text-gray-900 placeholder-gray-500 focus:border-blue-400'
-                                            }`}
+                                            className="pl-12 pr-4 py-4 text-lg rounded-xl border-2 transition-all duration-200 bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary"
                                         />
                                     </div>
                 <Button
                                         type="submit"
-                                        className={`px-8 py-4 text-lg font-medium transition-all duration-200 ${
-                                            isDark 
-                                                ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
-                                                : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
-                                        } shadow-lg hover:shadow-xl`}
+                                        className="px-8 py-4 text-lg font-medium transition-all duration-200 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl"
                                     >
                     Search
                 </Button>
@@ -225,18 +191,14 @@ const HeroSection = () => {
                                 
                                 {/* Quick Search Tags */}
                                 <div className="mt-4 flex flex-wrap gap-2">
-                                    <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    <span className="text-sm text-muted-foreground">
                                         Popular:
                                     </span>
                                     {['Frontend Developer', 'Data Scientist', 'Product Manager', 'Remote Jobs'].map((tag) => (
                                         <Badge
                                             key={tag}
                                             variant="outline"
-                                            className={`cursor-pointer transition-all duration-200 ${
-                                                isDark
-                                                    ? 'border-gray-600 text-gray-300 hover:bg-gray-700/50'
-                                                    : 'border-gray-300 text-gray-600 hover:bg-gray-100'
-                                            }`}
+                                            className="cursor-pointer transition-all duration-200 border-border text-foreground hover:bg-accent hover:text-accent-foreground"
                                             onClick={() => {
                                                 setQuery(tag);
                                                 dispatch(setSearchedQuery(tag));
@@ -268,23 +230,15 @@ const HeroSection = () => {
                             variants={itemVariants}
                     whileHover={{ scale: 1.05 }}
                         >
-                            <Card className={`text-center p-6 transition-all duration-300 ${
-                                isDark 
-                                    ? 'bg-gray-800/50 border-gray-700 hover:border-blue-500/50' 
-                                    : 'bg-white/80 border-gray-200 hover:border-blue-300'
-                            } backdrop-blur-sm shadow-lg hover:shadow-xl`}>
+                            <Card className="text-center p-6 transition-all duration-300 bg-card/80 border-border hover:border-primary/50 backdrop-blur-sm shadow-lg hover:shadow-xl">
                                 <CardContent className="p-0">
                                     <div className={`bg-gradient-to-r ${stat.color} rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4`}>
                                         <stat.icon className="h-8 w-8 text-white" />
                                     </div>
-                                    <div className={`text-3xl font-bold mb-2 ${
-                                        isDark ? 'text-blue-400' : 'text-blue-600'
-                                    }`}>
+                                    <div className="text-3xl font-bold mb-2 text-primary">
                                         {stat.value}
                                     </div>
-                                    <div className={`text-sm font-medium ${
-                                        isDark ? 'text-gray-300' : 'text-gray-600'
-                                    }`}>
+                                    <div className="text-sm font-medium text-muted-foreground">
                                         {stat.label}
                     </div>
                                 </CardContent>

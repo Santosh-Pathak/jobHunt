@@ -125,10 +125,10 @@ const SystemMonitoring = () => {
     const fetchSystemData = async () => {
         try {
             const [healthRes, metricsRes, alertsRes, logsRes] = await Promise.all([
-                apiClient.get('/api/v1/admin/system/health'),
-                apiClient.get('/api/v1/admin/system/metrics'),
-                apiClient.get('/api/v1/admin/system/alerts'),
-                apiClient.get('/api/v1/admin/system/logs')
+                apiClient.get('/admin/system/health'),
+                apiClient.get('/admin/system/metrics'),
+                apiClient.get('/admin/system/alerts'),
+                apiClient.get('/admin/system/logs')
             ]);
 
             setSystemHealth(healthRes.data.health);
@@ -145,7 +145,7 @@ const SystemMonitoring = () => {
 
     const handleAlertAction = async (alertId, action) => {
         try {
-            const res = await apiClient.post(`/api/v1/admin/system/alerts/${alertId}/${action}`);
+            const res = await apiClient.post(`/admin/system/alerts/${alertId}/${action}`);
             if (res.data.success) {
                 toast.success(`Alert ${action}d successfully`);
                 fetchSystemData();
