@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { 
     Users, 
     Briefcase, 
-    Building2, 
+    Building2,
+    Building, 
     FileText, 
     TrendingUp, 
     Eye, 
