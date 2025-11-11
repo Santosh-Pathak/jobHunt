@@ -30,6 +30,7 @@ import applicationDraftRoute from './routes/applicationDraft.route.js'
 
 // Import event publisher to initialize RabbitMQ connection
 import eventPublisher from './services/eventPublisher.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 dotenv.config(); // to use the environment variables in the project
 
@@ -82,10 +83,10 @@ app.use('/api/v1/interviews', limiter);
 app.use('/api/v1/social', limiter);
 app.use('/api/v1/job-alerts', limiter);
 app.use('/api/v1/bulk-operations', limiter);
-app.use('/api/v1/advanced-ats', limiter);
-app.use('/api/v1/content-moderation', limiter);
-app.use('/api/v1/system-monitoring', limiter);
-app.use('/api/v1/linkedin-import', limiter);
+app.use('/api/v1/ats', limiter);
+app.use('/api/v1/admin/moderation', limiter);
+app.use('/api/v1/admin/system', limiter);
+app.use('/api/v1/linkedin', limiter);
 app.use('/api/v1/application-drafts', limiter);
 
 //middlewares
@@ -175,22 +176,7 @@ app.use('/api/v1/admin/system', systemMonitoringRoute);
 app.use('/api/v1/linkedin', linkedinImportRoute);
 app.use('/api/v1/application-drafts', applicationDraftRoute);
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
-});
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ 
-        success: false, 
-        message: 'Something went wrong!',
-        error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
-    });
-});
-
-// 404 handler
+// 404 handler - must be after all routes but before error handler
 app.use('*', (req, res) => {
     res.status(404).json({ 
         success: false, 
@@ -198,8 +184,11 @@ app.use('*', (req, res) => {
     });
 });
 
-server.listen(PORT, () => {
-    connectDB(); // to connect to the database
+// Error handling middleware - must be last
+app.use(errorHandler);
+
+server.listen(PORT, async () => {
+    await connectDB(); // to connect to the database
     console.log(`Server started at port ${PORT}`);
 });
 
