@@ -1,4 +1,12 @@
+/**
+ * Job Controller - Integrated with Microservices
+ * 
+ * Uses Notification microservice for emails and Event bus for events
+ */
+
 import { Job } from "../models/job.model.js";
+import notificationService from "../services/notificationService.js";
+import eventPublisher from "../services/eventPublisher.js";
 
 export const postJob = async (req, res) => {
   try {
@@ -129,6 +137,35 @@ export const postJob = async (req, res) => {
       status: 'active',
       slug: uniqueSlug
     });
+
+    // Publish job.posted event
+    console.log('Publishing job.posted event...');
+    await eventPublisher.publishJobPosted({
+      _id: newJob._id,
+      title: newJob.title,
+      companyId: companyId,
+      location: location,
+      jobType: jobType,
+      salary: salary,
+      experienceLevel: experience,
+      postedBy: userId,
+      postedAt: newJob.createdAt
+    });
+
+    // Send confirmation email to recruiter (get user info)
+    try {
+      const mongoose = (await import('mongoose')).default;
+      const recruiter = await mongoose.model('User').findById(userId);
+      if (recruiter && recruiter.email) {
+        console.log('Sending job posting confirmation email...');
+        await notificationService.sendJobPostingConfirmation({
+          recruiter: { email: recruiter.email, fullName: recruiter.fullName },
+          job: { title: newJob.title, location: location, salary: salary }
+        });
+      }
+    } catch (emailError) {
+      console.log('Email notification failed (non-critical):', emailError.message);
+    }
 
     return res
       .status(201)

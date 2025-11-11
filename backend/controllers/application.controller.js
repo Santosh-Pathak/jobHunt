@@ -1,6 +1,14 @@
+/**
+ * Application Controller - Integrated with Microservices
+ * 
+ * Uses Notification microservice for emails and Event bus for events
+ */
+
 import mongoose from 'mongoose';
 import { Application } from "../models/application.model.js";
 import { Job } from "../models/job.model.js";
+import notificationService from "../services/notificationService.js";
+import eventPublisher from "../services/eventPublisher.js";
 
 export const applyJob = async (req, res) => {
   try {
@@ -59,6 +67,27 @@ export const applyJob = async (req, res) => {
     job.applications.push(newApplication._id);
     job.applicationsCount = job.applications.length;
     await job.save();
+
+    // Publish application.submitted event
+    console.log('Publishing application.submitted event...');
+    await eventPublisher.publishApplicationSubmitted({
+      _id: newApplication._id,
+      jobId: job._id,
+      userId: userId,
+      applicantEmail: user.email,
+      applicantName: user.fullName,
+      resumeUrl: user.profile?.resume,
+      coverLetter: newApplication.coverLetter,
+      submittedAt: newApplication.createdAt
+    });
+
+    // Send confirmation email to applicant
+    console.log('Sending application confirmation email...');
+    await notificationService.sendApplicationConfirmation({
+      applicant: { email: user.email, fullName: user.fullName },
+      job: { title: job.title, _id: job._id },
+      company: { name: job.company.name }
+    });
 
     return res.status(201).json({
       message: "Application submitted successfully",

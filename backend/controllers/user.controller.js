@@ -1,9 +1,22 @@
+/**
+ * User Controller - Integrated with Auth & Notification Microservices
+ * 
+ * This controller uses:
+ * - Auth microservice for user authentication
+ * - Notification microservice for emails
+ * - Event bus (RabbitMQ) for event publishing
+ */
+
 import bcrypt from "bcryptjs";
 import {User} from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
+import authService from "../services/authService.js";
+import notificationService from "../services/notificationService.js";
+import eventPublisher from "../services/eventPublisher.js";
+
 dotenv.config();
 
 export const register = async (req, res) => {
@@ -15,14 +28,13 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: "All fields are required", success: false });
     }
 
+    // Check if user already exists in JobHunt database
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: "User already exists", success: false });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10); // hashing password with 10 rounds
-
-    // Handle profile picture upload
+    // Handle profile picture upload to Cloudinary
     let profilePhoto = "";
     if (file) {
       const fileUri = getDataUri(file);
@@ -30,33 +42,98 @@ export const register = async (req, res) => {
       profilePhoto = cloudResponse.secure_url;
     }
 
-    const user = await User.create({
+    // Register user with Auth microservice
+    console.log('Registering user with Auth microservice...');
+    const authResult = await authService.register({
       fullName,
       email,
       phoneNumber,
-      password: hashedPassword,
+      password,
       role,
+      profile: { profilePhoto }
+    });
+
+    if (!authResult.success) {
+      return res.status(authResult.statusCode || 400).json({
+        message: authResult.error || "Registration failed",
+        success: false
+      });
+    }
+
+    // Create JobHunt user profile in local database
+    const jobHuntUser = await User.create({
+      fullName,
+      email,
+      phoneNumber,
+      password: await bcrypt.hash(password, 10), // Store hashed password for fallback
+      role,
+      authUserId: authResult.user.authUserId, // Link to Auth microservice user
       profile: {
-        profilePhoto: profilePhoto
+        profilePhoto: profilePhoto,
+        bio: "",
+        skills: [],
+        resume: "",
+        education: [],
+        experience: [],
+        portfolio: [],
+        certifications: [],
+        languages: [],
+        socialLinks: {},
+        preferences: {
+          jobTypes: [],
+          locations: [],
+          salaryRange: { min: 0, max: 0 },
+          remoteOnly: false,
+          willingToRelocate: false
+        },
+        savedJobs: []
+      },
+      analytics: {
+        profileViews: 0,
+        jobApplications: 0,
+        profileCompleteness: 20 // Initial completeness
       }
     });
 
+    // Send welcome email via Notification microservice
+    console.log('Sending welcome email...');
+    await notificationService.sendWelcomeEmail({
+      email: jobHuntUser.email,
+      fullName: jobHuntUser.fullName,
+      firstName: fullName.split(' ')[0],
+      role: jobHuntUser.role,
+      _id: jobHuntUser._id
+    });
+
+    // Publish user.registered event
+    console.log('Publishing user.registered event...');
+    await eventPublisher.publishApplicationSubmitted({
+      _id: jobHuntUser._id,
+      email: jobHuntUser.email,
+      fullName: jobHuntUser.fullName,
+      role: jobHuntUser.role,
+      createdAt: jobHuntUser.createdAt
+    });
+
+    // Return response with tokens from Auth microservice
     return res.status(201).json({ 
       message: "Account created successfully", 
       success: true,
       user: {
-        _id: user._id,
-        fullName: user.fullName,
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-        role: user.role,
-        profile: user.profile
-      }
+        _id: jobHuntUser._id,
+        authUserId: jobHuntUser.authUserId,
+        fullName: jobHuntUser.fullName,
+        email: jobHuntUser.email,
+        phoneNumber: jobHuntUser.phoneNumber,
+        role: jobHuntUser.role,
+        profile: jobHuntUser.profile
+      },
+      tokens: authResult.tokens
     });
 
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: "Something went wrong", success: false });
+    console.error('Registration error:', error);
+    return res.status(500).json({ message: "Something went wrong during registration", success: false });
   }
 };
 
@@ -72,69 +149,59 @@ export const login = async (req, res) => {
               success: false
           });
       };
-      console.log("Looking for user with email:", email);
-      let user = await User.findOne({ email });
-      console.log("User found:", !!user);
+      // Authenticate with Auth microservice
+      console.log('Authenticating with Auth microservice...');
+      const authResult = await authService.login({ email, password });
+
+      if (!authResult.success) {
+          return res.status(authResult.statusCode || 400).json({
+              message: authResult.error || "Incorrect email or password",
+              success: false
+          });
+      }
+
+      // Get JobHunt user profile
+      console.log('Looking for JobHunt user profile...');
+      let user = await User.findOne({ email }).select('-password');
       
       if (!user) {
-          console.log("User not found");
-          return res.status(400).json({
-              message: "Incorrect email or password.",
-              success: false,
-          })
+          // User exists in Auth but not in JobHunt DB
+          console.log('User not found in JobHunt database, creating profile...');
+          user = await User.create({
+              fullName: authResult.user.fullName,
+              email: authResult.user.email,
+              phoneNumber: "",
+              authUserId: authResult.user.authUserId,
+              role: role,
+              profile: { profilePhoto: "", bio: "", skills: [], savedJobs: [] },
+              analytics: { profileViews: 0, jobApplications: 0, profileCompleteness: 10 }
+          });
       }
-      
-      console.log("Comparing password...");
-      const isPasswordMatch = await bcrypt.compare(password, user.password);
-      console.log("Password match:", isPasswordMatch);
-      
-      if (!isPasswordMatch) {
-          console.log("Password doesn't match");
-          return res.status(400).json({
-              message: "Incorrect email or password.",
-              success: false,
-          })
-      };
-      
-      console.log("Checking role. Expected:", role, "User role:", user.role);
-      // check role is correct or not
+
+      // Check role matches
       if (role !== user.role) {
-          console.log("Role mismatch");
-          return res.status(400).json({
-              message: "Account doesn't exist with current role.",
+          console.log('Role mismatch:', { expected: role, actual: user.role });
+          return res.status(403).json({
+              message: `You are not authorized to login as ${role}`,
               success: false
-          })
-      };
-
-      const tokenData = {
-          userId: user._id
-      }
-      
-      console.log("Creating JWT token...");
-      const secretKey = process.env.SECRET_KEY || 'fallback_secret_key_for_development';
-      console.log("Secret key exists:", !!process.env.SECRET_KEY);
-      
-      const token = jwt.sign(tokenData, secretKey, { expiresIn: '1d' });
-      console.log("Token created successfully");
-
-      user = {
-          _id: user._id,
-          fullName: user.fullName,
-          email: user.email,
-          phoneNumber: user.phoneNumber,
-          role: user.role,
-          profile: user.profile
+          });
       }
 
-      console.log("Sending login response...");
-      return res.status(200).cookie("token", token, { 
-          maxAge: 1 * 24 * 60 * 60 * 1000, 
-          httpOnly: true, 
+      // Update last login
+      user.lastLogin = new Date();
+      await user.save();
+
+      // Set token in cookie (for backward compatibility)
+      const token = authResult.tokens.accessToken;
+      return res.status(200).cookie("token", token, {
+          maxAge: 1 * 24 * 60 * 60 * 1000,
+          httpOnly: true,
           sameSite: 'lax',
-          secure: false // Set to false for development
+          secure: false
       }).json({
           message: `Welcome back ${user.fullName}`,
           user,
+          tokens: authResult.tokens,
           success: true
       })
   } catch (error) {

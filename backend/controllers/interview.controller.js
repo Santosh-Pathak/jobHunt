@@ -1,8 +1,16 @@
+/**
+ * Interview Controller - Integrated with Microservices
+ * 
+ * Uses Notification microservice for emails and Event bus for events
+ */
+
 import { Interview } from '../models/interview.model.js';
 import { User } from '../models/user.model.js';
 import { Job } from '../models/job.model.js';
 import { Application } from '../models/application.model.js';
 import { Notification } from '../models/notification.model.js';
+import notificationService from '../services/notificationService.js';
+import eventPublisher from '../services/eventPublisher.js';
 
 // Schedule a new interview
 export const scheduleInterview = async (req, res) => {
@@ -66,7 +74,7 @@ export const scheduleInterview = async (req, res) => {
             { path: 'application', select: 'status' }
         ]);
 
-        // Create notification for the user
+        // Create notification for the user (keep local for quick access)
         const notification = new Notification({
             user: userId,
             type: 'interview_scheduled',
@@ -80,6 +88,40 @@ export const scheduleInterview = async (req, res) => {
         });
 
         await notification.save();
+
+        // Publish interview.scheduled event
+        console.log('Publishing interview.scheduled event...');
+        await eventPublisher.publishInterviewScheduled({
+            _id: interview._id,
+            applicationId: applicationId,
+            jobId: jobId,
+            candidateId: userId,
+            candidateEmail: interview.user?.email,
+            date: date,
+            time: time,
+            type: type,
+            location: location,
+            meetingLink: meetingLink,
+            scheduledAt: interview.createdAt
+        });
+
+        // Send interview invitation email via Notification microservice
+        console.log('Sending interview invitation email...');
+        await notificationService.sendInterviewInvitation({
+            applicant: { 
+                email: interview.user?.email, 
+                fullName: interview.user?.fullName 
+            },
+            interview: {
+                date: date,
+                time: time,
+                type: type,
+                location: location,
+                meetingLink: meetingLink,
+                duration: duration
+            },
+            job: { title: interview.job?.title }
+        });
 
         // Send email notification (if interviewer email is provided)
         if (interviewerEmail) {

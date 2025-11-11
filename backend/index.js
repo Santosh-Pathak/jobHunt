@@ -28,7 +28,13 @@ import systemMonitoringRoute from './routes/systemMonitoring.route.js'
 import linkedinImportRoute from './routes/linkedinImport.route.js'
 import applicationDraftRoute from './routes/applicationDraft.route.js'
 
+// Import event publisher to initialize RabbitMQ connection
+import eventPublisher from './services/eventPublisher.js';
+
 dotenv.config(); // to use the environment variables in the project
+
+// Event publisher auto-connects on import
+console.log('✅ Event publisher initialized');
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
