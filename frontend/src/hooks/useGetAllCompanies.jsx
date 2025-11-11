@@ -15,7 +15,7 @@ const useGetAllCompanies = () => {
                     dispatch(setCompanies(res.data.companies));
                 }
             } catch (error) {
-
+                console.error('Error fetching companies:', error);
             }
         }
         fetchCompanies();

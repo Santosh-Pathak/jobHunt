@@ -19,7 +19,8 @@ import {
     Bookmark,
     Eye,
     ArrowUpRight,
-    EyeOff
+    EyeOff,
+    AlertCircle
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';

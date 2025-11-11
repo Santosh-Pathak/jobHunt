@@ -19,7 +19,7 @@ const Applicants = () => {
                 const res = await apiClient.get(`/application/${params.id}/applicants`);
                 dispatch(setAllApplicants({ applications: res.data.applications, pagination: res.data.pagination }));
             } catch (error) {
-
+                console.error('Error fetching applicants:', error);
             }
         };
         fetchAllApplicants();
