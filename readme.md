@@ -525,21 +525,31 @@ The application is **production-ready** and can be deployed immediately. All cor
 
 ### Docker Deployment
 
-```dockerfile
-# Dockerfile example
-FROM node:18-alpine
+This repository now includes production-ready containerization and observability:
 
-WORKDIR /app
+- Multi-stage Docker build for `backend` and `frontend`
+- End-to-end stack via `docker-compose.yml`
+- Prometheus scraping via backend `/metrics`
+- Grafana provisioning with an auto-loaded dashboard
 
-COPY backend/package*.json ./
-RUN npm install
+#### Run Locally with Docker
 
-COPY backend/ .
-COPY frontend/dist ./public
+```bash
+cp backend/.env.docker.example backend/.env
+docker compose up -d --build
+```
 
-EXPOSE 5000
+#### Service URLs
 
-CMD ["npm", "start"]
+- Frontend: `http://localhost:5173`
+- Backend API health: `http://localhost:5000/health`
+- Prometheus: `http://localhost:9090`
+- Grafana: `http://localhost:3001` (default `admin/admin`)
+
+#### Stop Stack
+
+```bash
+docker compose down
 ```
 
 ### Environment Setup

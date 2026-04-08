@@ -1,6 +1,7 @@
 import multer from 'multer';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+import { logError } from '../utils/logger.js';
 
 // Custom error classes
 export class AppError extends Error {
@@ -177,6 +178,7 @@ const sendErrorProd = (err, res) => {
 export const errorHandler = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';
+    logError(`${req.method} ${req.originalUrl} - ${err.message}`);
 
     if (process.env.NODE_ENV === 'development') {
         sendErrorDev(err, res);
