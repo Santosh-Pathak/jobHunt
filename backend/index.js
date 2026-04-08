@@ -5,6 +5,7 @@ import cors from 'cors'; // to allow the requests from the frontend to the backe
 import dotenv from 'dotenv'; // to use the environment variables in the project
 import helmet from 'helmet'; // Security middleware
 import rateLimit from 'express-rate-limit'; // Rate limiting
+import morgan from 'morgan';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import connectDB from './utils/db.js'; // to connect to the database
@@ -31,11 +32,14 @@ import applicationDraftRoute from './routes/applicationDraft.route.js'
 // Import event publisher to initialize RabbitMQ connection
 import eventPublisher from './services/eventPublisher.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { metricsMiddleware, metricsHandler } from './utils/metrics.js';
+import { accessLogStream, logInfo } from './utils/logger.js';
 
 dotenv.config(); // to use the environment variables in the project
 
 // Event publisher auto-connects on import
 console.log('✅ Event publisher initialized');
+logInfo('Event publisher initialized');
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
@@ -94,6 +98,7 @@ app.use(express.json({ limit: '10mb' })); // jabham request bhejte hain toh data
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.static('public'));
 app.use(cookieParser());
+app.use(morgan('combined', { stream: accessLogStream }));
 
 const corsOptions = {
     origin: function (origin, callback) {
@@ -122,6 +127,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(metricsMiddleware);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -132,6 +138,9 @@ app.get('/health', (req, res) => {
         environment: process.env.NODE_ENV || 'development'
     });
 });
+
+// Prometheus scrape endpoint
+app.get('/metrics', metricsHandler);
 
 // Socket.io connection handling
 io.on('connection', (socket) => {
@@ -190,6 +199,7 @@ app.use(errorHandler);
 server.listen(PORT, async () => {
     await connectDB(); // to connect to the database
     console.log(`Server started at port ${PORT}`);
+    logInfo(`Server started at port ${PORT}`);
 });
 
 export { io };
